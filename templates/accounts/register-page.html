@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Register{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{% static 'web_auth/css/register.css' %}">
+{% endblock %}
+
+{% block content %}
+    <h1>User Registration</h1>
+
+    <form method="post" action="{% url 'register user' %}">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">Register</button>
+    </form>
+
+    <p>Already have an account? <a href="{% url 'login user' %}">Login here</a>.</p>
+{% endblock %}

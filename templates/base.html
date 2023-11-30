@@ -1,0 +1,31 @@
+<!-- base.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Event Ticketing System{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <!-- Add other common stylesheets or scripts here -->
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/event_ticketing_system/events/">Events</a></li>
+        <!-- Add more navigation links as needed -->
+    </ul>
+</nav>
+
+<!-- Content Section -->
+<div id="content">
+    {% block content %}{% endblock %}
+</div>
+
+<!-- Add your JavaScript scripts or link to external scripts here -->
+
+</body>
+</html>
