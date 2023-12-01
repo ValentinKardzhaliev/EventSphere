@@ -1,3 +1,5 @@
+/* login.css */
+
 .custom-form-control {
     width: 100%;
     padding: 8px;
@@ -11,6 +13,8 @@ button {
     background-color: #28a745;
     color: #fff;
     cursor: pointer;
+    padding: 12px 20px;
+    font-size: 16px;
 }
 
 button:hover {

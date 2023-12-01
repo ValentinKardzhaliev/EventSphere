@@ -1,0 +1,12 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+  <h2>{{ user.username }}'s Profile</h2>
+
+  <h3>Liked Events:</h3>
+  <ul>
+    {% for event_title in liked_events %}
+      <li>{{ event_title }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

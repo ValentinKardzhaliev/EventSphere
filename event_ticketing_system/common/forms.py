@@ -7,7 +7,7 @@ class SearchForm(forms.Form):
         required=False,
         widget=forms.TextInput(
             attrs={
-                'placeholder': 'Search for an event by name...',
+                'placeholder': 'Search event by name...',
             },
         )
     )

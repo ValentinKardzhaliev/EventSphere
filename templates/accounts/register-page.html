@@ -1,10 +1,8 @@
-{% extends 'base.html' %}
+{% extends 'base/base.html' %}
 {% load static %}
 
-{% block title %}Register{% endblock %}
-
 {% block stylesheets %}
-    <link rel="stylesheet" type="text/css" href="{% static 'web_auth/css/register.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -13,7 +11,17 @@
     <form method="post" action="{% url 'register user' %}">
         {% csrf_token %}
 
-        {{ form.as_p }}
+        <label for="{{ form.username.id_for_label }}">Username:</label><br>
+        {{ form.username }}<br>
+
+        <label for="{{ form.email.id_for_label }}">Email:</label><br>
+        {{ form.email }}<br>
+
+        <label for="{{ form.password1.id_for_label }}">Password:</label><br>
+        {{ form.password1 }}<br>
+
+        <label for="{{ form.password2.id_for_label }}">Confirm Password:</label><br>
+        {{ form.password2 }}<br>
 
         <button type="submit">Register</button>
     </form>

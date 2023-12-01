@@ -1,0 +1,41 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+    <h1>Event Search and Listing</h1>
+
+
+    <form method="get" action="{% url 'index' %}">
+        {{ search_form }}
+        <button type="submit">Search</button>
+    </form>
+
+    {% if search_query %}
+        {% if events %}
+            <!-- List of events matching the search query -->
+            <h2>Matching Events</h2>
+            <ul>
+                {% for event in events %}
+                    <li>
+                     <a href="{% url 'event detail' event.id %}">{{ event.title }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No events with the title "{{ search_query }}" were found.</p>
+        {% endif %}
+    {% else %}
+        <h2>All Events</h2>
+        <ul>
+            {% for event in events %}
+                <li>
+                    <a href="{% url 'event detail' event.id %}">{{ event.title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

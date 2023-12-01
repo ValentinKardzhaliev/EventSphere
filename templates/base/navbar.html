@@ -1,0 +1,13 @@
+<div class="navbar">
+    <a href="{% url 'index' %}">Home</a>
+
+    {% if user.is_authenticated %}
+        <a href="#">Likes</a>
+        <a href="#">Tickets</a>
+        <a href="{% url 'event add' %}">Create an event</a>
+        <a href="{% url 'profile details' %}">Profile</a>
+    {% else %}
+        <a href="{% url 'login user' %}">Login</a>
+        <a href="{% url 'register user' %}">Register</a>
+    {% endif %}
+</div>
