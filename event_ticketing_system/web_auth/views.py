@@ -33,16 +33,6 @@ class LogoutUserView(auth_views.LogoutView):
         return reverse_lazy('index')
 
 
-def user_likes(request):
-    user = request.user
-    liked_events = Like.objects.filter(user=user).values_list('event__title', flat=True)
-
-    context = {
-        'user': user,
-        'liked_events': liked_events,
-    }
-
-    return render(request, 'accounts/user_profile.html', context)
 
 
 class ProfileDetailsView(views.DetailView):

@@ -1,7 +1,6 @@
 import os
 from pathlib import Path
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -29,6 +28,7 @@ INSTALLED_APPS = [
     'event_ticketing_system.web_auth',
     'event_ticketing_system.common',
     'event_ticketing_system.events',
+    'event_ticketing_system.tickets',
 ]
 
 MIDDLEWARE = [
@@ -113,8 +113,8 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
+MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
 
 
 # Default primary key field type

@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
+from django.views.generic import ListView
 
 from event_ticketing_system.common.forms import SearchForm
 from event_ticketing_system.common.models import Like
@@ -26,7 +27,7 @@ def index(request):
 
 
 @login_required
-def like_functionality(request, event_id):
+def like_event(request, event_id):
     event = get_object_or_404(Event, id=event_id)
     user = request.user
 
@@ -35,6 +36,16 @@ def like_functionality(request, event_id):
     if existing_like:
         existing_like.delete()
     else:
-        Like.objects.create(user=user, event=event)
+        new_like_object = Like.objects.create(user=user, event=event)
+        new_like_object.save()
 
     return redirect(request.META.get('HTTP_REFERER', reverse('index')))
+
+
+@login_required
+def liked_events_view(request):
+    liked_events = Like.objects.filter(user=request.user)
+    context = {
+        'liked_events': liked_events
+    }
+    return render(request, 'events/../../templates/accounts/liked_events.html', context)

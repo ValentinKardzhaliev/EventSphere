@@ -1,0 +1,30 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Profile Details{% endblock %}
+
+{% block content %}
+    <h1>Profile Details</h1>
+
+    <div>
+        <img src="{{ profile_image }}" alt="Profile Image">
+    </div>
+
+    <ul>
+        <li><strong>Username:</strong> {{ user.username }}</li>
+        <li><strong>Email:</strong> {{ user.email }}</li>
+        {% if user.first_name %}
+            <li><strong>First Name:</strong> {{ user.first_name }}</li>
+        {% endif %}
+        {% if user.last_name %}
+            <li><strong>Last Name:</strong> {{ user.last_name }}</li>
+        {% endif %}
+    </ul>
+
+    <!-- Add links to other sections like Likes, Tickets, etc. -->
+    <ul>
+        {#        <li><a href="{% url 'likes' %}">Likes</a></li>#}
+        {#        <li><a href="{% url 'tickets' %}">Tickets</a></li>#}
+        <li><a href="{% url 'event add' %}">Create an Event</a></li>
+    </ul>
+{% endblock %}

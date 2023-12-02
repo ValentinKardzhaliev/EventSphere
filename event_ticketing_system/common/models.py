@@ -1,14 +1,16 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from django.db import models
-from event_ticketing_system.events.models import Event  # Assuming your events model is in an 'events' app
+from event_ticketing_system.events.models import Event
+from event_ticketing_system.web_auth.models import EventAppUser
 
 UserModel = get_user_model()
 
 
 class Like(models.Model):
-    user = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name='likes')
-    event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='likers')
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    liked_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.user.username} likes {self.event.title}"

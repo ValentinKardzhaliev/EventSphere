@@ -1,4 +1,9 @@
+from django.contrib.auth import get_user_model
 from django.db import models
+
+from event_ticketing_system.web_auth.models import EventAppUser
+
+UserModel = get_user_model()
 
 
 class Event(models.Model):

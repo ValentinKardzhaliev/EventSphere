@@ -24,6 +24,7 @@ urlpatterns = [
     path('web_auth/', include('event_ticketing_system.web_auth.urls')),
     path('', include('event_ticketing_system.common.urls')),
     path('events/', include('event_ticketing_system.events.urls')),
+    path('tickets/', include('event_ticketing_system.tickets.urls')),
 ]
 
 if settings.DEBUG:

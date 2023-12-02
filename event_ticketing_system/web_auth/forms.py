@@ -40,5 +40,8 @@ class LoginUserForm(auth_forms.AuthenticationForm):
         super().__init__(*args, **kwargs)
 
         # Override widget templates for username and password fields
-        self.fields['username'].widget = forms.TextInput(attrs={'class': 'custom-form-control', 'style': 'width: 150px'})
-        self.fields['password'].widget = forms.PasswordInput(attrs={'class': 'custom-form-control', 'style': 'width: 150px'})
+        self.fields['username'].widget = forms.TextInput(
+            attrs={'class': 'custom-form-control', 'style': 'width: 150px'})
+        self.fields['password'].widget = forms.PasswordInput(
+            attrs={'class': 'custom-form-control', 'style': 'width: 150px'})
+
