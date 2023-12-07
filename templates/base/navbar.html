@@ -1,13 +1,19 @@
+{% load static %}
+<head>
+    <title>Navigation bar</title>
+</head>
+
 <div class="navbar">
-    <a href="{% url 'index' %}">Home</a>
+    <a id="home" href="{% url 'index' %}">Home</a>
 
     {% if user.is_authenticated %}
-        <a href="{% url 'liked_events' %}">Likes</a>
-        <a href="#">Tickets</a>
-        <a href="{% url 'event add' %}">Create an event</a>
+        <a id="likes" href="{% url 'liked_events' %}">Likes</a>
+        <a id="tickets" href="#">Tickets</a>
+        <a id="add-event" href="{% url 'event add' %}">Create an event</a>
 {#        <a href="{% url 'profile details' %}">Profile</a>#}
-    {% else %}
-        <a href="{% url 'login user' %}">Login</a>
-        <a href="{% url 'register user' %}">Register</a>
+    {% elif request.path != '/web_auth/login/' %}
+        <!-- Show login and register links only if not on the login page -->
+        <a id="login" href="{% url 'login user' %}">Login</a>
+        <a id="register" href="{% url 'register user' %}">Register</a>
     {% endif %}
 </div>

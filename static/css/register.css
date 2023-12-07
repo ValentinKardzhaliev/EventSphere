@@ -1,20 +1,15 @@
-/* register.css */
-
-.custom-form-control {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+.navbar {
+    overflow: hidden;
 }
 
-button {
-    background-color: #007BFF;
-    color: #fff;
-    cursor: pointer;
+.navbar a {
+    float: left;
+    display: block;
+    color: #000; /* Black text color */
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-weight: bold; /* Bold font weight */
 }
 
-button:hover {
-    background-color: #0056b3;
-}
+/* Add styles for the other links if needed */

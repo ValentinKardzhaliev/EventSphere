@@ -46,3 +46,4 @@ class Event(models.Model):
         if not self.id:
             self.available_tickets = self.total_tickets
         super().save(*args, **kwargs)
+

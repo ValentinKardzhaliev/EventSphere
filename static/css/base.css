@@ -1,0 +1,15 @@
+/* Unvisited links */
+a {
+    color: blue;
+    text-decoration: none;
+}
+
+/* Visited links */
+a:visited {
+    color: blue; /* Your custom color for visited links */
+}
+
+/* Hover effect */
+a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
