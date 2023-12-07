@@ -6,19 +6,27 @@
 {% block stylesheets %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
 {% endblock %}
+
 {% block content %}
     <body class="login-body">
-        <h1>User Login</h1>
+        <div class="page-container">
+            <h1>User Login</h1>
 
-        <form method="post" action="{% url 'login user' %}">
-            {% csrf_token %}
+            <div class="form-container">
+                <form method="post" action="{% url 'login user' %}">
+                    {% csrf_token %}
 
-            {{ form.as_p }}
+                    <label for="{{ form.username.id_for_label }}">Username:</label><br>
+                    {{ form.username }}<br>
 
-            <button type="submit">Login</button>
-        </form>
+                    <label for="{{ form.password.id_for_label }}">Password:</label><br>
+                    {{ form.password }}<br>
 
-        <p>Don't have an account? <a href="{% url 'register user' %}">Register here</a>.</p>
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+
+            <p>Don't have an account? <a href="{% url 'register user' %}">Register here</a>.</p>
+        </div>
     </body>
 {% endblock %}
-

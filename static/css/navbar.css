@@ -1,10 +1,13 @@
+/* navbar.css */
+
 .navbar {
-    overflow: hidden;
+    position: relative;
+    text-align: center;
+    background-color: gray;
 }
 
 .navbar a {
-    float: left;
-    display: block;
+    display: inline-block;
     color: #000;
     text-align: center;
     padding: 14px 16px;
@@ -12,8 +15,6 @@
     font-weight: bold;
 }
 
-.navbar a:visited{
+.navbar a:visited {
     color: #000;
 }
-
-/* Add styles for the other links if needed */

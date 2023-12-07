@@ -1,19 +1,40 @@
 .login-body {
-    max-width: 16%;
-    margin: 10% auto;
+    max-width: 100%; /* Adjust the width as needed */
+    margin: 0;
+    padding: 0 0; /* Adjust the top and bottom padding as needed */
     background-image: url("../images/event-ideas-for-party-eventbookings.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
-    color: #fff;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    color: #333;
+    /*text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);*/
     font-weight: bold;
+    overflow: hidden;
+}
+
+.page-container {
+    max-width: 20%; /* Adjust the width as needed */
+    margin: 5% auto;
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .custom-form-control {
     width: 100%;
-    padding: 8px;
+    padding: 6px;
     margin-bottom: 16px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -26,6 +47,8 @@ button {
     cursor: pointer;
     padding: 12px 20px;
     font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 button:hover {

@@ -10,10 +10,12 @@
         <a id="likes" href="{% url 'liked_events' %}">Likes</a>
         <a id="tickets" href="#">Tickets</a>
         <a id="add-event" href="{% url 'event add' %}">Create an event</a>
-{#        <a href="{% url 'profile details' %}">Profile</a>#}
-    {% elif request.path != '/web_auth/login/' %}
-        <!-- Show login and register links only if not on the login page -->
-        <a id="login" href="{% url 'login user' %}">Login</a>
-        <a id="register" href="{% url 'register user' %}">Register</a>
+    {#        <a href="{% url 'profile details' %}">Profile</a>#}
+    {% else %}
+        <!-- Show login and register links only if not on the login or register page -->
+        {% if request.path != '/web_auth/login/' and request.path != '/web_auth/register/' %}
+            <a id="login" href="{% url 'login user' %}">Login</a>
+            <a id="register" href="{% url 'register user' %}">Register</a>
+        {% endif %}
     {% endif %}
 </div>
