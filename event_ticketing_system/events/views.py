@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
@@ -22,3 +23,10 @@ class EventDetailsView(DetailView):
     model = Event
     template_name = 'events/event_details.html'
     context_object_name = 'event'
+
+
+@login_required
+def user_created_events(request):
+    events_created_by_user = Event.objects.filter(creator=request.user)
+    context = {'user_created_events': events_created_by_user}
+    return render(request, 'events/user_created_events.html', context)
