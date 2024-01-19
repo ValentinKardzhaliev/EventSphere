@@ -36,6 +36,9 @@ class Event(models.Model):
     organizer = models.CharField(max_length=255)
     image = models.ImageField(upload_to='event_images/', null=True, blank=True)
 
+    creator = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name='created_events')
+
+
     def __str__(self):
         return self.title
 

@@ -1,5 +1,8 @@
 from django import forms
+from django.forms import inlineformset_factory
+
 from .models import Event
+from ..tickets.models import Ticket
 
 
 class EventAddForm(forms.ModelForm):
@@ -20,6 +23,9 @@ class EventAddForm(forms.ModelForm):
             'date_and_time': forms.DateTimeInput(
                 attrs={'placeholder': 'YYYY-MM-DD HH:MM', 'type': 'datetime-local'}),
         }
+
+    tickets = inlineformset_factory(Event, Ticket, fields=('ticket_type', 'price', 'quantity_available'), extra=1,
+                                    can_delete=False)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

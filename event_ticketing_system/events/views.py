@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
@@ -11,10 +12,10 @@ class EventAddView(CreateView):
     template_name = 'events/event_add.html'
     success_url = reverse_lazy('index')  # Adjust 'event_list' to the actual URL name for your events list
 
+    @login_required
     def form_valid(self, form):
-        response = super().form_valid(form)
-        # Additional logic after a successful form submission
-        return response
+        form.instance.creator = self.request.user
+        return super().form_valid(form)
 
 
 class EventDetailsView(DetailView):

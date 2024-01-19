@@ -5,12 +5,8 @@
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
-
-    {{ formset.management_form }}
-    {% for subform in formset %}
-      {{ subform.as_p }}
-    {% endfor %}
-
+    {{ form.tickets.as_table }}
     <button type="submit">Save Event</button>
   </form>
 {% endblock %}
+
