@@ -1,10 +1,8 @@
-from django.shortcuts import render
 from django.templatetags.static import static
 from django.urls import reverse_lazy
 from django.views import generic as views
 from django.contrib.auth import views as auth_views, get_user_model
 
-from event_ticketing_system.common.models import Like
 from event_ticketing_system.web_auth.forms import RegisterUserForm, LoginUserForm
 
 UserModel = get_user_model()
@@ -31,8 +29,6 @@ class LogoutUserView(auth_views.LogoutView):
 
     def get_success_url(self):
         return reverse_lazy('index')
-
-
 
 
 class ProfileDetailsView(views.DetailView):
