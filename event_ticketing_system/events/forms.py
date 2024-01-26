@@ -1,5 +1,6 @@
-# In forms.py
 from django import forms
+from django.forms import DateTimeInput
+
 from .models import Event
 from ..tickets.models import Ticket
 
@@ -10,7 +11,10 @@ class EventAddForm(forms.ModelForm):
         fields = ['title', 'description', 'date_and_time', 'venue', 'category', 'contact_information', 'organizer',
                   'image']
 
-    # Additional fields for ticket creation
+        widgets = {
+            'date_and_time': DateTimeInput(attrs={'type': 'datetime-local'}),
+        }
+
     vip_quantity = forms.IntegerField(label='VIP Tickets Quantity', min_value=0, required=True)
     vip_price = forms.DecimalField(label='VIP Ticket Price', min_value=0, required=True)
     regular_quantity = forms.IntegerField(label='Regular Tickets Quantity', min_value=0, required=True)
@@ -19,7 +23,6 @@ class EventAddForm(forms.ModelForm):
     def save(self, commit=True):
         event = super(EventAddForm, self).save(commit)
 
-        # Create VIP and Regular tickets for the event
         vip_quantity = self.cleaned_data.get('vip_quantity')
         vip_price = self.cleaned_data.get('vip_price')
         regular_quantity = self.cleaned_data.get('regular_quantity')
