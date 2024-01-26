@@ -1,24 +1,29 @@
 {% extends 'base/base.html' %}
+{% load static %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/event_details.css' %}">
+{% endblock %}
 
 {% block content %}
     {% if event.image %}
-        <img src="{{ event.image.url }}" alt="Event Image">
+        <img src="{{ event.image.url }}" alt="Event Image" class="event-image">
     {% endif %}
-    <h2>{{ event.title }}</h2>
-    <p><strong>Description:</strong> {{ event.description }}</p>
-    <p><strong>Date and Time:</strong> {{ event.date_and_time }}</p>
-    <p><strong>Venue:</strong> {{ event.venue }}</p>
-    <p><strong>Total Tickets:</strong> {{ event.total_tickets }}</p>
-    <p><strong>Ticket Price:</strong> {{ event.ticket_price }}</p>
-    <p><strong>Organizer:</strong> {{ event.organizer }}</p>
-    <p><strong>Category:</strong> {{ event.category }}</p>
-    <p><strong>Contact Information:</strong> {{ event.contact_information }}</p>
+    <h2 class="event-title">{{ event.title }}</h2>
+    <p class="event-description"><strong>Description:</strong> {{ event.description }}</p>
+    <p class="event-date"><strong>Date and Time:</strong> {{ event.date_and_time }}</p>
+    <p class="event-venue"><strong>Venue:</strong> {{ event.venue }}</p>
+    <p class="event-total-tickets"><strong>Total Tickets:</strong> {{ event.total_tickets }}</p>
+    <p class="event-ticket-price"><strong>Ticket Price:</strong> {{ event.ticket_price }}</p>
+    <p class="event-organizer"><strong>Organizer:</strong> {{ event.organizer }}</p>
+    <p class="event-category"><strong>Category:</strong> {{ event.category }}</p>
+    <p class="event-contact-information"><strong>Contact Information:</strong> {{ event.contact_information }}</p>
 
     {% if user.is_authenticated %}
-        <a href="{% url 'like_event' event.pk %}">
+        <a href="{% url 'like_event' event.pk %}" class="like-link {% if user_likes_event %}unlike{% endif %}">
             {% if user_likes_event %}Unlike{% else %}Like{% endif %}
         </a>
     {% else %}
-        <p>Login to like this event.</p>
+        <p class="login-message">Login to like this event.</p>
     {% endif %}
 {% endblock %}

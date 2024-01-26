@@ -1,0 +1,48 @@
+/* event_details.css */
+body {
+    margin-bottom: 50px;
+}
+
+.event-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.event-title {
+    color: #333;
+}
+
+.event-description,
+.event-date,
+.event-venue,
+.event-total-tickets,
+.event-ticket-price,
+.event-organizer,
+.event-category,
+.event-contact-information {
+    margin-bottom: 10px;
+}
+
+.event-details strong {
+    font-weight: bold;
+}
+
+.like-link {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #007bff; /* Set your desired background color for the link */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.like-link.unlike {
+    background-color: #dc3545; /* Set your desired background color for the "Unlike" state */
+}
+
+.login-message {
+    color: #dc3545; /* Set your desired color for the login message */
+    margin-top: 10px;
+}

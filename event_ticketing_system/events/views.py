@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from django.utils.decorators import method_decorator
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
@@ -7,13 +8,13 @@ from .models import Event
 from .forms import EventAddForm
 
 
+@method_decorator(login_required, name='dispatch')
 class EventAddView(CreateView):
     model = Event
     form_class = EventAddForm
     template_name = 'events/event_add.html'
     success_url = reverse_lazy('index')  # Adjust 'event_list' to the actual URL name for your events list
 
-    @login_required
     def form_valid(self, form):
         form.instance.creator = self.request.user
         return super().form_valid(form)
