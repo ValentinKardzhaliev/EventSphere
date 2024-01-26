@@ -1,3 +1,7 @@
+body {
+    margin-top: 1200px; /* Adjust this value based on your footer height */
+}
+
 .footer {
     position: fixed;
     bottom: 0;

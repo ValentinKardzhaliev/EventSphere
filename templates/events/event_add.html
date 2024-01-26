@@ -1,4 +1,9 @@
 {% extends 'base/base.html' %}
+{% load static %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/event_add.css' %}">
+{% endblock %}
 
 {% block content %}
   <h2>Add Event</h2>
