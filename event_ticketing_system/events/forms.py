@@ -35,3 +35,8 @@ class EventAddForm(forms.ModelForm):
                               price_per_ticket=regular_price)
 
         return event
+
+
+class TicketPurchaseForm(forms.Form):
+    quantity = forms.IntegerField(min_value=1, label='Number of Tickets')
+    ticket_type = forms.ChoiceField(choices=Ticket.TICKET_TYPE_CHOICES, label='Ticket Type')

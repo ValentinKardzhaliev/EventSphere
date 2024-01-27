@@ -26,4 +26,10 @@
     {% else %}
         <p class="login-message">Login to like this event.</p>
     {% endif %}
+
+    <form method="post" action="{% url 'event_purchase' pk=event.pk %}">
+        {% csrf_token %}
+        {{ purchase_form.as_p }}
+        <button type="submit">Purchase Tickets</button>
+    </form>
 {% endblock %}

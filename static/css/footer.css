@@ -1,13 +1,12 @@
+
+
 .footer {
-    background-color: #f2f2f2; /* Set your desired background color */
-    padding: 10px;
-    text-align: center;
-    position: fixed;
+    background-color: #333;  /* Dark background color */
+    color: #fff;            /* White text color */
+    padding: 10px;          /* Adjust padding as needed */
+    text-align: center;     /* Center-align text */
+    position: fixed;        /* Fixed position at the bottom of the page */
+    width: 100%;            /* Full width */
     bottom: 0;
-    width: 100%;
 }
 
-.footer-section {
-    color: #333; /* Set your desired text color */
-    font-size: 14px; /* Set your desired font size */
-}
