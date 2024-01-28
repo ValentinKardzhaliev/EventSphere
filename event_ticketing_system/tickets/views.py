@@ -39,13 +39,17 @@ class TicketPurchaseView(View):
                                  f"Successfully purchased {quantity} {ticket.get_ticket_type_display()} ticket(s) for {event.title}.")
                 return redirect('ticket_purchase_success', pk=event.pk)
             else:
-                messages.error(request,
-                               f"Insufficient available {ticket.get_ticket_type_display()} tickets for {event.title}.")
+                # Check if no more tickets of this type are available
+                if ticket.quantity_available == 0:
+                    messages.error(request,
+                                   f"There are no more {ticket.get_ticket_type_display()} tickets available for {event.title}.")
+                else:
+                    messages.error(request,
+                                   f"Insufficient available {ticket.get_ticket_type_display()} tickets for {event.title}.")
+                return redirect('ticket_purchase_failure')
         else:
             messages.error(request, "Invalid purchase form submission.")
             return render(request, self.template_name, {'purchase_form': purchase_form, 'event': event})
-
-        return redirect('ticket_purchase_failure')
 
 
 class TicketPurchaseSuccessView(View):
@@ -57,7 +61,7 @@ class TicketPurchaseSuccessView(View):
 
 
 class TicketPurchaseFailureView(View):
-    template_name = 'tickets/purchase_failure.html'
+    template_name = 'tickets/ticket_purchase_failure.html'
 
     def get(self, request, *args, **kwargs):
         error_message = messages.get_messages(request)
