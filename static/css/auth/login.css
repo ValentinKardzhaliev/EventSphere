@@ -1,10 +1,8 @@
-/* register.css */
-
-body {
+.login-body {
     max-width: 100%; /* Adjust the width as needed */
     margin: 0;
     padding: 0 0; /* Adjust the top and bottom padding as needed */
-    background-image: url("../images/event-ideas-for-party-eventbookings.jpg");
+    background-image: url("../../images/event-ideas-for-party-eventbookings.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -16,10 +14,10 @@ body {
 }
 
 .page-container {
-    max-width: 23%; /* Adjust the width as needed */
-    margin: 2% auto;
+    max-width: 20%; /* Adjust the width as needed */
+    margin: 5% auto;
     background-color: white;
-    padding: 10px;
+    padding: 15px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }

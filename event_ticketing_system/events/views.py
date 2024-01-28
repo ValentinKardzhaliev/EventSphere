@@ -70,7 +70,7 @@ class EventDetailsView(DetailView):
 
 
 class PurchaseSuccessView(View):
-    template_name = 'events/purchase_success.html'
+    template_name = 'events/ticket_purchase_success.html'
 
     def get(self, request, *args, **kwargs):
         success_message = messages.get_messages(request).first()
