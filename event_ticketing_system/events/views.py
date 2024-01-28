@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.generic import DetailView
@@ -32,57 +32,6 @@ class EventDetailsView(DetailView):
         context = super().get_context_data(**kwargs)
         context['purchase_form'] = TicketPurchaseForm()
         return context
-
-    def post(self, request, *args, **kwargs):
-        event = self.get_object()
-        purchase_form = TicketPurchaseForm(request.POST)
-
-        if purchase_form.is_valid():
-            quantity = purchase_form.cleaned_data['quantity']
-
-            # Get the specific ticket associated with the event (VIP or Regular)
-            ticket_type = purchase_form.cleaned_data['ticket_type']
-            ticket = Ticket.objects.get(event=event, ticket_type=ticket_type)
-
-            # Check if there are enough available tickets
-            if ticket.quantity_available >= quantity:
-                # Create a purchase record
-                purchase = Purchase.objects.create(
-                    user=request.user,
-                    ticket=ticket,
-                    quantity=quantity
-                )
-
-                # Update the quantity of available tickets
-                ticket.quantity_available -= quantity
-                ticket.save()
-
-                messages.success(request,
-                                 f"Successfully purchased {quantity} {ticket.get_ticket_type_display()} ticket(s) for {event.title}.")
-                return redirect('event_details', pk=event.pk)
-            else:
-                messages.error(request,
-                               f"Insufficient available {ticket.get_ticket_type_display()} tickets for {event.title}.")
-        else:
-            messages.error(request, "Invalid purchase form submission.")
-
-        return self.render_to_response(self.get_context_data())
-
-
-class PurchaseSuccessView(View):
-    template_name = 'events/ticket_purchase_success.html'
-
-    def get(self, request, *args, **kwargs):
-        success_message = messages.get_messages(request).first()
-        return render(request, self.template_name, {'success_message': success_message})
-
-
-class PurchaseFailureView(View):
-    template_name = 'events/purchase_failure'
-
-    def get(self, request, *args, **kwargs):
-        error_message = messages.get_messages(request).first()
-        return render(request, self.template_name, {'error_message': error_message})
 
 
 @login_required

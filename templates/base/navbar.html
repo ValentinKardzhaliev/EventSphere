@@ -10,7 +10,7 @@
     {% if user.is_authenticated %}
         <a id="likes" href="{% url 'liked_events' %}">Likes</a>
         <a id="tickets" href="#">Tickets</a>
-        <a id="add-event" href="{% url 'event add' %}">Create an event</a>
+        <a id="add-event" href="{% url 'event_add' %}">Create an event</a>
         <a id="user-created-events" href="{% url 'user_created_events' %}">Your Events</a>
         {# <a href="{% url 'profile details' %}">Profile</a> #}
     {% else %}

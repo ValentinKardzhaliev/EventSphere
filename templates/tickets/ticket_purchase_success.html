@@ -1,0 +1,10 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+  <h2>Successfully purchased tickets!</h2>
+  <ul>
+    {% for message in success_message %}
+      <li>{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
