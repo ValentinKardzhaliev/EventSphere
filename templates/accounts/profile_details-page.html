@@ -28,9 +28,4 @@
         <li><a href="{% url 'event_add' %}">Create an Event</a></li>
         <li><a href="{% url 'user_dashboard' pk=request.user.pk %}">User Dashboard</a></li>
     </ul>
-
-    <h2>Purchased Tickets</h2>
-    {% for ticket in user_tickets %}
-        <p>{{ ticket }}</p>
-    {% endfor %}
 {% endblock %}

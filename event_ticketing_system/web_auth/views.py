@@ -40,17 +40,6 @@ class ProfileDetailsView(views.DetailView):
     template_name = 'accounts/profile_details-page.html'
     context_object_name = 'user'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        user = self.object
-
-        # Get the tickets associated with the user
-        user_tickets = Ticket.objects.filter(purchase__user=user)
-
-        context['user_tickets'] = user_tickets
-        return context
-
-
 class UserDashboardView(views.DetailView):
     template_name = 'accounts/user_dashboard.html'
     model = get_user_model()
