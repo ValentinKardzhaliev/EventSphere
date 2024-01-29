@@ -13,6 +13,7 @@ class EventAppUser(auth_models.AbstractUser):
     profile_picture = models.ImageField(
         null=True,
         blank=True,
+        default='images/anon_profile_image.png',
     )
 
     def save(self, *args, **kwargs):
