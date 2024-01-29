@@ -1,9 +1,6 @@
-from django.core import validators
 from django.db import models
 from django.contrib.auth import models as auth_models
 
-
-# Create your models here.
 
 class EventAppUser(auth_models.AbstractUser):
     email = models.EmailField(
@@ -11,9 +8,8 @@ class EventAppUser(auth_models.AbstractUser):
     )
 
     profile_picture = models.ImageField(
-        null=True,
-        blank=True,
-        default='images/anon_profile_image.png',
+        upload_to='profile_images/',
+        default='general_images/anon_profile_image.png',
     )
 
     def save(self, *args, **kwargs):
@@ -23,3 +19,6 @@ class EventAppUser(auth_models.AbstractUser):
         # Good enough, but there is a better option (signals)
         # send_mail....
         return result
+
+    def __str__(self):
+        return self.username

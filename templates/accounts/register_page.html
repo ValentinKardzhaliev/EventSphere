@@ -13,7 +13,7 @@
             <h1>User Registration</h1>
 
             <div class="form-container">
-                <form method="post" action="{% url 'register user' %}">
+                <form method="post" action="{% url 'register_user' %}">
                     {% csrf_token %}
 
                     <label for="{{ form.username.id_for_label }}">Username:</label><br>
@@ -32,7 +32,7 @@
                 </form>
             </div>
 
-            <p>Already have an account? <a href="{% url 'login user' %}">Sign in here</a>.</p>
+            <p>Already have an account? <a href="{% url 'login_user' %}">Sign in here</a>.</p>
         </div>
     </body>
 {% endblock %}

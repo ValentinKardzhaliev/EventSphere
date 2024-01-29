@@ -1,5 +1,6 @@
-from django.templatetags.static import static
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 from django.views import generic as views
 from django.contrib.auth import views as auth_views, get_user_model
 
@@ -9,7 +10,7 @@ UserModel = get_user_model()
 
 
 class RegisterUserView(views.CreateView):
-    template_name = 'accounts/register-page.html'
+    template_name = 'accounts/register_page.html'
     form_class = RegisterUserForm
 
     def get_success_url(self):
@@ -17,7 +18,7 @@ class RegisterUserView(views.CreateView):
 
 
 class LoginUserView(auth_views.LoginView):
-    template_name = 'accounts/login-page.html'
+    template_name = 'accounts/login_page.html'
     form_class = LoginUserForm
 
     def get_success_url(self):
@@ -31,18 +32,9 @@ class LogoutUserView(auth_views.LogoutView):
         return reverse_lazy('index')
 
 
+@method_decorator(login_required, name='dispatch')
 class ProfileDetailsView(views.DetailView):
-    template_name = 'accounts/profile-details-page.html'
-    model = UserModel
+    model = get_user_model()
+    template_name = 'accounts/profile_details-page.html'
+    context_object_name = 'user'
 
-    profile_image = static('images/person.png')
-
-    def get_profile_image(self):
-        if self.object.profile_picture is not None:
-            return self.object.profile_picture
-        return self.profile_image
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['profile_image'] = self.get_profile_image()
-        return context

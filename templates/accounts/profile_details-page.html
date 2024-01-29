@@ -7,7 +7,7 @@
     <h1>Profile Details</h1>
 
     <div>
-        <img src="{{ profile_image }}" alt="Profile Image">
+        <img src="{{ user.profile_picture.url }}" alt="Profile Image">
     </div>
 
     <ul>
@@ -23,8 +23,8 @@
 
     <!-- Add links to other sections like Likes, Tickets, etc. -->
     <ul>
-        {#        <li><a href="{% url 'likes' %}">Likes</a></li>#}
-        {#        <li><a href="{% url 'tickets' %}">Tickets</a></li>#}
-        <li><a href="{% url 'event add' %}">Create an Event</a></li>
+        {# <li><a href="{% url 'likes' %}">Likes</a></li> #}
+        {# <li><a href="{% url 'tickets' %}">Tickets</a></li> #}
+        <li><a href="{% url 'event_add' %}">Create an Event</a></li>
     </ul>
 {% endblock %}
