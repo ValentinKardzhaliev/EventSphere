@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Sum
 from django.urls import reverse_lazy
@@ -28,7 +29,9 @@ class LoginUserView(auth_views.LoginView):
 
 
 class LogoutUserView(auth_views.LogoutView):
-    pass
+    def get(self, request, *args, **kwargs):
+        messages.success(request, 'You have been logged out successfully.')
+        return super().get(request, *args, **kwargs)
 
     def get_success_url(self):
         return reverse_lazy('index')
