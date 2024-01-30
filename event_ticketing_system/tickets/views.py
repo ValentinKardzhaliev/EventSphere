@@ -56,8 +56,11 @@ class TicketPurchaseSuccessView(View):
     template_name = 'tickets/ticket_purchase_success.html'
 
     def get(self, request, *args, **kwargs):
-        success_message = messages.get_messages(request)
-        return render(request, self.template_name, {'success_message': success_message})
+        # Get the last success message
+        success_messages = [m for m in messages.get_messages(request) if m.level == messages.SUCCESS]
+        last_success_message = success_messages[-1].message if success_messages else None
+
+        return render(request, self.template_name, {'success_message': last_success_message})
 
 
 class TicketPurchaseFailureView(View):
