@@ -6,7 +6,7 @@ from django.utils.decorators import method_decorator
 from django.views import View
 
 from event_ticketing_system.events.forms import TicketPurchaseForm
-from event_ticketing_system.events.models import Event
+from event_ticketing_system.events.models import Event, UserModel
 from event_ticketing_system.tickets.models import Ticket, Purchase
 
 
@@ -66,3 +66,30 @@ class TicketPurchaseFailureView(View):
     def get(self, request, *args, **kwargs):
         error_message = messages.get_messages(request)
         return render(request, self.template_name, {'error_message': error_message})
+
+
+class UserTicketsView(View):
+    template_name = 'tickets/user_tickets.html'
+
+    def get(self, request, *args, **kwargs):
+        user = UserModel.objects.get(pk=kwargs['pk'])
+
+        # Get the tickets associated with the user
+        user_tickets = Ticket.objects.filter(purchase__user=user)
+
+        # Calculate total quantity for each ticket
+        user_tickets_quantity = []
+        for ticket in user_tickets:
+            total_quantity = sum([purchase.quantity for purchase in ticket.purchase_set.filter(user=user)])
+            user_tickets_quantity.append({
+                'event__title': ticket.event.title,
+                'ticket_type': ticket.get_ticket_type_display(),
+                'total_quantity': total_quantity,
+                'price_per_ticket': ticket.price_per_ticket,
+            })
+
+        context = {
+            'user_tickets_quantity': user_tickets_quantity,
+        }
+
+        return render(request, self.template_name, context)

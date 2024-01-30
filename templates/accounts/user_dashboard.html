@@ -4,24 +4,13 @@
 {% block content %}
     <h1>User Dashboard</h1>
     <p>Welcome, {{ user.username }}!</p>
-    <h2>Your purchased tickets:</h2>
 
-    {% if user_tickets_quantity %}
-        <ul>
-            {% for ticket_quantity in user_tickets_quantity %}
-                <li>
-                    <strong>Event:</strong> {{ ticket_quantity.event__title }}<br>
-                    <strong>Ticket Type:</strong> {{ ticket_quantity.ticket_type }}<br>
-                    <strong>Total Quantity Purchased:</strong> {{ ticket_quantity.total_quantity }}<br>
-                    <strong>Price per Ticket:</strong> ${{ ticket_quantity.price_per_ticket }}<br>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>You haven't purchased any tickets yet.</p>
-    {% endif %}
-
-    <a id="user-created-events" href="{% url 'user_created_events' %}">Your Events</a>
+    <ul>
+        <li><a href="{% url 'user_tickets' pk=user.pk %}">View Purchased Tickets</a></li>
+        <li><a href="{% url 'liked_events' %}">Likes</a></li>
+        <li><a href="{% url 'event_add' %}">Create an Event</a></li>
+        <li><a id="user-created-events" href="{% url 'user_created_events' %}">Your Events</a></li>
+    </ul>
 
 
 

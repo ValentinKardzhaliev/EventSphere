@@ -16,7 +16,7 @@
         <a href="{% url 'logout_user' %}">Logout</a>
     {% else %}
         <!-- Show login and register links only if not on the login or register page -->
-        {% if request.path != '/web_auth/login/' and request.path != '/web_auth/register/' %}
+        {% if request.path != '/accounts/login/' and request.path != '/accounts/register/' %}
             <a id="login" href="{% url 'login_user' %}">Login</a>
             <a id="register" href="{% url 'register_user' %}">Register</a>
         {% endif %}

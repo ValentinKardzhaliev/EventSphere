@@ -23,9 +23,6 @@
 
     <!-- Add links to other sections like Likes, Tickets, etc. -->
     <ul>
-         <li><a href="{% url 'liked_events' %}">Likes</a></li>
-        {# <li><a href="{% url 'tickets' %}">Tickets</a></li> #}
-        <li><a href="{% url 'event_add' %}">Create an Event</a></li>
         <li><a href="{% url 'user_dashboard' pk=request.user.pk %}">User Dashboard</a></li>
     </ul>
 {% endblock %}
