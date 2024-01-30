@@ -45,3 +45,12 @@ class LoginUserForm(auth_forms.AuthenticationForm):
         self.fields['password'].widget = forms.PasswordInput(
             attrs={'class': 'custom-form-control', 'style': 'width: 150px'})
 
+
+class UserProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = get_user_model()
+        fields = ['username', 'email', 'profile_picture']
+
+    def __init__(self, *args, **kwargs):
+        super(UserProfileEditForm, self).__init__(*args, **kwargs)
+        self.fields['profile_picture'].required = False

@@ -3,12 +3,18 @@
 
 {% block title %}Profile Details{% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/auth/profile_edit.css' %}">
+{% endblock %}
+
+
 {% block content %}
     <h1>Profile Details</h1>
 
     <div>
-        <img src="{{ user.profile_picture.url }}" alt="Profile Image">
+        <img src="{{ user.profile_picture.url }}" alt="Profile Image" class="profile-image">
     </div>
+
 
     <ul>
         <li><strong>Username:</strong> {{ user.username }}</li>
@@ -24,5 +30,8 @@
     <!-- Add links to other sections like Likes, Tickets, etc. -->
     <ul>
         <li><a href="{% url 'user_dashboard' pk=request.user.pk %}">User Dashboard</a></li>
+        <li><a href="{% url 'profile_edit' pk=request.user.pk %}">Edit Profile</a></li>
     </ul>
+
+
 {% endblock %}

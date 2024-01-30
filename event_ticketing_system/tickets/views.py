@@ -74,7 +74,6 @@ class UserTicketsView(View):
     def get(self, request, *args, **kwargs):
         user = UserModel.objects.get(pk=kwargs['pk'])
 
-        # Get the tickets associated with the user
         user_tickets = Ticket.objects.filter(purchase__user=user)
 
         # Calculate total quantity for each ticket
