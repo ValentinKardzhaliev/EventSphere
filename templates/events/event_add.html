@@ -3,15 +3,17 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/events/event_add.css' %}">
+    {{ form.media }}
 {% endblock %}
 
 {% block content %}
-  <h2>Add Event</h2>
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    {{ form.tickets.as_table }}
-    <button type="submit">Save Event</button>
-  </form>
+    <div class="add-event-wrapper">
+        <h2>Add Event</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {{ form.tickets.as_table }}
+            <button type="submit">Save Event</button>
+        </form>
+    </div>
 {% endblock %}
-

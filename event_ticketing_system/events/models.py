@@ -1,3 +1,4 @@
+from cities_light.models import City
 from django.contrib.auth import get_user_model
 from django.db import models
 
@@ -29,6 +30,7 @@ class Event(models.Model):
 
     title = models.CharField(max_length=255)
     description = models.TextField()
+    location = models.ForeignKey(City, on_delete=models.SET_NULL, null=True, blank=True)
     date_and_time = models.DateTimeField()
     venue = models.CharField(max_length=255)
     category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)

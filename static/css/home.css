@@ -14,3 +14,12 @@
   object-fit: cover; /* This property ensures the entire image is visible */
   display: block;
 }
+
+.welcome-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #424bf5; /* Set text color to contrast with the background */
+}

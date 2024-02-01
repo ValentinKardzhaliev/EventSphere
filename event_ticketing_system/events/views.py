@@ -1,14 +1,14 @@
-from django.contrib import messages
+from dal import autocomplete
+from cities_light.models import City, Country
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect, get_object_or_404
+from django.db.models import Q
+from django.shortcuts import render
 from django.utils.decorators import method_decorator
-from django.views import View
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 from .models import Event
 from .forms import EventAddForm, TicketPurchaseForm
-from ..tickets.models import Purchase, Ticket
 
 
 @method_decorator(login_required, name='dispatch')
@@ -51,3 +51,16 @@ def events_by_category(request, category):
     }
 
     return render(request, 'events/category_events.html', context)
+
+
+class LocationAutocomplete(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        if not self.request.user.is_authenticated:
+            return City.objects.none()
+
+        qs = City.objects.all()
+
+        if self.q:
+            qs = qs.filter(Q(name__istartswith=self.q) | Q(country__name__istartswith=self.q))
+
+        return qs
