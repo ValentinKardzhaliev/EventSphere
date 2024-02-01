@@ -4,21 +4,25 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
 </head>
 
-<div class="navbar">
-    <a id="home" href="{% url 'index' %}">Home</a>
+<div class="navbar-container">
+    <a class="navbar-link" id="home" href="{% url 'index' %}">Home</a>
+    <form method="get" action="{% url 'index' %}" class="search-form">
+        {{ search_form }}
+        <button type="submit">Search</button>
+    </form>
 
     {% if user.is_authenticated %}
-        <a id="likes" href="{% url 'liked_events' %}">Likes</a>
-        <a href="{% url 'user_tickets' pk=user.pk %}">Tickets</a>
-        <a id="add-event" href="{% url 'event_add' %}">Create an event</a>
-        <a id="user-created-events" href="{% url 'user_created_events' %}">Your Events</a>
-        <a href="{% url 'profile_details' pk=request.user.pk %}">Profile</a>
-        <a href="{% url 'logout_user' %}">Logout</a>
+        <a class="navbar-link" id="likes" href="{% url 'liked_events' %}">Likes</a>
+        <a class="navbar-link" href="{% url 'user_tickets' pk=user.pk %}">Tickets</a>
+        <a class="navbar-link" id="add-event" href="{% url 'event_add' %}">Create an event</a>
+        <a class="navbar-link" id="user-created-events" href="{% url 'user_created_events' %}">Your Events</a>
+        <a class="navbar-link" href="{% url 'profile_details' pk=request.user.pk %}">Profile</a>
+        <a class="navbar-link" href="{% url 'logout_user' %}">Logout</a>
     {% else %}
         <!-- Show login and register links only if not on the login or register page -->
         {% if request.path != '/accounts/login/' and request.path != '/accounts/register/' %}
-            <a id="login" href="{% url 'login_user' %}">Login</a>
-            <a id="register" href="{% url 'register_user' %}">Register</a>
+            <a class="navbar-link" id="login" href="{% url 'login_user' %}">Login</a>
+            <a class="navbar-link" id="register" href="{% url 'register_user' %}">Register</a>
         {% endif %}
     {% endif %}
 </div>

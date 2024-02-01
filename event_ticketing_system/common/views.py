@@ -1,7 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
-from django.views.generic import ListView
 
 from event_ticketing_system.common.forms import SearchForm
 from event_ticketing_system.common.models import Like

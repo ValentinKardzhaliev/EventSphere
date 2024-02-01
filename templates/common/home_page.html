@@ -8,12 +8,6 @@
 {% block content %}
     <h1>Event Search and Listing</h1>
 
-
-    <form method="get" action="{% url 'index' %}">
-        {{ search_form }}
-        <button type="submit">Search</button>
-    </form>
-
     {% if search_query %}
         {% if events %}
             <!-- List of events matching the search query -->
