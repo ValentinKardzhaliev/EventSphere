@@ -19,31 +19,13 @@
             <!-- Add more buttons for other categories as needed -->
         </div>
 
-        <!-- Event Listing Section -->
-        {% if search_query %}
-            {% if events %}
-                <!-- List of events matching the search query -->
-                <h2>Matching Events</h2>
-                <ul>
-                    {% for event in events %}
-                        <li>
-                            <a href="{% url 'event_details' event.id %}">{{ event.title }}</a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                <p>No events with the title "{{ search_query }}" were found.</p>
-            {% endif %}
-        {% else %}
-            <!-- Display all events if no search query -->
-            <h2>All Events</h2>
-            <ul>
-                {% for event in events %}
-                    <li>
-                        <a href="{% url 'event_details' event.id %}">{{ event.title }}</a>
-                    </li>
-                {% endfor %}
-            </ul>
-        {% endif %}
+        <h2>All Events</h2>
+        <ul>
+            {% for event in events %}
+                <li>
+                    <a href="{% url 'event_details' event.id %}">{{ event.title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
     </div>
 {% endblock %}

@@ -1,0 +1,23 @@
+<!-- common/search_results.html -->
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+    {% if events %}
+        <!-- List of events matching the search query -->
+        <h2>Matching Events</h2>
+        <ul>
+            {% for event in events %}
+                <li>
+                    <a href="{% url 'event_details' event.id %}">{{ event.title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No events with the title "{{ search_query }}" were found.</p>
+    {% endif %}
+{% endblock %}

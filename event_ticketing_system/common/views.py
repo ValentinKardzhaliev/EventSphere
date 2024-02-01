@@ -10,18 +10,7 @@ from event_ticketing_system.events.models import Event
 def index(request):
     events = Event.objects.all()
 
-    search_form = SearchForm(request.GET)
-
-    if search_form.is_valid():
-        search_query = search_form.cleaned_data.get('search_text')
-
-        if search_query:
-            events = events.filter(title__icontains=search_query)
-    else:
-        # If the form is not valid, handle it accordingly (e.g., show an error message)
-        search_query = None
-
-    context = {'events': events, 'search_form': search_form, 'search_query': search_query}
+    context = {'events': events}
     return render(request, 'common/home_page.html', context)
 
 
@@ -48,3 +37,17 @@ def liked_events_view(request):
         'liked_events': liked_events
     }
     return render(request, 'events/../../templates/accounts/liked_events.html', context)
+
+
+def search_results(request):
+    search_form = SearchForm(request.GET)
+
+    if search_form.is_valid():
+        search_query = search_form.cleaned_data.get('search_text')
+        events = Event.objects.filter(title__icontains=search_query)
+    else:
+        search_query = None
+        events = Event.objects.all()
+
+    context = {'events': events, 'search_form': search_form, 'search_query': search_query}
+    return render(request, 'common/search_results.html', context)
