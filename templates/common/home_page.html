@@ -6,12 +6,37 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Event Search and Listing</h1>
+    <div class="home-page-container">
+        <div class="find-events">
+            <img src="{% static 'images/home_page_first_section_background.jpg' %}" alt="Background Image">
+            <!-- Add any additional content or links as needed -->
+        </div>
 
-    {% if search_query %}
-        {% if events %}
-            <!-- List of events matching the search query -->
-            <h2>Matching Events</h2>
+        <!-- Category Buttons -->
+        <div class="category-buttons">
+            <a href="{% url 'events_by_category' 'Music' %}">Music</a>
+            <a href="{% url 'events_by_category' 'Nightlife' %}">Nightlife</a>
+            <!-- Add more buttons for other categories as needed -->
+        </div>
+
+        <!-- Event Listing Section -->
+        {% if search_query %}
+            {% if events %}
+                <!-- List of events matching the search query -->
+                <h2>Matching Events</h2>
+                <ul>
+                    {% for event in events %}
+                        <li>
+                            <a href="{% url 'event_details' event.id %}">{{ event.title }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No events with the title "{{ search_query }}" were found.</p>
+            {% endif %}
+        {% else %}
+            <!-- Display all events if no search query -->
+            <h2>All Events</h2>
             <ul>
                 {% for event in events %}
                     <li>
@@ -19,17 +44,6 @@
                     </li>
                 {% endfor %}
             </ul>
-        {% else %}
-            <p>No events with the title "{{ search_query }}" were found.</p>
         {% endif %}
-    {% else %}
-        <h2>All Events</h2>
-        <ul>
-            {% for event in events %}
-                <li>
-                    <a href="{% url 'event_details' event.id %}">{{ event.title }}</a>
-                </li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+    </div>
 {% endblock %}

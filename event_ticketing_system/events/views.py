@@ -39,3 +39,15 @@ def user_created_events(request):
     events_created_by_user = Event.objects.filter(creator=request.user)
     context = {'user_created_events': events_created_by_user}
     return render(request, 'events/user_created_events.html', context)
+
+
+def events_by_category(request, category):
+    # Filter events based on the selected category
+    category_events = Event.objects.filter(category=category)
+
+    context = {
+        'category_events': category_events,
+        'selected_category': category,
+    }
+
+    return render(request, 'events/category_events.html', context)

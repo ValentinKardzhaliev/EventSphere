@@ -1,0 +1,22 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{#{% block stylesheets %}#}
+{#    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">#}
+{#{% endblock %}#}
+
+{% block content %}
+    <h1>{{ selected_category }} Events</h1>
+
+    {% if category_events %}
+        <ul>
+            {% for event in category_events %}
+                <li>
+                    <a href="{% url 'event_details' event.id %}">{{ event.title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No events found in the category "{{ selected_category }}"</p>
+    {% endif %}
+{% endblock %}
