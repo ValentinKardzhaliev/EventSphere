@@ -1,5 +1,5 @@
 from dal import autocomplete
-from cities_light.models import City, Country
+from cities_light.models import City
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import render
@@ -54,6 +54,7 @@ def events_by_category(request, category):
 
 
 class LocationAutocomplete(autocomplete.Select2QuerySetView):
+
     def get_queryset(self):
         if not self.request.user.is_authenticated:
             return City.objects.none()

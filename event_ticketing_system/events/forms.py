@@ -25,11 +25,14 @@ class EventAddForm(forms.ModelForm):
             'date_and_time': DateTimeInput(attrs={'type': 'datetime-local'}),
         }
 
+    def __init__(self, *args, **kwargs):
+        super(EventAddForm, self).__init__(*args, **kwargs)
+        self.fields.pop('creator')
+
     def save(self, commit=True):
         event = super(EventAddForm, self).save(commit=False)
 
         # Set other fields as needed
-        event.field_name = self.cleaned_data['field_name']
 
         if commit:
             event.save()
