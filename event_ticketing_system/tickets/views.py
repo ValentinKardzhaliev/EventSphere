@@ -34,12 +34,10 @@ class TicketPurchaseView(View):
                 ticket.quantity_available -= quantity
                 ticket.save()
 
-                # Store success message in messages
                 messages.success(request,
                                  f"Successfully purchased {quantity} {ticket.get_ticket_type_display()} ticket(s) for {event.title}.")
                 return redirect('ticket_purchase_success', pk=event.pk)
             else:
-                # Check if no more tickets of this type are available
                 if ticket.quantity_available == 0:
                     messages.error(request,
                                    f"There are no more {ticket.get_ticket_type_display()} tickets available for {event.title}.")
@@ -79,16 +77,29 @@ class UserTicketsView(View):
 
         user_tickets = Ticket.objects.filter(purchase__user=user)
 
-        # Calculate total quantity for each ticket
-        user_tickets_quantity = []
+        user_tickets_quantity_dict = {}
+
+        processed_tickets = set()
+
         for ticket in user_tickets:
+            key = (ticket.event.title, ticket.get_ticket_type_display())
+
+            if key in processed_tickets:
+                continue
+
             total_quantity = sum([purchase.quantity for purchase in ticket.purchase_set.filter(user=user)])
-            user_tickets_quantity.append({
+
+            user_tickets_quantity_dict[key] = {
                 'event__title': ticket.event.title,
                 'ticket_type': ticket.get_ticket_type_display(),
                 'total_quantity': total_quantity,
                 'price_per_ticket': ticket.price_per_ticket,
-            })
+            }
+
+            # Mark the ticket type as processed
+            processed_tickets.add(key)
+
+        user_tickets_quantity = list(user_tickets_quantity_dict.values())
 
         context = {
             'user_tickets_quantity': user_tickets_quantity,
