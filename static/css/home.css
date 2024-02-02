@@ -76,16 +76,20 @@
     color: #333;
 }
 
-.event-box img {
+.event-image {
     max-width: 100%;
     height: auto;
     border-radius: 5px;
     margin-bottom: 10px;
 }
 
-.event-box h3 {
+.event-title {
     margin: 0;
     font-size: 1.2em;
+}
+
+.event-date-time {
+    font-weight: bold;
 }
 
 .event-location {
