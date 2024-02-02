@@ -10,18 +10,41 @@
         <div class="find-events">
             <h1 class="welcome-message">Welcome to Event Search and Listing</h1>
             <img src="{% static 'images/home_page_first_section_background.jpg' %}" alt="Background Image">
-            <!-- Add any additional content or links as needed -->
         </div>
 
         <div class="category-buttons">
-            <a href="{% url 'events_by_category' 'Music' %}">Music</a>
-            <a href="{% url 'events_by_category' 'Nightlife' %}">Nightlife</a>
-            <a href="{% url 'events_by_category' 'Performing & Visual Arts' %}">Performing & Visual Arts</a>
-            <a href="{% url 'events_by_category' 'Holidays' %}">Holidays</a>
-            <a href="{% url 'events_by_category' 'Health' %}">Health</a>
-            <a href="{% url 'events_by_category' 'Hobbies' %}">Hobbies</a>
-            <a href="{% url 'events_by_category' 'Business' %}">Business</a>
-            <a href="{% url 'events_by_category' 'Food & Drink' %}">Food & Drink</a>
+            <a href="{% url 'events_by_category' 'Music' %}" class="category-link">
+                <i class="fas fa-music"></i>
+                <span class="category-text">Music</span>
+            </a>
+            <a href="{% url 'events_by_category' 'Nightlife' %}" class="category-link">
+                <i class="fas fa-cocktail"></i>
+                <span class="category-text">Nightlife</span>
+            </a>
+            <a href="{% url 'events_by_category' 'Performing & Visual Arts' %}" class="category-link">
+                <i class="fas fa-paint-brush"></i>
+                <span class="category-text">Performing & Visual Arts</span>
+            </a>
+            <a href="{% url 'events_by_category' 'Holidays' %}" class="category-link">
+                <i class="fas fa-gift"></i>
+                <span class="category-text">Holidays</span>
+            </a>
+            <a href="{% url 'events_by_category' 'Health' %}" class="category-link">
+                <i class="fas fa-heartbeat"></i>
+                <span class="category-text">Health</span>
+            </a>
+            <a href="{% url 'events_by_category' 'Hobbies' %}" class="category-link">
+                <i class="fas fa-guitar"></i>
+                <span class="category-text">Hobbies</span>
+            </a>
+            <a href="{% url 'events_by_category' 'Business' %}" class="category-link">
+                <i class="fas fa-briefcase"></i>
+                <span class="category-text">Business</span>
+            </a>
+            <a href="{% url 'events_by_category' 'Food & Drink' %}" class="category-link">
+                <i class="fas fa-coffee"></i>
+                <span class="category-text">Food & Drink</span>
+            </a>
         </div>
 
         <h2>All Events</h2>
