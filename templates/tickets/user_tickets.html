@@ -9,7 +9,7 @@
         <ul>
             {% for ticket_quantity in user_tickets_quantity %}
                 <li>
-                    <strong>Event:</strong> {{ ticket_quantity.event__title }}<br>
+                    <strong>Event:</strong> <a href="{% url 'event_details' ticket_quantity.event_id %}">{{ ticket_quantity.event__title }}</a><br>
                     <strong>Ticket Type:</strong> {{ ticket_quantity.ticket_type }}<br>
                     <strong>Total Quantity Purchased:</strong> {{ ticket_quantity.total_quantity }}<br>
                     <strong>Price per Ticket:</strong> ${{ ticket_quantity.price_per_ticket }}<br>

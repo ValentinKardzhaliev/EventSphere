@@ -82,7 +82,7 @@ class UserTicketsView(View):
         processed_tickets = set()
 
         for ticket in user_tickets:
-            key = (ticket.event.title, ticket.get_ticket_type_display())
+            key = (ticket.event.id, ticket.get_ticket_type_display())
 
             if key in processed_tickets:
                 continue
@@ -90,6 +90,7 @@ class UserTicketsView(View):
             total_quantity = sum([purchase.quantity for purchase in ticket.purchase_set.filter(user=user)])
 
             user_tickets_quantity_dict[key] = {
+                'event_id': ticket.event.id,
                 'event__title': ticket.event.title,
                 'ticket_type': ticket.get_ticket_type_display(),
                 'total_quantity': total_quantity,
