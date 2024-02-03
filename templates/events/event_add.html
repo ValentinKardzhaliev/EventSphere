@@ -4,16 +4,28 @@
 {% block stylesheets %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/events/event_add.css' %}">
     {{ form.media }}
+    <script src="{% static 'scripts/event_add.js' %}"></script>
 {% endblock %}
 
 {% block content %}
     <div class="add-event-wrapper">
         <h2>Add Event</h2>
+        <!-- events/event_add.html -->
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
-            {{ form.tickets.as_table }}
-            <button type="submit">Save Event</button>
+
+            <h3>Regular Tickets</h3>
+            {{ ticket_form.as_table }}
+
+            <h3 id="vip-tickets-header" style="display: none;">VIP Tickets</h3>
+            <div id="vip-tickets" style="display: none;">
+                {{ vip_ticket_form.as_table }}
+            </div>
+
+            <p><button type="button" id="toggleVipTickets">Add VIP Tickets</button></p>
+
+            <p><button type="submit">Save Event</button></p>
         </form>
     </div>
 {% endblock %}

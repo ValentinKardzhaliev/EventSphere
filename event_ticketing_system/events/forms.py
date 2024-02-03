@@ -12,11 +12,6 @@ class EventAddForm(forms.ModelForm):
         widget=autocomplete.ModelSelect2(url='location-autocomplete')
     )
 
-    vip_quantity_available = forms.IntegerField(label='VIP Tickets Quantity', min_value=0, required=True)
-    vip_price = forms.DecimalField(label='VIP Ticket Price', min_value=0, required=True)
-    regular_quantity_available = forms.IntegerField(label='Regular Tickets Quantity', min_value=0, required=True)
-    regular_price = forms.DecimalField(label='Regular Ticket Price', min_value=0, required=True)
-
     class Meta:
         model = Event
         fields = '__all__'
@@ -29,32 +24,6 @@ class EventAddForm(forms.ModelForm):
         super(EventAddForm, self).__init__(*args, **kwargs)
         self.fields.pop('creator')
 
-    def create_tickets(self, event):
-        # Create VIP ticket
-        Ticket.objects.create(
-            event=event,
-            ticket_type=Ticket.VIP,
-            quantity_available=self.cleaned_data['vip_quantity_available'],
-            price_per_ticket=self.cleaned_data['vip_price']
-        )
-
-        # Create Regular ticket
-        Ticket.objects.create(
-            event=event,
-            ticket_type=Ticket.REGULAR,
-            quantity_available=self.cleaned_data['regular_quantity_available'],
-            price_per_ticket=self.cleaned_data['regular_price']
-        )
-
-    def save(self, commit=True):
-        event = super(EventAddForm, self).save(commit=False)
-
-        if commit:
-            event.save()
-
-        self.create_tickets(event)
-
-        return event
 
 
 class TicketPurchaseForm(forms.Form):
