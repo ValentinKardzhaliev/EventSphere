@@ -7,8 +7,12 @@
 <div class="navbar-container">
     <a class="navbar-link" id="home" href="{% url 'index' %}">Home</a>
     <form method="get" action="{% url 'search_results' %}" class="search-form">
-        {{ search_form }}
-        <button type="submit">Search</button>
+        <div class="search-input-container">
+            {{ search_form }}
+            <button type="submit" class="search-button">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
     </form>
 
 
