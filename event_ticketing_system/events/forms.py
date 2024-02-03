@@ -29,22 +29,30 @@ class EventAddForm(forms.ModelForm):
         super(EventAddForm, self).__init__(*args, **kwargs)
         self.fields.pop('creator')
 
+    def create_tickets(self, event):
+        # Create VIP ticket
+        Ticket.objects.create(
+            event=event,
+            ticket_type=Ticket.VIP,
+            quantity_available=self.cleaned_data['vip_quantity_available'],
+            price_per_ticket=self.cleaned_data['vip_price']
+        )
+
+        # Create Regular ticket
+        Ticket.objects.create(
+            event=event,
+            ticket_type=Ticket.REGULAR,
+            quantity_available=self.cleaned_data['regular_quantity_available'],
+            price_per_ticket=self.cleaned_data['regular_price']
+        )
+
     def save(self, commit=True):
         event = super(EventAddForm, self).save(commit=False)
-
-        # Set other fields as needed
 
         if commit:
             event.save()
 
-        # Create VIP and Regular tickets for the event
-        Ticket.objects.create(event=event, ticket_type=Ticket.VIP,
-                              quantity_available=self.cleaned_data['vip_quantity_available'],
-                              price_per_ticket=self.cleaned_data['vip_price'])
-
-        Ticket.objects.create(event=event, ticket_type=Ticket.REGULAR,
-                              quantity_available=self.cleaned_data['regular_quantity_available'],
-                              price_per_ticket=self.cleaned_data['regular_price'])
+        self.create_tickets(event)
 
         return event
 
