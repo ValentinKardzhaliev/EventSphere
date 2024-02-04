@@ -2,55 +2,63 @@ body {
     margin-bottom: 50px;
 }
 
+.event-details-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .event-image-container {
+    width: 100%;
     background-image: url('/static/images/event_image_container_background.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+.event-info-container {
+    max-width: 55em;
+    width: 100%;
+    padding: 20px;
+}
 
 .event-image {
-    max-width: 50%;
-    height: auto;
-    margin: 0 auto;
+    max-width: 55%;
+    height: 30em;
+    margin: 1.5em auto;
     display: block;
+    border-radius: 15px;
 }
 
 .event-title {
     color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.event-description,
-.event-date,
-.event-venue,
-.event-total-tickets,
-.event-ticket-price,
-.event-organizer,
-.event-category,
-.event-contact-information {
-    margin-bottom: 10px;
-}
-
-.event-details strong {
-    font-weight: bold;
+.like-container {
+    margin-top: 1em;
 }
 
 .like-link {
     display: inline-block;
-    padding: 10px 15px;
-    background-color: #007bff; /* Set your desired background color for the link */
+    background-color: #007bff;
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
-    margin-top: 10px;
+    padding: 10px 15px;
 }
 
 .like-link.unlike {
-    background-color: #dc3545; /* Set your desired background color for the "Unlike" state */
+    background-color: #dc3545;
 }
 
 .login-message {
-    color: #dc3545; /* Set your desired color for the login message */
+    color: #dc3545;
     margin-top: 10px;
 }

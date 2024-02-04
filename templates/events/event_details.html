@@ -14,7 +14,7 @@
         {% endif %}
 
         <div class="event-info-container">
-            <h2 class="event-title">{{ event.title }}</h2>
+            <h1 class="event-title">{{ event.title }}</h1>
             <div class="event-description"><strong>Description:</strong> {{ event.description }}</div>
             <div class="event-date"><strong>Date and Time:</strong> {{ event.date_and_time }}</div>
             <div class="event-venue"><strong>Venue:</strong> {{ event.venue }}</div>
@@ -34,10 +34,15 @@
             {% if user.is_authenticated %}
                 <div class="like-container">
                     <a href="{% url 'like_event' event.pk %}"
-                       class="like-link {% if user_likes_event %}unlike{% endif %}">
-                        {% if user_likes_event %}Unlike{% else %}Like{% endif %}
+                       class="like-link {% if user_likes_event %}liked{% endif %}">
+                        {% if user_likes_event %}
+                            <i class="fa-solid fa-heart"></i> Unlike
+                        {% else %}
+                            <i class="fa-regular fa-heart"></i> Like
+                        {% endif %}
                     </a>
                 </div>
+
             {% else %}
                 <div class="login-message-container">
                     <p class="login-message">Login to like this event.</p>

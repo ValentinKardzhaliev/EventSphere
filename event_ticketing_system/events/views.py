@@ -9,6 +9,7 @@ from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 from .models import Event
 from .forms import EventAddForm, TicketPurchaseForm
+from ..common.models import Like
 from ..tickets.forms import TicketForm, VipTicketForm
 
 
@@ -65,6 +66,12 @@ class EventDetailsView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['purchase_form'] = TicketPurchaseForm()
+
+        if self.request.user.is_authenticated:
+            event = self.get_object()
+            user_likes_event = Like.objects.filter(user=self.request.user, event=event).exists()
+            context['user_likes_event'] = user_likes_event
+
         return context
 
 
