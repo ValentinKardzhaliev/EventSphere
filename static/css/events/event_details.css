@@ -34,11 +34,14 @@ body {
     border-radius: 15px;
 }
 
-.event-title {
-    color: #333;
+.event-title-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.event-title {
+    color: #333;
 }
 
 .like-container {

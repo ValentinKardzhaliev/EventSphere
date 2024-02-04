@@ -14,7 +14,22 @@
         {% endif %}
 
         <div class="event-info-container">
-            <h1 class="event-title">{{ event.title }}</h1>
+            <div class="event-title-container">
+                <h1 class="event-title">{{ event.title }}</h1>
+                {% if user.is_authenticated %}
+                    <div class="like-container">
+                        <a href="{% url 'like_event' event.pk %}"
+                           class="like-link {% if user_likes_event %}unlike{% endif %}">
+                            {% if user_likes_event %}<i class="fa-solid fa-heart"></i>{% else %}<i class="fa-regular fa-heart"></i>{% endif %}
+                        </a>
+                    </div>
+                {% else %}
+                    <div class="login-message-container">
+                        <p class="login-message">Login to like this event.</p>
+                    </div>
+                {% endif %}
+            </div>
+
             <div class="event-description"><strong>Description:</strong> {{ event.description }}</div>
             <div class="event-date"><strong>Date and Time:</strong> {{ event.date_and_time }}</div>
             <div class="event-venue"><strong>Venue:</strong> {{ event.venue }}</div>
@@ -31,25 +46,8 @@
                 {% endfor %}
             </ul>
 
-            {% if user.is_authenticated %}
-                <div class="like-container">
-                    <a href="{% url 'like_event' event.pk %}"
-                       class="like-link {% if user_likes_event %}liked{% endif %}">
-                        {% if user_likes_event %}
-                            <i class="fa-solid fa-heart"></i> Unlike
-                        {% else %}
-                            <i class="fa-regular fa-heart"></i> Like
-                        {% endif %}
-                    </a>
-                </div>
-
-            {% else %}
-                <div class="login-message-container">
-                    <p class="login-message">Login to like this event.</p>
-                </div>
-            {% endif %}
-
             <div class="purchase-tickets-container">
+                <h3 class="purchase-tickets-heading">Purchase Tickets</h3>
                 <form method="post" action="{% url 'ticket_purchase' pk=event.pk %}">
                     {% csrf_token %}
                     <div class="purchase-form">
