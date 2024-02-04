@@ -2,10 +2,19 @@ body {
     margin-bottom: 50px;
 }
 
+.event-image-container {
+    background-image: url('/static/images/event_image_container_background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
 .event-image {
-    max-width: 100%;
+    max-width: 50%;
     height: auto;
-    margin-bottom: 20px;
+    margin: 0 auto;
+    display: block;
 }
 
 .event-title {

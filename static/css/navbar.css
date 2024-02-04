@@ -49,7 +49,7 @@ body {
 #id_search_text {
     width: 25em;
     max-width: 30em;
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
     border-radius: 1em;
     padding: 0.3em;
 }

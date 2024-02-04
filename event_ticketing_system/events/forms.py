@@ -25,7 +25,6 @@ class EventAddForm(forms.ModelForm):
         self.fields.pop('creator')
 
 
-
 class TicketPurchaseForm(forms.Form):
     quantity = forms.IntegerField(min_value=1, label='Number of Tickets')
     ticket_type = forms.ChoiceField(choices=Ticket.TICKET_TYPE_CHOICES, label='Ticket Type')
