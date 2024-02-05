@@ -17,29 +17,53 @@
             <div class="event-info-container">
                 <div class="event-title-container">
                     <h1 class="event-title">{{ event.title }}</h1>
-                    {% if user.is_authenticated %}
-                        <div class="like-container">
-                            <a href="{% url 'like_event' event.pk %}"
-                               class="like-link {% if user_likes_event %}unlike{% endif %}">
-                                {% if user_likes_event %}<i class="fa-solid fa-heart"></i>{% else %}
-                                    <i class="fa-regular fa-heart"></i>{% endif %}
-                            </a>
-                        </div>
-                    {% else %}
-                        <div class="login-message-container">
-                            <p class="login-message">Login to like this event.</p>
-                        </div>
-                    {% endif %}
                 </div>
 
-                <div class="event-description"><strong>Description:</strong> {{ event.description }}</div>
-                <div class="event-date"><strong>Date and Time:</strong> {{ event.date_and_time }}</div>
-                <div class="event-venue"><strong>Venue:</strong> {{ event.venue }}</div>
-                <div class="event-organizer"><strong>Organizer:</strong> {{ event.organizer }}</div>
-                <div class="event-category"><strong>Category:</strong> {{ event.category }}</div>
-                <div class="event-contact-information"><strong>Contact
-                    Information:</strong> {{ event.contact_information }}
+                <div class="event-details">
+                    <div class="event-info-row">
+                        <div class="event-info-heading">Description:</div>
+                        <div class="event-info-value">{{ event.description }}</div>
+                    </div>
+
+                    <div class="event-info-row">
+                        <div class="event-info-heading">Date and Time:</div>
+                        <div class="event-info-value">{{ event.date_and_time }}</div>
+                    </div>
+
+                    <div class="event-info-row">
+                        <div class="event-info-heading">Venue:</div>
+                        <div class="event-info-value">{{ event.venue }}</div>
+                    </div>
+
+                    <div class="event-info-row">
+                        <div class="event-info-heading">Organizer:</div>
+                        <div class="event-info-value">{{ event.organizer }}</div>
+                    </div>
+
+                    <div class="event-info-row">
+                        <div class="event-info-heading">Category:</div>
+                        <div class="event-info-value">{{ event.category }}</div>
+                    </div>
+
+                    <div class="event-info-row">
+                        <div class="event-info-heading">Contact Information:</div>
+                        <div class="event-info-value">{{ event.contact_information }}</div>
+                    </div>
                 </div>
+            </div>
+
+            <div class="like-container">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'like_event' event.pk %}"
+                       class="like-link {% if user_likes_event %}unlike{% endif %}">
+                        {% if user_likes_event %}<i class="fa-solid fa-heart"></i>{% else %}
+                            <i class="fa-regular fa-heart"></i>{% endif %}
+                    </a>
+                {% else %}
+                    <div class="login-message-container">
+                        <p class="login-message">Login to like this event.</p>
+                    </div>
+                {% endif %}
             </div>
 
             <div class="tickets-available-section">
