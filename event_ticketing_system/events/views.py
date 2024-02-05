@@ -83,7 +83,6 @@ def user_created_events(request):
 
 
 def events_by_category(request, category):
-    # Filter events based on the selected category
     category_events = Event.objects.filter(category=category)
 
     context = {

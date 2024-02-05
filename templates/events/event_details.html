@@ -7,11 +7,26 @@
 
 {% block content %}
     <div class="event-details-container">
-        {% if event.image %}
-            <div class="event-image-container">
-                <img src="{{ event.image.url }}" alt="Event Image" class="event-image">
-            </div>
-        {% endif %}
+        <div class="image-and-content-container">
+            {% if event.image %}
+                <div class="event-image-container">
+                    <img src="{{ event.image.url }}" alt="Event Image" class="event-image">
+                </div>
+            {% endif %}
+
+        <div class="like-container">
+            {% if user.is_authenticated %}
+                <a href="{% url 'like_event' event.pk %}"
+                   class="like-link {% if user_likes_event %}unlike{% endif %}">
+                    {% if user_likes_event %}<i class="fa-solid fa-heart"></i>{% else %}
+                        <i class="fa-regular fa-heart"></i>{% endif %}
+                </a>
+            {% else %}
+                <div class="login-message-container">
+                    <p class="login-message">Login to like this event.</p>
+                </div>
+            {% endif %}
+        </div>
 
         <div class="event-content-container">
             <div class="event-info-container">
@@ -52,19 +67,6 @@
                 </div>
             </div>
 
-            <div class="like-container">
-                {% if user.is_authenticated %}
-                    <a href="{% url 'like_event' event.pk %}"
-                       class="like-link {% if user_likes_event %}unlike{% endif %}">
-                        {% if user_likes_event %}<i class="fa-solid fa-heart"></i>{% else %}
-                            <i class="fa-regular fa-heart"></i>{% endif %}
-                    </a>
-                {% else %}
-                    <div class="login-message-container">
-                        <p class="login-message">Login to like this event.</p>
-                    </div>
-                {% endif %}
-            </div>
 
             <div class="tickets-available-section">
                 <h3>Tickets for this Event:</h3>
@@ -83,7 +85,7 @@
                     <div class="purchase-form">
                         {{ purchase_form.as_p }}
                     </div>
-                    <button type="submit" class="purchase-button">Purchase Tickets</button>
+                    <button type="submit" class="purchase-button">Buy</button>
                 </form>
             </div>
         </div>
