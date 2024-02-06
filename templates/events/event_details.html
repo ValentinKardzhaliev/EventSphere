@@ -7,28 +7,41 @@
 
 {% block content %}
     <div class="event-details-container">
-        <div class="image-and-content-container">
+        <div class="event-image-wrapper">
             {% if event.image %}
                 <div class="event-image-container">
                     <img src="{{ event.image.url }}" alt="Event Image" class="event-image">
                 </div>
             {% endif %}
-
-        <div class="like-container">
-            {% if user.is_authenticated %}
-                <a href="{% url 'like_event' event.pk %}"
-                   class="like-link {% if user_likes_event %}unlike{% endif %}">
-                    {% if user_likes_event %}<i class="fa-solid fa-heart"></i>{% else %}
-                        <i class="fa-regular fa-heart"></i>{% endif %}
-                </a>
-            {% else %}
-                <div class="login-message-container">
-                    <p class="login-message">Login to like this event.</p>
-                </div>
-            {% endif %}
         </div>
+        <div class="event-info-wrapper">
+            <div class="actions-container">
+                <div class="like-container">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'like_event' event.pk %}"
+                           class="like-link {% if user_likes_event %}unlike{% endif %}">
+                            {% if user_likes_event %}<i class="fa-solid fa-heart"></i>{% else %}
+                                <i class="fa-regular fa-heart"></i>{% endif %}
+                        </a>
+                    {% else %}
+                        <div class="login-message-container">
+                            <p class="login-message">Login to like this event.</p>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="purchase-tickets-container">
+                    <h3 class="purchase-tickets-heading">Purchase Tickets</h3>
+                    <form method="post" action="{% url 'ticket_purchase' pk=event.pk %}">
+                        {% csrf_token %}
+                        <div class="purchase-form">
+                            {{ purchase_form.as_p }}
+                        </div>
+                        <button type="submit" class="purchase-button">Buy</button>
+                    </form>
+                </div>
+            </div>
 
-        <div class="event-content-container">
+
             <div class="event-info-container">
                 <div class="event-title-container">
                     <h1 class="event-title">{{ event.title }}</h1>
@@ -67,7 +80,6 @@
                 </div>
             </div>
 
-
             <div class="tickets-available-section">
                 <h3>Tickets for this Event:</h3>
                 <ul>
@@ -76,17 +88,6 @@
                             Price: {{ ticket.price_per_ticket }}</li>
                     {% endfor %}
                 </ul>
-            </div>
-
-            <div class="purchase-tickets-container">
-                <h3 class="purchase-tickets-heading">Purchase Tickets</h3>
-                <form method="post" action="{% url 'ticket_purchase' pk=event.pk %}">
-                    {% csrf_token %}
-                    <div class="purchase-form">
-                        {{ purchase_form.as_p }}
-                    </div>
-                    <button type="submit" class="purchase-button">Buy</button>
-                </form>
             </div>
         </div>
     </div>

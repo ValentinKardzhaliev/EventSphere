@@ -1,25 +1,19 @@
 .event-details-container {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center items horizontally */
+    width: 100%;
 }
 
-.image-and-content-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center items horizontally */
-}
-
-.event-image-container {
+.event-image-wrapper {
     width: 100%;
     background-image: url('/static/images/event_image_container_background.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+}
+
+.event-image-container {
+    width: 60%;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .event-image {
@@ -29,32 +23,16 @@
     border-radius: 15px;
 }
 
-.event-content-container {
-    margin-top: 1.5em;
+.event-info-wrapper {
     width: 100%;
-    max-width: 100%;
 }
 
-
-.event-info-container {
-    max-width: 65em;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.event-title-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.event-title {
-    color: #333;
+.actions-container {
+    margin-top: 1em;
 }
 
 .like-container {
-    margin-top: 1em;
+    display: inline-block;
 }
 
 .like-link {
@@ -70,9 +48,50 @@
     background-color: #dc3545;
 }
 
-.login-message {
-    color: #dc3545;
-    margin-top: 10px;
+.purchase-tickets-container {
+    max-width: 55em;
+    margin: 0 auto;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.purchase-tickets-heading {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.purchase-button {
+    font-weight: bold;
+    width: 100%;
+    padding: 1em;
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.purchase-button:hover {
+    background-color: #0056b3;
+}
+
+.event-info-container {
+    width: 60%; /* Adjust the width as needed */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.event-title-container {
+    justify-content: space-between;
+}
+
+.event-title {
+    color: #333;
 }
 
 .event-details {
@@ -97,37 +116,4 @@
 
 .tickets-available-section {
     margin-top: 2em;
-}
-
-.purchase-tickets-container {
-    max-width: 55em;
-    background-color: #f8f9fa;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-}
-
-.purchase-tickets-heading {
-    font-size: 1.2em;
-    margin-bottom: 10px;
-}
-
-.purchase-button {
-    font-weight: bold;
-    display: block;
-    width: 100%;
-    padding: 1em;
-    background-color: #007bff;
-    color: #fff;
-    text-align: center;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.purchase-button:hover {
-    background-color: #0056b3;
 }
