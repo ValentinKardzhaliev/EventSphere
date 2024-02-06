@@ -1,5 +1,8 @@
 .event-details-container {
     width: 100%;
+    line-height: 1.5em;
+    display: flex;
+    flex-direction: column;
 }
 
 .event-image-wrapper {
@@ -11,12 +14,13 @@
 }
 
 .event-image-container {
-    width: 60%;
+    max-width: 60%;
     margin: 0 auto;
     text-align: center;
 }
 
 .event-image {
+    margin-top: 0.8em;
     max-width: 100%;
     height: auto;
     max-height: 37em;
@@ -25,14 +29,22 @@
 
 .event-info-wrapper {
     width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .actions-container {
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    margin-right: 20%;
     margin-top: 1em;
 }
 
 .like-container {
     display: inline-block;
+    margin-bottom: 3em;
+    align-self: flex-end;
 }
 
 .like-link {
@@ -49,8 +61,6 @@
 }
 
 .purchase-tickets-container {
-    max-width: 55em;
-    margin: 0 auto;
     background-color: #f8f9fa;
     padding: 15px;
     border-radius: 10px;
@@ -80,7 +90,7 @@
 }
 
 .event-info-container {
-    width: 60%; /* Adjust the width as needed */
+    max-width: 40%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -112,8 +122,4 @@
 .event-info-value {
     font-size: 1em;
     max-width: 66ch;
-}
-
-.tickets-available-section {
-    margin-top: 2em;
 }
