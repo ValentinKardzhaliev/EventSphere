@@ -4,6 +4,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
 </head>
 
+
 <div class="navbar-container">
     <a class="navbar-link" id="home" href="{% url 'index' %}">Home</a>
     <form method="get" action="{% url 'search_results' %}" class="search-form">
@@ -15,19 +16,40 @@
         </div>
     </form>
 
+    <div class="bars-icon-container">
+        <i class="fa-solid fa-bars" id="menu-icon"></i>
+    </div>
 
-    {% if user.is_authenticated %}
-        <a class="navbar-link" id="likes" href="{% url 'liked_events' %}">Likes</a>
-        <a class="navbar-link" href="{% url 'user_tickets' pk=user.pk %}">Tickets</a>
-        <a class="navbar-link" id="add-event" href="{% url 'event_add' %}">Create an event</a>
-        <a class="navbar-link" id="user-created-events" href="{% url 'user_created_events' %}">Your Events</a>
-        <a class="navbar-link" href="{% url 'profile_details' pk=request.user.pk %}">Profile</a>
-        <a class="navbar-link" href="{% url 'logout_user' %}">Logout</a>
-    {% else %}
-        <!-- Show login and register links only if not on the login or register page -->
-        {% if request.path != '/accounts/login/' and request.path != '/accounts/register/' %}
-            <a class="navbar-link" id="login" href="{% url 'login_user' %}">Login</a>
-            <a class="navbar-link" id="register" href="{% url 'register_user' %}">Register</a>
+    <div class="navbar-links">
+        {% if user.is_authenticated %}
+            <a class="navbar-link" id="likes" href="{% url 'liked_events' %}">Likes</a>
+            <a class="navbar-link" href="{% url 'user_tickets' pk=user.pk %}">Tickets</a>
+            <a class="navbar-link" id="add-event" href="{% url 'event_add' %}">Create an event</a>
+            <a class="navbar-link" id="user-created-events" href="{% url 'user_created_events' %}">Your Events</a>
+            <a class="navbar-link" href="{% url 'profile_details' pk=request.user.pk %}">Profile</a>
+            <a class="navbar-link" href="{% url 'logout_user' %}">Logout</a>
+        {% else %}
+            <!-- Show login and register links only if not on the login or register page -->
+            {% if request.path != '/accounts/login/' and request.path != '/accounts/register/' %}
+                <a class="navbar-link" id="login" href="{% url 'login_user' %}">Login</a>
+                <a class="navbar-link" id="register" href="{% url 'register_user' %}">Register</a>
+            {% endif %}
         {% endif %}
-    {% endif %}
+    </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#menu-icon').click(function () {
+            $('.navbar-links').toggleClass('show-links');
+        });
+    });
+
+    // Update visibility on window resize
+    $(window).resize(function () {
+        if ($(window).width() > 768) {
+            $('.navbar-links').removeClass('show-links');
+        }
+    });
+</script>
