@@ -10,7 +10,6 @@
 {% block content %}
     <div class="add-event-wrapper">
         <h2>Add Event</h2>
-        <!-- events/event_add.html -->
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}

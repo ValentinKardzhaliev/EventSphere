@@ -1,47 +1,43 @@
 .login-body {
-    max-width: 100%; /* Adjust the width as needed */
+    max-width: 100%;
     margin: 0;
-    padding: 0 0; /* Adjust the top and bottom padding as needed */
+    padding: 0 0;
     background-image: url("../../images/event-ideas-for-party-eventbookings.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
     color: #333;
-    /*text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);*/
     font-weight: bold;
     overflow: hidden;
 }
 
 .page-container {
-    max-width: 20%; /* Adjust the width as needed */
-    margin: 5% auto;
+    max-width: 20%;
+    margin: 10% auto;
     background-color: white;
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
+.login-heading {
     text-align: center;
 }
 
-form {
+.login-form {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.custom-form-control {
+.form-label {
     width: 100%;
-    padding: 6px;
     margin-bottom: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
     box-sizing: border-box;
 }
 
-button {
+.login-button {
     background-color: #f05537;
     color: #fff;
     cursor: pointer;
@@ -51,6 +47,22 @@ button {
     box-sizing: border-box;
 }
 
-button:hover {
+.login-button:hover {
     background-color: #882121;
+}
+
+.signup-link {
+    text-align: center;
+    margin-top: 16px;
+}
+
+.signup-anchor {
+    color: #f05537;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signup-anchor:hover {
+    text-decoration: underline;
+    color: #882121;
 }

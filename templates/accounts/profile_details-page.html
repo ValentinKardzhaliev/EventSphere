@@ -27,7 +27,6 @@
         {% endif %}
     </ul>
 
-    <!-- Add links to other sections like Likes, Tickets, etc. -->
     <ul>
         <li><a href="{% url 'user_dashboard' pk=request.user.pk %}">User Dashboard</a></li>
         <li><a href="{% url 'profile_edit' pk=request.user.pk %}">Edit Profile</a></li>
