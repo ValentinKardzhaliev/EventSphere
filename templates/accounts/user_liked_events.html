@@ -1,0 +1,35 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/accounts/user_liked_events.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="liked-events-content-wrapper">
+        <div class="liked-events-content">
+            <div class="liked-events-header">
+                <h1>Liked Events</h1>
+            </div>
+            {% for like in liked_events %}
+                <div class="event-card">
+                    <ul>
+                        <li>
+                            <div class="event-details">
+                                <a href="{% url 'event_details' like.event.id %}" class="event-title">
+                                    <h2>{{ like.event.title }}</h2>
+                                </a>
+                                <p class="event-info">{{ like.event.date_and_time }}</p>
+                                <p class="event-info">{{ like.event.location }}</p>
+                            </div>
+                            <a href="{% url 'event_details' like.event.id %}">
+                                <img src="{{ like.event.image.url }}" alt="Event Image">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

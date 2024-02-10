@@ -36,7 +36,7 @@ def liked_events_view(request):
     context = {
         'liked_events': liked_events
     }
-    return render(request, 'events/../../templates/accounts/liked_events.html', context)
+    return render(request, 'events/../../templates/accounts/user_liked_events.html', context)
 
 
 def search_results(request):
