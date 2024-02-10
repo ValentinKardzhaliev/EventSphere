@@ -56,10 +56,18 @@
 
 .like-link {
     text-decoration: none;
+}
+
+.like-link i {
     color: #d1410c;
-    border-radius: 1.5em;
+    border-radius: 1em;
     border: 1px solid #333333;
-    padding: 0.5em;
+    padding: 0.6em;
+}
+
+.like-link i:hover {
+    background-color: #f5f5f5;
+    color: #ff6666;
 }
 
 @media only screen and (max-width: 768px) {
