@@ -25,6 +25,7 @@
     color: #f4f4f4;
     background-color: rgba(0, 0, 0, 0.7);
     padding: 0.6em;
+    line-height: 1em;
 }
 
 
@@ -101,4 +102,20 @@
     color: #555;
 }
 
+@media only screen and (max-width: 768px) {
+    .welcome-message {
+        font-size: 0.8em;
+    }
 
+    .category-link {
+        width: 3em;
+    }
+
+    .category-link i {
+        font-size: 2em;
+    }
+
+    .category-text {
+        font-size: 0.7em;
+    }
+}
