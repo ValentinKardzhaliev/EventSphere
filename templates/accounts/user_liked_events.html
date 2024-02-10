@@ -14,20 +14,23 @@
             </div>
             {% for like in liked_events %}
                 <div class="event-card">
-                    <ul>
-                        <li>
-                            <div class="event-details">
-                                <a href="{% url 'event_details' like.event.id %}" class="event-title">
-                                    <h2>{{ like.event.title }}</h2>
-                                </a>
-                                <p class="event-info">{{ like.event.date_and_time }}</p>
-                                <p class="event-info">{{ like.event.location }}</p>
-                            </div>
-                            <a href="{% url 'event_details' like.event.id %}">
-                                <img src="{{ like.event.image.url }}" alt="Event Image">
+                    <div class="event-details">
+                        <a href="{% url 'event_details' like.event.id %}" class="event-title">
+                            <h2>{{ like.event.title }}</h2>
+                        </a>
+                        <p class="event-info">{{ like.event.date_and_time }}</p>
+                        <p class="event-info">{{ like.event.location }}</p>
+                    </div>
+                    <div class="event-image-and-actions">
+                        <a href="{% url 'event_details' like.event.id %}">
+                            <img src="{{ like.event.image.url }}" alt="Event Image">
+                        </a>
+                        <span class="like-link-container">
+                            <a href="{% url 'like_event' like.event.pk %}" class="like-link">
+                                <i class="fa-solid fa-heart"></i>
                             </a>
-                        </li>
-                    </ul>
+                        </span>
+                    </div>
                 </div>
             {% endfor %}
         </div>

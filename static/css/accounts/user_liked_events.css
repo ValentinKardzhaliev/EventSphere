@@ -14,18 +14,17 @@
     padding: 1.2em;
     margin-bottom: 1em;
     transition: box-shadow 0.3s ease;
+    display: flex; /* Use flexbox to control layout */
 }
 
 .event-card:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-.event-card li {
-    display: flex;
-}
-
 .event-details {
     flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .event-title {
@@ -34,13 +33,37 @@
     text-decoration: none;
 }
 
+.event-info {
+    margin: 0;
+}
 
-.event-card img {
+.event-image-and-actions {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.5em;
+}
+
+.event-image-and-actions img {
     max-width: 10em;
 }
 
+.like-link-container {
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.like-link {
+    text-decoration: none;
+    color: #d1410c;
+    border-radius: 1.5em;
+    border: 1px solid #333333;
+    padding: 0.5em;
+}
+
 @media only screen and (max-width: 768px) {
-    .event-card img {
+    .event-image-and-actions img {
         max-width: 5em;
         height: 4em;
     }
