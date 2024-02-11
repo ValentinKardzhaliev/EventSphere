@@ -3,7 +3,6 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/events/event_add.css' %}">
-    {{ form.media }}
     <script src="{% static 'scripts/event_add.js' %}"></script>
 {% endblock %}
 
@@ -12,7 +11,11 @@
         <h2>Add Event</h2>
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
+
             {{ form.as_p }}
+
+            <!-- Include form media for Django Autocomplete Light -->
+            {{ form.media }}
 
             <h3>Regular Tickets</h3>
             {{ ticket_form.as_table }}
@@ -22,9 +25,13 @@
                 {{ vip_ticket_form.as_table }}
             </div>
 
-            <p><button type="button" id="toggleVipTickets">Add VIP Tickets</button></p>
+            <p>
+                <button type="button" id="toggleVipTickets">Add VIP Tickets</button>
+            </p>
 
-            <p><button type="submit">Save Event</button></p>
+            <p>
+                <button type="submit">Save Event</button>
+            </p>
         </form>
     </div>
 {% endblock %}
