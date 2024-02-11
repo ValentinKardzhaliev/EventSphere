@@ -8,30 +8,38 @@
 
 {% block content %}
     <div class="add-event-wrapper">
-        <h2>Add Event</h2>
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
+        <div class="add-event-content">
+            <h2 class="add-event-header">Add Event</h2>
+            <div class="add-event-info">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
 
-            {{ form.as_p }}
+                    {{ form.as_p }}
 
-            <!-- Include form media for Django Autocomplete Light -->
-            {{ form.media }}
-
-            <h3>Regular Tickets</h3>
-            {{ ticket_form.as_table }}
-
-            <h3 id="vip-tickets-header" style="display: none;">VIP Tickets</h3>
-            <div id="vip-tickets" style="display: none;">
-                {{ vip_ticket_form.as_table }}
+                    <!-- Include form media for Django Autocomplete Light -->
+                    {{ form.media }}
+                </form>
             </div>
 
-            <p>
-                <button type="button" id="toggleVipTickets">Add VIP Tickets</button>
-            </p>
+            <h3 class="add-tickets-header">Regular Tickets</h3>
+            <div class="add-tickets-section">
+                <form method="post" enctype="multipart/form-data">
+                    {{ ticket_form.as_table }}
 
-            <p>
-                <button type="submit">Save Event</button>
-            </p>
-        </form>
+                    <h3 id="vip-tickets-header" style="display: none;">VIP Tickets</h3>
+                    <div id="vip-tickets" style="display: none;">
+                        {{ vip_ticket_form.as_table }}
+                    </div>
+
+                    <p>
+                        <button type="button" id="toggleVipTickets">Add VIP Tickets</button>
+                    </p>
+
+                    <p>
+                        <button type="submit">Save Event</button>
+                    </p>
+                </form>
+            </div>
+        </div>
     </div>
 {% endblock %}
