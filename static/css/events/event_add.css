@@ -36,7 +36,23 @@
     border-radius: 4px;
 }
 
-button {
+#toggleVipTickets {
+    padding: 10px 20px;
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#toggleVipTickets:hover {
+    background-color: #c0392b;
+}
+
+#saveEventButton {
+    width: 100%;
+    display: block;
+    margin: 0 auto;
     padding: 10px 20px;
     background-color: #3498db;
     color: #fff;
@@ -45,15 +61,6 @@ button {
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #1d5a8f;
-}
-
-
-#toggleVipTickets {
-    background-color: #e74c3c;
-}
-
-#toggleVipTickets:hover {
-    background-color: #c0392b;
+#saveEventButton:hover {
+    background-color: #2980b9;
 }
