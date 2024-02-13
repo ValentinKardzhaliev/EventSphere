@@ -17,7 +17,7 @@
                 </a>
             </div>
 
-            <h1 class="user-created-events-header">Your Created Events</h1>
+            <h1 class="user-created-events-header">Manage Your Events</h1>
 
             {% if user_created_events %}
                 <ul class="user-created-events-list">
@@ -29,12 +29,22 @@
                                     <h2 class="event-title">{{ event.title }}</h2>
                                 </div>
                                 <div class="event-item-details">
-                                    <p class="event-info"><span class="event-info-heading">Description:</span> {{ event.description }}</p>
-                                    <p class="event-info"><span class="event-info-heading">Date and Time:</span> {{ event.date_and_time }}</p>
-                                    <p class="event-info"><span class="event-info-heading">Venue:</span> {{ event.venue }}</p>
-                                    <p class="event-info"><span class="event-info-heading">Organizer:</span> {{ event.organizer }}</p>
-                                    <p class="event-info"><span class="event-info-heading">Category:</span> {{ event.category }}</p>
-                                    <p class="event-info"><span class="event-info-heading">Contact Information:</span> {{ event.contact_information }}</p>
+                                    <p class="event-info"><span
+                                            class="event-info-heading">Description:</span> {{ event.description }}</p>
+                                    <p class="event-info"><span
+                                            class="event-info-heading">Date and Time:</span> {{ event.date_and_time }}
+                                    </p>
+                                    <p class="event-info"><span
+                                            class="event-info-heading">Venue:</span> {{ event.venue }}</p>
+                                    <p class="event-info"><span
+                                            class="event-info-heading">Organizer:</span> {{ event.organizer }}</p>
+                                    <p class="event-info"><span
+                                            class="event-info-heading">Category:</span> {{ event.category }}</p>
+                                    <p class="event-info"><span
+                                            class="event-info-heading">Contact Information:</span> {{ event.contact_information }}
+                                    </p>
+                                    <a href="{% url 'event_edit' pk=event.pk %}" class="edit-icon"><i
+                                            class="fa-solid fa-pen-to-square"></i></a>
                                 </div>
                             </a>
                         </li>

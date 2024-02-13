@@ -90,3 +90,10 @@
     text-decoration: none;
     color: inherit;
 }
+
+.edit-icon {
+    float: right;
+    transform: translateY(-50%);
+    color: #555;
+    font-size: 1.5em;
+}

@@ -1,10 +1,29 @@
 {% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Edit Event{% endblock %}
+
+{% block stylesheets %}
+{#    <link rel="stylesheet" type="text/css" href="{% static 'css/events/event_edit.css' %}">#}
+{% endblock %}
 
 {% block content %}
-  <h2>Edit Event</h2>
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save Changes</button>
-  </form>
+    <div class="edit-event-wrapper">
+        <div class="edit-event-container">
+            <h1 class="edit-event-header">Edit Event</h1>
+
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+
+                <h2 class="ticket-form-header">Regular Ticket</h2>
+                {{ ticket_form.as_p }}
+
+                <h2 class="ticket-form-header">VIP Ticket</h2>
+                {{ vip_ticket_form.as_p }}
+
+                <button type="submit">Save Changes</button>
+            </form>
+        </div>
+    </div>
 {% endblock %}
