@@ -24,7 +24,19 @@
                     {% for event in user_created_events %}
                         <li class="user-created-event-item">
                             <a class="user-created-event-link"
-                               href="{% url 'event_details' pk=event.pk %}">{{ event.title }}</a>
+                               href="{% url 'event_details' pk=event.pk %}">
+                                <div class="event-item-header">
+                                    <h2 class="event-title">{{ event.title }}</h2>
+                                </div>
+                                <div class="event-item-details">
+                                    <p class="event-info"><span class="event-info-heading">Description:</span> {{ event.description }}</p>
+                                    <p class="event-info"><span class="event-info-heading">Date and Time:</span> {{ event.date_and_time }}</p>
+                                    <p class="event-info"><span class="event-info-heading">Venue:</span> {{ event.venue }}</p>
+                                    <p class="event-info"><span class="event-info-heading">Organizer:</span> {{ event.organizer }}</p>
+                                    <p class="event-info"><span class="event-info-heading">Category:</span> {{ event.category }}</p>
+                                    <p class="event-info"><span class="event-info-heading">Contact Information:</span> {{ event.contact_information }}</p>
+                                </div>
+                            </a>
                         </li>
                     {% endfor %}
                 </ul>
