@@ -21,8 +21,8 @@
 
 .add-event-info form,
 .add-tickets-section form {
-    display: grid;
-    gap: 1em;
+    display: flex;
+    flex-direction: column;
 }
 
 .add-event-info input,
@@ -32,6 +32,7 @@
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
+    margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
@@ -51,8 +52,6 @@
 
 #saveEventButton {
     width: 100%;
-    display: block;
-    margin: 0 auto;
     padding: 10px 20px;
     background-color: #3498db;
     color: #fff;
@@ -63,5 +62,10 @@
 
 #saveEventButton:hover {
     background-color: #2980b9;
+}
+
+.select2-container {
+    width: 100% !important;
+    min-width: initial !important;
 }
 
