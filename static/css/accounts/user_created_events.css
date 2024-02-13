@@ -1,0 +1,35 @@
+.user-created-events-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-created-events-container {
+    max-width: 70em;
+    width: 100%;
+    padding: 1.2em;
+    box-sizing: border-box;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+
+.user-avatar {
+    width: 2.5em;
+    height: 2.5em;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.username {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+

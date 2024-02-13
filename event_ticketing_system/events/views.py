@@ -79,7 +79,7 @@ class EventDetailsView(DetailView):
 def user_created_events(request):
     events_created_by_user = Event.objects.filter(creator=request.user)
     context = {'user_created_events': events_created_by_user}
-    return render(request, 'events/user_created_events.html', context)
+    return render(request, 'accounts/user_created_events.html', context)
 
 
 def events_by_category(request, category):
