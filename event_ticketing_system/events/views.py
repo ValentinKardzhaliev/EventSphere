@@ -11,6 +11,7 @@ from .models import Event
 from .forms import EventAddForm, TicketPurchaseForm
 from ..common.models import Like
 from ..tickets.forms import TicketForm, VipTicketForm
+from ..tickets.models import Ticket
 
 
 @method_decorator(login_required, name='dispatch')
@@ -80,7 +81,7 @@ class EventEditView(UpdateView):
     model = Event
     form_class = EventAddForm
     template_name = 'events/event_edit.html'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('user_created_events')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -89,8 +90,9 @@ class EventEditView(UpdateView):
             context['ticket_form'] = TicketForm(self.request.POST, instance=self.object)
             context['vip_ticket_form'] = VipTicketForm(self.request.POST, instance=self.object)
         else:
-            context['ticket_form'] = TicketForm(instance=self.object)
-            context['vip_ticket_form'] = VipTicketForm(instance=self.object)
+            context['ticket_form'] = TicketForm(instance=self.object.tickets.filter(ticket_type=Ticket.REGULAR).first())
+            context['vip_ticket_form'] = VipTicketForm(
+                instance=self.object.tickets.filter(ticket_type=Ticket.VIP).first())
 
         return context
 
@@ -113,7 +115,6 @@ class EventEditView(UpdateView):
             return redirect(self.success_url)
 
         return self.render_to_response(self.get_context_data(form=form))
-
 
 
 @login_required
