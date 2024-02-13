@@ -10,10 +10,12 @@
 {% block content %}
     <div class="user-created-events-wrapper">
         <div class="user-created-events-container">
-            <a href="{% url 'profile_details' pk=request.user.pk %}" class="user-info">
-                <img class="user-avatar" src="{{ user.profile_picture.url }}" alt="Profile Image">
-                <span class="username">{{ request.user.username }}</span>
-            </a>
+            <div class="user-info-wrapper">
+                <a href="{% url 'profile_details' pk=request.user.pk %}" class="user-info">
+                    <img class="user-avatar" src="{{ user.profile_picture.url }}" alt="Profile Image">
+                    <span class="username">{{ request.user.username }}</span>
+                </a>
+            </div>
 
             <h1 class="user-created-events-header">Your Created Events</h1>
 

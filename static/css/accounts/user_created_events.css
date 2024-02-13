@@ -11,6 +11,11 @@
     box-sizing: border-box;
 }
 
+
+.user-info-wrapper {
+    display: inline-block;
+}
+
 .user-info {
     display: flex;
     align-items: center;
@@ -18,7 +23,6 @@
     color: inherit;
     cursor: pointer;
 }
-
 
 .user-avatar {
     width: 2.5em;
