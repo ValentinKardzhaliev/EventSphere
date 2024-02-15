@@ -1,7 +1,9 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
-from django.shortcuts import redirect, get_object_or_404, render
+from django.shortcuts import redirect, get_object_or_404, render, get_list_or_404
+from django.urls import reverse
+from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.views import View
 
@@ -36,7 +38,8 @@ class TicketPurchaseView(View):
 
                 messages.success(request,
                                  f"Successfully purchased {quantity} {ticket.get_ticket_type_display()} ticket(s) for {event.title}.")
-                return redirect('ticket_purchase_success', pk=event.pk)
+                return redirect(
+                    reverse('event_details', kwargs={'pk': event.pk}))
             else:
                 if ticket.quantity_available == 0:
                     messages.error(request,
@@ -65,8 +68,11 @@ class TicketPurchaseFailureView(View):
     template_name = 'tickets/ticket_purchase_failure.html'
 
     def get(self, request, *args, **kwargs):
-        error_message = messages.get_messages(request)
-        return render(request, self.template_name, {'error_message': error_message})
+        # Get the last error message
+        error_messages = [m for m in messages.get_messages(request) if m.level == messages.ERROR]
+        last_error_message = error_messages[-1].message if error_messages else None
+
+        return render(request, self.template_name, {'error_message': last_error_message})
 
 
 class UserTicketsView(View):
@@ -95,6 +101,8 @@ class UserTicketsView(View):
                 'ticket_type': ticket.get_ticket_type_display(),
                 'total_quantity': total_quantity,
                 'price_per_ticket': ticket.price_per_ticket,
+                'refundable': any(
+                    purchase.refund_deadline >= timezone.now() for purchase in ticket.purchase_set.filter(user=user)),
             }
 
             # Mark the ticket type as processed
@@ -104,6 +112,57 @@ class UserTicketsView(View):
 
         context = {
             'user_tickets_quantity': user_tickets_quantity,
+        }
+
+        return render(request, self.template_name, context)
+
+
+class RefundTicketView(View):
+    template_name = 'tickets/refund_ticket.html'
+
+    def get(self, request, *args, **kwargs):
+        event_id = kwargs['event_id']
+        tickets = get_list_or_404(Ticket, event_id=event_id)
+
+        context = {
+            'tickets': tickets,
+        }
+
+        return render(request, self.template_name, context)
+
+    def post(self, request, *args, **kwargs):
+        event_id = kwargs['event_id']
+        tickets = get_list_or_404(Ticket, event_id=event_id)
+
+        refundable_purchases = []
+
+        for ticket in tickets:
+            refundable_purchase = Purchase.objects.filter(
+                user=request.user,
+                ticket=ticket,
+                refund_deadline__gte=timezone.now()
+            ).first()
+
+            if refundable_purchase:
+                refundable_purchases.append(refundable_purchase)
+
+        refunded_tickets = []
+
+        if refundable_purchases:
+            for refundable_purchase in refundable_purchases:
+                refundable_purchase.delete()
+                ticket = refundable_purchase.ticket
+                ticket.quantity_available += refundable_purchase.quantity
+                ticket.save()
+                refunded_tickets.append(ticket)
+
+            messages.success(request, f"Refund request successful for tickets.")
+        else:
+            messages.error(request, f"No refundable purchases found for tickets.")
+
+        # Render the same template with updated context
+        context = {
+            'refunded_tickets': refunded_tickets,
         }
 
         return render(request, self.template_name, context)

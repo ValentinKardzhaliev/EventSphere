@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 from event_ticketing_system.events.models import Event
 from event_ticketing_system.web_auth.models import EventAppUser
@@ -30,6 +31,15 @@ class Purchase(models.Model):
     ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField()
     purchase_date = models.DateTimeField(auto_now_add=True)
+    refund_deadline = models.DateTimeField()
 
     def __str__(self):
         return f"{self.user.username} - {self.ticket.event.title} - {self.quantity} tickets"
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            refund_period = timezone.timedelta(days=1)
+            self.refund_deadline = timezone.now() + refund_period
+
+        super().save(*args, **kwargs)
+

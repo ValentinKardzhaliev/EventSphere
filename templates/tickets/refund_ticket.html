@@ -1,0 +1,19 @@
+{% extends 'base/base.html' %}
+{% block title %}Refund Confirmation{% endblock %}
+
+{% block content %}
+    <div class="refund-confirmation">
+        <h1>Refund Confirmation</h1>
+
+        <p>Your refund request has been processed successfully.</p>
+
+        <h2>Refunded Tickets:</h2>
+        <ul>
+            {% for refunded_ticket in refunded_tickets %}
+                <li>{{ refunded_ticket.get_ticket_type_display }} - {{ refunded_ticket.event.title }}</li>
+            {% endfor %}
+        </ul>
+
+        <p>Thank you for using our service!</p>
+    </div>
+{% endblock %}
