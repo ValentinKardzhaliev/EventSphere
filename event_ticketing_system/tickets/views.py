@@ -68,9 +68,12 @@ class TicketPurchaseFailureView(View):
     template_name = 'tickets/ticket_purchase_failure.html'
 
     def get(self, request, *args, **kwargs):
+        # Get all error messages
+        error_messages = [message.message for message in messages.get_messages(request) if
+                          message.level == messages.ERROR]
+
         # Get the last error message
-        error_messages = [m for m in messages.get_messages(request) if m.level == messages.ERROR]
-        last_error_message = error_messages[-1].message if error_messages else None
+        last_error_message = error_messages[-1] if error_messages else None
 
         return render(request, self.template_name, {'error_message': last_error_message})
 

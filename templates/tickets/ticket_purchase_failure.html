@@ -1,13 +1,7 @@
 {% extends 'base/base.html' %}
+{% load static %}
+{% block title %}Transaction Failed{% endblock %}
 
 {% block content %}
-    <h2>Transaction Failed</h2>
-    {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-    <p>Please go back and try again.</p>
+    <h1 class="failure-message">{{ error_message }}</h1>
 {% endblock %}
