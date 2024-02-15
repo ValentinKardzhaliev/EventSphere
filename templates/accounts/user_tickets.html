@@ -7,38 +7,52 @@
 {% endblock %}
 
 {% block content %}
-<div class="user-purchased-tickets-container">
-    <h1 class="user-purchased-tickets-title">User Purchased Tickets</h1>
-    <p class="welcome-message">Welcome, {{ user.username }}!</p>
+    <div class="user-purchased-tickets-container">
+        <h1 class="user-purchased-tickets-title">User Purchased Tickets</h1>
+        <p class="welcome-message">Welcome, {{ user.username }}!</p>
 
-    {% if user_tickets_quantity %}
-    <ul class="ticket-list">
-        {% for ticket_quantity in user_tickets_quantity %}
-        <li class="ticket-item">
-            <strong class="event-label">Event:</strong>
-            <a href="{% url 'event_details' ticket_quantity.event_id %}" class="event-link">
-                {{ ticket_quantity.event__title }}
-            </a><br>
-            <strong class="ticket-type-label">Ticket Type:</strong> {{ ticket_quantity.ticket_type }}<br>
-            <strong class="total-quantity-label">Total Quantity Purchased:</strong>
-            {{ ticket_quantity.total_quantity }}<br>
-            <strong class="price-per-ticket-label">Price per Ticket:</strong>
-            ${{ ticket_quantity.price_per_ticket }}<br>
+        {% if user_tickets_quantity %}
+            <ul class="ticket-list">
+                {% for ticket_quantity in user_tickets_quantity %}
+                    <li class="ticket-item">
+                        <strong class="event-label">Event:</strong>
+                        <a href="{% url 'event_details' ticket_quantity.event_id %}" class="event-link">
+                            {{ ticket_quantity.event__title }}
+                        </a><br>
+                        <strong class="ticket-type-label">Ticket Type:</strong> {{ ticket_quantity.ticket_type }}<br>
+                        <strong class="total-quantity-label">Total Quantity Purchased:</strong>
+                        {{ ticket_quantity.total_quantity }}<br>
+                        <strong class="price-per-ticket-label">Price per Ticket:</strong>
+                        ${{ ticket_quantity.price_per_ticket }}<br>
 
-            {% if ticket_quantity.refundable %}
-                <form method="post" action="{% url 'refund_ticket' ticket_quantity.event_id %}">
-                    {% csrf_token %}
-                    <button type="submit">Request Refund</button>
-                </form>
+                        {% if ticket_quantity.refundable %}
+                            <button class="refund-button" data-event-id="{{ ticket_quantity.event_id }}">Request
+                                Refund
+                            </button>
+                        {% else %}
+                            <h3> You cannot refund this ticket</h3>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <h1 class="no-tickets-message">You haven't purchased any tickets yet.</h1>
+        {% endif %}
+    </div>
 
-            {% else %}
-                <h3> You cannot refund this ticket</h3>
-            {% endif %}
-        </li>
-        {% endfor %}
-    </ul>
-    {% else %}
-    <h1 class="no-tickets-message">You haven't purchased any tickets yet.</h1>
-    {% endif %}
-</div>
+    <!-- Confirmation Modal -->
+    <div class="modal" id="refundConfirmationModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeRefundModal()">&times;</span>
+            <p id="refundConfirmationText"></p>
+            <form method="post" id="refundForm">
+                {% csrf_token %}
+                <button type="submit">Confirm Refund</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="{% static 'scripts/refund_modal.js' %}"></script>
+
+
 {% endblock %}
