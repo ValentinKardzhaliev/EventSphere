@@ -39,7 +39,7 @@ class TicketPurchaseView(View):
                 messages.success(request,
                                  f"Successfully purchased {quantity} {ticket.get_ticket_type_display()} ticket(s) for {event.title}.")
                 return redirect(
-                    reverse('event_details', kwargs={'pk': event.pk}))
+                    reverse('ticket_purchase_success', kwargs={'pk': event.pk}))
             else:
                 if ticket.quantity_available == 0:
                     messages.error(request,
