@@ -1,0 +1,64 @@
+a {
+    color: #333;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #aaa;
+}
+
+.user-purchased-tickets-container{
+    overflow: hidden;
+}
+
+.user-purchased-tickets-title {
+    color: #333;
+}
+
+.welcome-message {
+    color: #f4f4f4;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 0.6em;
+    line-height: 1.2em;
+}
+
+.ticket-list {
+    list-style: none;
+    padding: 0;
+}
+
+.ticket-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 15px;
+    transition: transform 0.3s ease;
+}
+
+.ticket-item:hover {
+    transform: scale(1.02);
+}
+
+.event-label {
+    color: #333;
+}
+
+.event-link {
+    color: #333;
+}
+
+.event-link:hover {
+    color: #ddd;
+}
+
+.ticket-type-label,
+.total-quantity-label,
+.price-per-ticket-label {
+    color: #555;
+}
+
+.no-tickets-message {
+    font-style: italic;
+    color: #555;
+}

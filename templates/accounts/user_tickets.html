@@ -1,0 +1,31 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}User Purchased Tickets{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/accounts/user_tickets.css' %}">
+
+{% endblock %}
+
+{% block content %}
+    <div class="user-purchased-tickets-container">
+        <h1 class="user-purchased-tickets-title">User Purchased Tickets</h1>
+        <p class="welcome-message">Welcome, {{ user.username }}!</p>
+
+        {% if user_tickets_quantity %}
+            <ul class="ticket-list">
+                {% for ticket_quantity in user_tickets_quantity %}
+                    <li class="ticket-item">
+                        <strong class="event-label">Event:</strong> <a href="{% url 'event_details' ticket_quantity.event_id %}" class="event-link">{{ ticket_quantity.event__title }}</a><br>
+                        <strong class="ticket-type-label">Ticket Type:</strong> {{ ticket_quantity.ticket_type }}<br>
+                        <strong class="total-quantity-label">Total Quantity Purchased:</strong> {{ ticket_quantity.total_quantity }}<br>
+                        <strong class="price-per-ticket-label">Price per Ticket:</strong> ${{ ticket_quantity.price_per_ticket }}<br>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="no-tickets-message">You haven't purchased any tickets yet.</p>
+        {% endif %}
+    </div>
+
+{% endblock %}

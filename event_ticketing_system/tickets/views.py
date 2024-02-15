@@ -70,7 +70,7 @@ class TicketPurchaseFailureView(View):
 
 
 class UserTicketsView(View):
-    template_name = 'tickets/user_tickets.html'
+    template_name = 'accounts/user_tickets.html'
 
     def get(self, request, *args, **kwargs):
         user = UserModel.objects.get(pk=kwargs['pk'])
