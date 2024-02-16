@@ -22,6 +22,8 @@
                         <strong class="ticket-type-label">Ticket Type:</strong> {{ ticket_quantity.ticket_type }}<br>
                         <strong class="total-quantity-label">Total Quantity Purchased:</strong>
                         {{ ticket_quantity.total_quantity }}<br>
+                        <strong class="refundable-quantity-label">Refundable Quantity:</strong>
+                        {{ ticket_quantity.refundable_quantity }}<br>
                         <strong class="price-per-ticket-label">Price per Ticket:</strong>
                         ${{ ticket_quantity.price_per_ticket }}<br>
 
@@ -53,6 +55,5 @@
     </div>
 
     <script src="{% static 'scripts/refund_modal.js' %}"></script>
-
 
 {% endblock %}

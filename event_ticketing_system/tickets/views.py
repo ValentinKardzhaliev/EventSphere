@@ -98,14 +98,21 @@ class UserTicketsView(View):
 
             total_quantity = sum([purchase.quantity for purchase in ticket.purchase_set.filter(user=user)])
 
+            refundable_purchases = ticket.purchase_set.filter(
+                user=user,
+                refund_deadline__gte=timezone.now()
+            )
+
+            refundable_quantity = sum([purchase.quantity for purchase in refundable_purchases])
+
             user_tickets_quantity_dict[key] = {
                 'event_id': ticket.event.id,
                 'event__title': ticket.event.title,
                 'ticket_type': ticket.get_ticket_type_display(),
                 'total_quantity': total_quantity,
+                'refundable_quantity': refundable_quantity,
                 'price_per_ticket': ticket.price_per_ticket,
-                'refundable': any(
-                    purchase.refund_deadline >= timezone.now() for purchase in ticket.purchase_set.filter(user=user)),
+                'refundable': refundable_quantity > 0,
             }
 
             # Mark the ticket type as processed
@@ -163,7 +170,6 @@ class RefundTicketView(View):
         else:
             messages.error(request, f"No refundable purchases found for tickets.")
 
-        # Render the same template with updated context
         context = {
             'refunded_tickets': refunded_tickets,
         }
