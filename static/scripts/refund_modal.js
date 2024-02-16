@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     const modal = document.getElementById('refundConfirmationModal');
+    const overlay = document.getElementById('overlay');
     const refundForm = document.getElementById('refundForm');
     const confirmationText = document.getElementById('refundConfirmationText');
 
@@ -14,18 +15,24 @@ document.addEventListener('DOMContentLoaded', function () {
             refundForm.setAttribute('action', actionUrl);
 
             confirmationText.textContent = `Are you sure you want to refund 1 ticket(s) for ${eventName}?`;
-            modal.style.display = 'block';
+
+            modal.classList.add('active');
+            overlay.classList.add('active');
         });
     });
 
     window.onclick = function (event) {
         if (event.target === modal) {
-            modal.style.display = 'none';
+            modal.classList.remove('active');
+            overlay.classList.remove('active');
         }
     };
 });
 
 function closeRefundModal() {
     const modal = document.getElementById('refundConfirmationModal');
-    modal.style.display = 'none';
+    const overlay = document.getElementById('overlay');
+
+    modal.classList.remove('active');
+    overlay.classList.remove('active');
 }
