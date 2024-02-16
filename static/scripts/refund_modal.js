@@ -9,10 +9,14 @@ document.addEventListener('DOMContentLoaded', function () {
             event.preventDefault();
 
             const eventId = this.getAttribute('data-event-id');
+            const refundableQuantity = this.getAttribute('data-refundable-quantity');  // Retrieve refundable_quantity
+
+            console.log(refundableQuantity);  // Log the value to the console
+
             const actionUrl = `/tickets/${eventId}/refund/`;
             refundForm.setAttribute('action', actionUrl);
 
-            confirmationText.textContent = `Are you sure you want to refund this/these ticket(s) for Event ID ${eventId}?`;
+            confirmationText.textContent = `Are you sure you want to refund ${refundableQuantity} ticket(s) for Event ID ${eventId}?`;
             modal.style.display = 'block';
         });
     });
