@@ -1,12 +1,3 @@
-a {
-    color: #333;
-    text-decoration: none;
-}
-
-a:hover {
-    color: #aaa;
-}
-
 .user-purchased-tickets-container {
     overflow: hidden;
 }
@@ -40,29 +31,30 @@ a:hover {
     transform: scale(1.02);
 }
 
-.event-label {
-    color: #333;
-}
-
-.event-link {
-    color: #333;
-}
-
-.event-link:hover {
-    color: #ddd;
-}
-
+.event-label,
 .ticket-type-label,
 .total-quantity-label,
-.price-per-ticket-label {
+.price-per-ticket-label,
+.refundable-quantity-label {
     color: #555;
+    font-weight: bold; /* Add this line to make labels bold */
 }
+
 
 .no-tickets-message {
     font-style: italic;
     color: #555;
     text-align: center;
     margin-top: 4em;
+}
+
+.event-link {
+    color: #333;
+    text-decoration: none;
+}
+
+.event-link:hover {
+    color: #777;
 }
 
 .overlay {
@@ -121,7 +113,3 @@ a:hover {
 .confirm-refund-button:hover {
     background-color: #45a049;
 }
-
-
-
-

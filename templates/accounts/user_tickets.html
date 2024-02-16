@@ -15,16 +15,14 @@
             <ul class="ticket-list">
                 {% for ticket_quantity in user_tickets_quantity %}
                     <li class="ticket-item">
-                        <strong class="event-label">Event:</strong>
+                        <span class="event-label">Event:</span>
                         <a href="{% url 'event_details' ticket_quantity.event_id %}" class="event-link">
                             {{ ticket_quantity.event__title }}
                         </a><br>
-                        <strong class="ticket-type-label">Ticket Type:</strong> {{ ticket_quantity.ticket_type }}<br>
-                        <strong class="total-quantity-label">Total Quantity Purchased:</strong>
-                        {{ ticket_quantity.total_quantity }}<br>
-                        <strong class="refundable-quantity-label">Refundable Quantity:</strong>
-                        {{ ticket_quantity.refundable_quantity }}<br>
-                        <strong class="price-per-ticket-label">Price per Ticket:</strong>
+                        <span class="ticket-type-label">Ticket Type:</span> {{ ticket_quantity.ticket_type }}<br>
+                        <span class="total-quantity-label">Total Quantity Purchased:</span> {{ ticket_quantity.total_quantity }}<br>
+                        <span class="refundable-quantity-label">Refundable Quantity:</span> {{ ticket_quantity.refundable_quantity }}<br>
+                        <span class="price-per-ticket-label">Price per Ticket:</span>
                         ${{ ticket_quantity.price_per_ticket }}<br>
 
                         {% if ticket_quantity.refundable %}
