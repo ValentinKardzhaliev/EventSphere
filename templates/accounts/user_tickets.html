@@ -29,8 +29,10 @@
 
                         {% if ticket_quantity.refundable %}
                             <button class="refund-button" data-event-id="{{ ticket_quantity.event_id }}"
-                                    data-refundable-quantity="{{ ticket_quantity.refundable_quantity }}">Request Refund
+                                    data-event-name="{{ ticket_quantity.event__title }}">
+                                Request Refund
                             </button>
+
                         {% else %}
                             <h3> You cannot refund this ticket</h3>
                         {% endif %}
