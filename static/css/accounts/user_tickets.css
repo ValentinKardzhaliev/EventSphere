@@ -37,7 +37,7 @@
 .price-per-ticket-label,
 .refundable-quantity-label {
     color: #555;
-    font-weight: bold; /* Add this line to make labels bold */
+    font-weight: bold;
 }
 
 
@@ -55,6 +55,25 @@
 
 .event-link:hover {
     color: #777;
+}
+
+.refund-button {
+    margin-top: 1em;
+    background-color: #808080;
+    color: #fff;
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.refund-button:hover {
+    background-color: #555;
+}
+
+.no-refund-message {
+    margin-top: 1em;
 }
 
 .overlay {
