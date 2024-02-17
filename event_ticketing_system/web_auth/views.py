@@ -39,7 +39,7 @@ class LogoutUserView(auth_views.LogoutView):
 @method_decorator(login_required, name='dispatch')
 class ProfileDetailsView(views.DetailView):
     model = get_user_model()
-    template_name = 'accounts/profile_details-page.html'
+    template_name = 'accounts/profile_details_page.html'
     context_object_name = 'user'
 
 
