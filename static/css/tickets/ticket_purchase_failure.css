@@ -1,0 +1,9 @@
+.message-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.failure-message {
+    color: #ff0000;
+    font-size: 2em;
+}

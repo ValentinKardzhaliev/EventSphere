@@ -2,6 +2,12 @@
 {% load static %}
 {% block title %}Transaction Failed{% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'css/tickets/ticket_purchase_failure.css' %}">
+{% endblock %}
+
 {% block content %}
-    <h1 class="failure-message">{{ error_message }}</h1>
+    <div class="message-container">
+        <h1 class="failure-message">{{ error_message }}</h1>
+    </div>
 {% endblock %}
