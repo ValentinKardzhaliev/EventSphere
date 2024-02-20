@@ -14,7 +14,6 @@ from event_ticketing_system.tickets.models import Ticket, Purchase
 
 @method_decorator(login_required, name='dispatch')
 class TicketPurchaseView(View):
-    template_name = 'tickets/purchase_ticket.html'
 
     @transaction.atomic
     def post(self, request, *args, **kwargs):
@@ -25,10 +24,34 @@ class TicketPurchaseView(View):
             quantity = purchase_form.cleaned_data['quantity']
             ticket_type = purchase_form.cleaned_data['ticket_type']
             ticket = Ticket.objects.get(event=event, ticket_type=ticket_type)
+            price_per_ticket = ticket.price_per_ticket
 
-            if ticket.quantity_available >= quantity:
+            if request.user.balance >= quantity * price_per_ticket:
+                success, purchase = TicketPurchaseView.purchase_ticket(request.user, event, quantity, ticket_type)
+
+                if success:
+                    messages.success(request,
+                                     f"Successfully purchased {quantity} {ticket.get_ticket_type_display()} ticket(s) for {event.title}.")
+                    return redirect(reverse('ticket_purchase_success', kwargs={'pk': event.pk}))
+                else:
+                    messages.error(request, "Failed to complete the purchase.")
+                    return redirect('ticket_purchase_failure')
+            else:
+                messages.error(request, "Insufficient balance to purchase tickets.")
+                return redirect('ticket_purchase_failure')
+
+        else:
+            messages.error(request, "Invalid purchase form submission.")
+            return redirect('ticket_purchase_failure')
+
+    @staticmethod
+    def purchase_ticket(user, event, quantity, ticket_type):
+        ticket = Ticket.objects.get(event=event, ticket_type=ticket_type)
+
+        if ticket.quantity_available >= quantity:
+            with transaction.atomic():
                 purchase = Purchase.objects.create(
-                    user=request.user,
+                    user=user,
                     ticket=ticket,
                     quantity=quantity
                 )
@@ -36,21 +59,12 @@ class TicketPurchaseView(View):
                 ticket.quantity_available -= quantity
                 ticket.save()
 
-                messages.success(request,
-                                 f"Successfully purchased {quantity} {ticket.get_ticket_type_display()} ticket(s) for {event.title}.")
-                return redirect(
-                    reverse('ticket_purchase_success', kwargs={'pk': event.pk}))
-            else:
-                if ticket.quantity_available == 0:
-                    messages.error(request,
-                                   f"There are no more {ticket.get_ticket_type_display()} tickets available for {event.title}.")
-                else:
-                    messages.error(request,
-                                   f"Insufficient available {ticket.get_ticket_type_display()} tickets for {event.title}.")
-                return redirect('ticket_purchase_failure')
-        else:
-            messages.error(request, "Invalid purchase form submission.")
-            return render(request, self.template_name, {'purchase_form': purchase_form, 'event': event})
+                user.balance -= quantity * ticket.price_per_ticket
+                user.save()
+
+                return True, purchase
+
+        return False, None
 
 
 class TicketPurchaseSuccessView(View):
