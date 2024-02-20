@@ -19,14 +19,8 @@
         <ul class="profile-details-list">
             <li class="profile-detail-item"><strong>Username:</strong> {{ user.username }}</li>
             <li class="profile-detail-item"><strong>Email:</strong> {{ user.email }}</li>
-            {% if user.first_name %}
-                <li class="profile-detail-item"><strong>First Name:</strong> {{ user.first_name }}</li>
-            {% endif %}
-            {% if user.last_name %}
-                <li class="profile-detail-item"><strong>Last Name:</strong> {{ user.last_name }}</li>
-            {% endif %}
+            <li class="profile-detail-item"><strong>Balance:</strong> ${{ user.balance }}</li>
         </ul>
-
 
         <ul class="profile-links-list">
             <li><a href="{% url 'user_dashboard' pk=request.user.pk %}" class="profile-link">User Dashboard</a></li>
