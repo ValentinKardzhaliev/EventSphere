@@ -99,7 +99,7 @@
     display: block;
     padding: 8px 12px;
     text-decoration: none;
-    color: #333;
+    margin-right: 0;
 }
 
 .profile-dropdown.active .dropdown-content {
@@ -110,6 +110,8 @@
     display: flex;
     flex-direction: row;
 }
+
+
 
 @media screen and (max-width: 900px) {
     .navbar-links {
@@ -132,8 +134,25 @@
         display: block;
     }
 
+    .navbar-profile-image {
+        display: none;
+    }
+
+    .profile-dropdown.active .dropdown-content {
+        display: none;
+    }
+
     #id_search_text {
         width: 15em;
         max-width: 20em;
     }
+
+
+    .profile-options {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-end;
+    }
+
 }

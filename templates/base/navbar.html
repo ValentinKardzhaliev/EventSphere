@@ -29,9 +29,9 @@
                 <img src="{{ user.profile_picture.url }}" alt="Profile Image" class="navbar-profile-image"
                      id="profile-image">
                 <div class="dropdown-content">
-                    <a href="{% url 'profile_details' pk=request.user.pk %}">Profile</a>
-                    <a href="{% url 'user_created_events' %}">Your Events</a>
-                    <a href="{% url 'logout_user' %}">Logout</a>
+                    <a class="navbar-link" href="{% url 'profile_details' pk=request.user.pk %}">Profile</a>
+                    <a class="navbar-link" href="{% url 'user_created_events' %}">Your Events</a>
+                    <a class="navbar-link" href="{% url 'logout_user' %}">Logout</a>
                 </div>
             </div>
         {% else %}
@@ -45,18 +45,30 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 <script>
     $(document).ready(function () {
         $('#menu-icon').click(function () {
             $('.navbar-links').toggleClass('show-links');
+
+            if ($(window).width() <= 768) {
+
+                $('.navbar-links .profile-options').remove();
+
+                // Copy profile options to bar icon dropdown
+                var profileOptions = $('.profile-dropdown .dropdown-content').html();
+
+                $('.navbar-links').append('<div class="profile-options">' + profileOptions + '</div>');
+            } else {
+
+                $('.navbar-links .profile-options').remove();
+            }
         });
 
-        // Profile dropdown toggle
         $('#profile-image').click(function () {
             $('.profile-dropdown').toggleClass('active');
         });
 
-        // Close dropdown if clicked outside
         $(document).click(function (event) {
             if (!$(event.target).closest('.profile-dropdown').length) {
                 $('.profile-dropdown').removeClass('active');
@@ -67,6 +79,13 @@
     $(window).resize(function () {
         if ($(window).width() > 768) {
             $('.navbar-links').removeClass('show-links');
+
+            $('.navbar-links .profile-options').remove();
         }
     });
 </script>
+
+
+
+
+
