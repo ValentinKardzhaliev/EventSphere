@@ -12,6 +12,12 @@ class EventAppUser(auth_models.AbstractUser):
         default='general_images/anon_profile_image.png',
     )
 
+    balance = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        default=0.00,
+    )
+
     def save(self, *args, **kwargs):
         result = super().save(*args, **kwargs)
 
