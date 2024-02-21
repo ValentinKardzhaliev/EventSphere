@@ -14,15 +14,13 @@ class TicketForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        # Set the ticket_type field to be disabled and set to 'Regular'
         self.fields['ticket_type'].disabled = True
         self.initial['ticket_type'] = Ticket.REGULAR
 
 
 class VipTicketForm(TicketForm):
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, show_vip_fields=False, **kwargs):
         super().__init__(*args, **kwargs)
-
-        # Set the ticket_type field to be disabled and set to 'VIP'
         self.fields['ticket_type'].disabled = True
         self.initial['ticket_type'] = Ticket.VIP
+        self.show_vip_fields = show_vip_fields

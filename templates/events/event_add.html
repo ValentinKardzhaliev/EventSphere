@@ -13,9 +13,7 @@
             <div class="add-event-info">
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-
                     {{ form.as_p }}
-
                     <!-- Include form media for Django Autocomplete Light -->
                     {{ form.media }}
                 </form>
@@ -24,10 +22,12 @@
             <h3 class="add-tickets-header">Regular Tickets</h3>
             <div class="add-tickets-section">
                 <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
                     {{ ticket_form.as_table }}
 
-                    <h3 id="vip-tickets-header" style="display: none;">VIP Tickets</h3>
-                    <div id="vip-tickets" style="display: none;">
+                    <h3 id="vip-tickets-header" class="{% if vip_ticket_form.show_vip_fields %}hidden{% endif %}">VIP
+                        Tickets</h3>
+                    <div id="vip-tickets" class="{% if vip_ticket_form.show_vip_fields %}hidden{% endif %}">
                         {{ vip_ticket_form.as_table }}
                     </div>
 
