@@ -23,20 +23,26 @@ class EventAddView(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Initialize forms with the current request POST data
-        context['ticket_form'] = TicketForm(self.request.POST)
-        context['vip_ticket_form'] = VipTicketForm(self.request.POST, show_vip_fields=False)
+
+        if self.request.POST:
+            if 'add_vip_tickets' in self.request.POST:
+                context['vip_ticket_form'] = VipTicketForm(self.request.POST)
+                context['ticket_form'] = TicketForm()
+            else:
+                context['ticket_form'] = TicketForm()
+                context['vip_ticket_form'] = VipTicketForm()
+        else:
+            context['ticket_form'] = TicketForm()
+            context['vip_ticket_form'] = VipTicketForm()
+
         return context
 
     def form_valid(self, form):
         form.instance.creator = self.request.user
+        context = self.get_context_data()
+        ticket_form = context['ticket_form']
+        vip_ticket_form = context['vip_ticket_form']
 
-        # Create instances of the ticket forms
-        ticket_form = TicketForm(self.request.POST)
-        vip_ticket_form = VipTicketForm(self.request.POST,
-                                        show_vip_fields=self.request.POST.get('toggleVipTickets') == 'Add VIP Tickets')
-
-        # Validate all forms
         if form.is_valid() and ticket_form.is_valid() and vip_ticket_form.is_valid():
             event = form.save()
 
@@ -50,10 +56,7 @@ class EventAddView(CreateView):
 
             return redirect(self.success_url)
 
-        # If any form is invalid, re-render the page with the error messages
-        return self.render_to_response(
-            self.get_context_data(form=form, ticket_form=ticket_form, vip_ticket_form=vip_ticket_form)
-        )
+        return self.render_to_response(self.get_context_data(form=form))
 
 
 class EventDetailsView(DetailView):
