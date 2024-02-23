@@ -1,54 +1,48 @@
-{#{% extends 'base/base.html' %}#}
-{#{% load static %}#}
-{##}
-{#{% block stylesheets %}#}
-{#    <link rel="stylesheet" type="text/css" href="{% static 'css/events/event_add.css' %}">#}
-{#    <script src="{% static 'scripts/event_add.js' %}"></script>#}
-{#{% endblock %}#}
-{##}
-{#{% block content %}#}
-{#    <div class="add-event-wrapper">#}
-{#        <div class="add-event-content">#}
-{#            <h2 class="add-event-header">Add Event</h2>#}
-{##}
-{#            <form method="post" enctype="multipart/form-data" action="{% url 'event_add' %}">#}
-{#                <div class="add-event-info">#}
-{#                    {% csrf_token %}#}
-{##}
-{#                    <!-- Event Info Fields -->#}
-{#                    {{ form.as_p }}#}
-{#                    <!-- Include form media for Django Autocomplete Light -->#}
-{#                    {{ form.media }}#}
-{#                </div>#}
-{##}
-{#                <h3 class="add-tickets-header">Regular Tickets</h3>#}
-{#                <div class="add-tickets-section">#}
-{#                    {% if ticket_form.errors %}#}
-{#                        <p>Ticket Form is not valid</p>#}
-{#                    {% endif %}#}
-{#                    {{ ticket_form.as_table }}#}
-{##}
-{#                    {% if vip_ticket_form.errors %}#}
-{#                        <p>VIP Ticket Form is not valid</p>#}
-{#                    {% endif %}#}
-{##}
-{#                    <h3 id="vip-tickets-header"#}
-{#                        class="{% if vip_ticket_form.show_vip_fields or request.POST.toggleVipTickets == 'Add VIP Tickets' %}hidden{% endif %}">#}
-{#                        VIP Tickets</h3>#}
-{#                    <div id="vip-tickets"#}
-{#                         class="{% if vip_ticket_form.show_vip_fields or request.POST.toggleVipTickets == 'Add VIP Tickets' %}hidden{% endif %}">#}
-{#                        {{ vip_ticket_form.as_table }}#}
-{#                    </div>#}
-{##}
-{#                    <p>#}
-{#                        <button type="button" id="toggleVipTickets">Add VIP Tickets</button>#}
-{#                    </p>#}
-{##}
-{#                    <p>#}
-{#                        <button type="submit" id="saveEventButton">Save Event</button>#}
-{#                    </p>#}
-{#                </div>#}
-{#            </form>#}
-{#        </div>#}
-{#    </div>#}
-{#{% endblock %}#}
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/events/event_add.css' %}">
+    <script src="{% static 'scripts/event_add.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="add-event-wrapper">
+        <div class="add-event-content">
+            <h2 class="add-event-header">Add Event</h2>
+
+            <form method="post" enctype="multipart/form-data">
+                <div class="add-event-info">
+                    {% csrf_token %}
+
+                    <!-- Event Info Fields -->
+                    {{ form.as_p }}
+                    <!-- Include form media for Django Autocomplete Light -->
+                    {{ form.media }}
+                </div>
+
+                <h3 class="add-tickets-header">Regular Tickets</h3>
+                <div class="add-tickets-section">
+                    {{ regular_ticket_form.as_p }}
+
+                    {% if vip_ticket_form.errors %}
+                        <p>VIP Ticket Form is not valid</p>
+                    {% endif %}
+
+                    <button type="button" id="addVipButton">Add VIP Tickets</button>
+
+                    <h3 id="vip-tickets-header" style="display: none;">
+                        VIP Tickets
+                    </h3>
+                    <div id="vipTicketForm" style="display: none;">
+                        {{ vip_ticket_form.as_p }}
+                    </div>
+
+                    <p>
+                        <button type="submit" id="saveEventButton">Save Event</button>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
