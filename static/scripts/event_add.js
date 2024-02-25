@@ -10,9 +10,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (vipTicketsHeader.style.display === 'none') {
                     vipTicketsHeader.style.display = 'block';
                     vipTicketForm.style.display = 'block';
+                    toggleVipTicketsButton.innerText = 'Remove VIP Tickets';
                 } else {
                     vipTicketsHeader.style.display = 'none';
                     vipTicketForm.style.display = 'none';
+                    toggleVipTicketsButton.innerText = 'Add VIP Tickets';
                 }
             }
         });
