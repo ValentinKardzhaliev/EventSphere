@@ -27,13 +27,20 @@ class EventAddView(CreateView):
         self.object.save()
 
         regular_quantity = form.cleaned_data['regular_quantity_available']
-        vip_quantity = form.cleaned_data['vip_quantity_available']
 
         Ticket.objects.create(event=self.object, ticket_type='Regular', quantity_available=regular_quantity,
                               price_per_ticket=form.cleaned_data['regular_price_per_ticket'])
 
-        Ticket.objects.create(event=self.object, ticket_type='VIP', quantity_available=vip_quantity,
-                              price_per_ticket=form.cleaned_data['vip_price_per_ticket'])
+        vip_quantity = form.cleaned_data.get('vip_quantity_available')
+        vip_price = form.cleaned_data.get('vip_price_per_ticket')
+
+        if vip_quantity is not None and vip_price is not None:
+            Ticket.objects.create(
+                event=self.object,
+                ticket_type='VIP',
+                quantity_available=vip_quantity,
+                price_per_ticket=vip_price
+            )
 
         return response
 

@@ -13,8 +13,8 @@ class EventAndTicketsForm(forms.ModelForm):
     )
     regular_quantity_available = forms.IntegerField(label='Regular Tickets Quantity', min_value=0)
     regular_price_per_ticket = forms.DecimalField(label='Regular Tickets Price', min_value=0)
-    vip_quantity_available = forms.IntegerField(label='VIP Tickets Quantity', min_value=0)
-    vip_price_per_ticket = forms.DecimalField(label='VIP Tickets Price', min_value=0)
+    vip_quantity_available = forms.IntegerField(label='VIP Tickets Quantity', min_value=0, required=False)
+    vip_price_per_ticket = forms.DecimalField(label='VIP Tickets Price', min_value=0, required=False)
 
     class Meta:
         model = Event
