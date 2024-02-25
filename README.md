@@ -1,1 +1,1 @@
-# event_ticketing_website
+An Event Ticketicking website made with Django.
