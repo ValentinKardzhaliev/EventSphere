@@ -1,10 +1,20 @@
 document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('addVipButton').addEventListener('click', function () {
-        document.getElementById('vipTicketForm').style.display = 'block';
-        document.getElementById('vip-tickets-header').style.display = 'block';
-    });
+    var toggleVipTicketsButton = document.getElementById('toggleVipTickets');
 
-    document.getElementById('saveEventButton').addEventListener('click', function () {
-        document.getElementById('eventAndTicketsForm').submit();
-    });
+    if (toggleVipTicketsButton) {
+        toggleVipTicketsButton.addEventListener('click', function () {
+            var vipTicketsHeader = document.getElementById('vip-tickets-header');
+            var vipTicketForm = document.getElementById('vipTicketForm');
+
+            if (vipTicketsHeader && vipTicketForm) {
+                if (vipTicketsHeader.style.display === 'none') {
+                    vipTicketsHeader.style.display = 'block';
+                    vipTicketForm.style.display = 'block';
+                } else {
+                    vipTicketsHeader.style.display = 'none';
+                    vipTicketForm.style.display = 'none';
+                }
+            }
+        });
+    }
 });

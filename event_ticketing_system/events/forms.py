@@ -6,23 +6,23 @@ from cities_light.models import City
 from dal import autocomplete
 
 
-class EventAddForm(forms.ModelForm):
+class EventAndTicketsForm(forms.ModelForm):
     location = forms.ModelChoiceField(
         queryset=City.objects.all(),
         widget=autocomplete.ModelSelect2(url='location-autocomplete')
     )
+    regular_quantity_available = forms.IntegerField(label='Regular Tickets Quantity', min_value=0)
+    regular_price_per_ticket = forms.DecimalField(label='Regular Tickets Price', min_value=0)
+    vip_quantity_available = forms.IntegerField(label='VIP Tickets Quantity', min_value=0)
+    vip_price_per_ticket = forms.DecimalField(label='VIP Tickets Price', min_value=0)
 
     class Meta:
         model = Event
-        fields = '__all__'
+        exclude = ['creator']
 
         widgets = {
             'date_and_time': DateTimeInput(attrs={'type': 'datetime-local'}),
         }
-
-    def __init__(self, *args, **kwargs):
-        super(EventAddForm, self).__init__(*args, **kwargs)
-        self.fields.pop('creator')
 
 
 class TicketPurchaseForm(forms.Form):

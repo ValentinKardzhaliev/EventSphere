@@ -2,51 +2,43 @@ from dal import autocomplete
 from cities_light.models import City
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from .models import Event
-from .forms import EventAddForm, TicketPurchaseForm
+from .forms import TicketPurchaseForm, EventAndTicketsForm
 from ..common.models import Like
-from ..tickets.forms import RegularTicketForm, VIPTicketForm
+from ..tickets.models import Ticket
 
 
 @method_decorator(login_required, name='dispatch')
 class EventAddView(CreateView):
     model = Event
     template_name = 'events/event_add.html'
-    form_class = EventAddForm
+    form_class = EventAndTicketsForm
     success_url = reverse_lazy('event_details')
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        if 'regular_ticket_form' not in context:
-            context['regular_ticket_form'] = RegularTicketForm()
-        if 'vip_ticket_form' not in context:
-            context['vip_ticket_form'] = VIPTicketForm()
-        return context
-
     def form_valid(self, form):
-        context = self.get_context_data()
-        regular_ticket_form = context['regular_ticket_form']
-        vip_ticket_form = context['vip_ticket_form']
-
         form.instance.creator = self.request.user
-        self.object = form.save()
+        response = super().form_valid(form)
 
-        if regular_ticket_form.is_valid():
-            regular_ticket_form.instance.event = self.object
-            regular_ticket_form.save()
+        self.object.save()
 
-        if vip_ticket_form.is_valid():
-            vip_ticket_form.instance.event = self.object
-            vip_ticket_form.save()
+        regular_quantity = form.cleaned_data['regular_quantity_available']
+        vip_quantity = form.cleaned_data['vip_quantity_available']
 
-        self.success_url = reverse_lazy('event_details', kwargs={'pk': self.object.pk})
+        Ticket.objects.create(event=self.object, ticket_type='Regular', quantity_available=regular_quantity,
+                              price_per_ticket=form.cleaned_data['regular_price_per_ticket'])
 
-        return super().form_valid(form)
+        Ticket.objects.create(event=self.object, ticket_type='VIP', quantity_available=vip_quantity,
+                              price_per_ticket=form.cleaned_data['vip_price_per_ticket'])
+
+        return response
+
+    def get_success_url(self):
+        return reverse_lazy('event_details', kwargs={'pk': self.object.pk})
 
 
 class EventDetailsView(DetailView):

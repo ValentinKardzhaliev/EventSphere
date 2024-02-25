@@ -14,29 +14,50 @@
             <form method="post" enctype="multipart/form-data">
                 <div class="add-event-info">
                     {% csrf_token %}
-
-                    <!-- Event Info Fields -->
-                    {{ form.as_p }}
+                    <label for="{{ form.title.id_for_label }}">Title:</label>
+                    {{ form.title }}
+                    <label for="{{ form.description.id_for_label }}">Description:</label>
+                    {{ form.description }}
+                    <label for="{{ form.location.id_for_label }}">Location:</label>
+                    {{ form.location }}
+                    <label for="{{ form.date_and_time.id_for_label }}">Date and Time:</label>
+                    {{ form.date_and_time }}
+                    <label for="{{ form.venue.id_for_label }}">Venue:</label>
+                    {{ form.venue }}
+                    <label for="{{ form.category.id_for_label }}">Category:</label>
+                    {{ form.category }}
+                    <label for="{{ form.contact_information.id_for_label }}">Contact Information:</label>
+                    {{ form.contact_information }}
+                    <label for="{{ form.organizer.id_for_label }}">Organizer:</label>
+                    {{ form.organizer }}
+                    <label for="{{ form.image.id_for_label }}">Image:</label>
+                    {{ form.image }}
                     <!-- Include form media for Django Autocomplete Light -->
                     {{ form.media }}
                 </div>
 
                 <h3 class="add-tickets-header">Regular Tickets</h3>
                 <div class="add-tickets-section">
-                    {{ regular_ticket_form.as_p }}
+                    <label for="{{ form.regular_quantity_available.id_for_label }}">Regular Tickets Quantity:</label>
+                    {{ form.regular_quantity_available }}
+                    <label for="{{ form.regular_price_per_ticket.id_for_label }}">Regular Tickets Price:</label>
+                    {{ form.regular_price_per_ticket }}
 
-                    {% if vip_ticket_form.errors %}
-                        <p>VIP Ticket Form is not valid</p>
+                    {% if form.errors %}
+                        <p>Regular Ticket Form is not valid</p>
                     {% endif %}
-
-                    <button type="button" id="addVipButton">Add VIP Tickets</button>
 
                     <h3 id="vip-tickets-header" style="display: none;">
                         VIP Tickets
                     </h3>
                     <div id="vipTicketForm" style="display: none;">
-                        {{ vip_ticket_form.as_p }}
+                        <label for="{{ form.vip_quantity_available.id_for_label }}">VIP Tickets Quantity:</label>
+                        {{ form.vip_quantity_available }}
+                        <label for="{{ form.vip_price_per_ticket.id_for_label }}">VIP Tickets Price:</label>
+                        {{ form.vip_price_per_ticket }}
                     </div>
+
+                    <button type="button" id="toggleVipTickets">Add VIP Tickets</button>
 
                     <p>
                         <button type="submit" id="saveEventButton">Save Event</button>
