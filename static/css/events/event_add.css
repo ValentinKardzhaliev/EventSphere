@@ -14,6 +14,7 @@
     border-radius: 8px;
 }
 
+
 .add-event-header {
     color: #333;
     text-align: center;
@@ -23,6 +24,11 @@
 .add-tickets-section form {
     display: flex;
     flex-direction: column;
+}
+
+.add-event-info label,
+.add-tickets-section label {
+    margin-bottom: 5px;
 }
 
 .add-event-info input,
@@ -35,6 +41,10 @@
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+}
+
+.select2-container--default .select2-selection--single {
+    margin-bottom: 10px;
 }
 
 #toggleVipTickets {
