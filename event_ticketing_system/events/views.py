@@ -2,14 +2,15 @@ from dal import autocomplete
 from cities_light.models import City
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from .models import Event
-from .forms import TicketPurchaseForm, EventAndTicketsForm
+from .forms import TicketPurchaseForm, EventAndTicketsForm, EventEditForm
 from ..common.models import Like
+from ..tickets.forms import RegularTicketForm, VIPTicketForm
 from ..tickets.models import Ticket
 
 
@@ -72,45 +73,48 @@ class EventDetailsView(DetailView):
         return context
 
 
-# @method_decorator(login_required, name='dispatch')
-# class EventEditView(UpdateView):
-#     model = Event
-#     form_class = EventAddForm
-#     template_name = 'events/event_edit.html'
-#     success_url = reverse_lazy('user_created_events')
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#
-#         if self.request.POST:
-#             context['ticket_form'] = TicketForm(self.request.POST, instance=self.object)
-#             context['vip_ticket_form'] = VipTicketForm(self.request.POST, instance=self.object)
-#         else:
-#             context['ticket_form'] = TicketForm(instance=self.object.tickets.filter(ticket_type=Ticket.REGULAR).first())
-#             context['vip_ticket_form'] = VipTicketForm(
-#                 instance=self.object.tickets.filter(ticket_type=Ticket.VIP).first())
-#
-#         return context
-#
-#     def form_valid(self, form):
-#         context = self.get_context_data()
-#         ticket_form = context['ticket_form']
-#         vip_ticket_form = context['vip_ticket_form']
-#
-#         if form.is_valid() and ticket_form.is_valid() and vip_ticket_form.is_valid():
-#             self.object = form.save()
-#
-#             ticket = ticket_form.save(commit=False)
-#             ticket.event = self.object
-#             ticket.save()
-#
-#             vip_ticket = vip_ticket_form.save(commit=False)
-#             vip_ticket.event = self.object
-#             vip_ticket.save()
-#
-#             return redirect(self.success_url)
-#
-#         return self.render_to_response(self.get_context_data(form=form))
+@method_decorator(login_required, name='dispatch')
+class EventEditView(UpdateView):
+    model = Event
+    form_class = EventEditForm
+    template_name = 'events/event_edit.html'
+    success_url = reverse_lazy('user_created_events')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        if self.request.POST:
+            context['ticket_form'] = RegularTicketForm(self.request.POST, instance=self.object.tickets.filter(
+                ticket_type=Ticket.REGULAR).first(), prefix='regular')
+            context['vip_ticket_form'] = VIPTicketForm(self.request.POST, instance=self.object.tickets.filter(
+                ticket_type=Ticket.VIP).first(), prefix='vip')
+        else:
+            context['ticket_form'] = RegularTicketForm(
+                instance=self.object.tickets.filter(ticket_type=Ticket.REGULAR).first(), prefix='regular')
+            context['vip_ticket_form'] = VIPTicketForm(
+                instance=self.object.tickets.filter(ticket_type=Ticket.VIP).first(), prefix='vip')
+
+        return context
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        ticket_form = context['ticket_form']
+        vip_ticket_form = context['vip_ticket_form']
+
+        if form.is_valid() and ticket_form.is_valid() and vip_ticket_form.is_valid():
+            self.object = form.save()
+
+            ticket = ticket_form.save(commit=False)
+            ticket.event = self.object
+            ticket.save()
+
+            vip_ticket = vip_ticket_form.save(commit=False)
+            vip_ticket.event = self.object
+            vip_ticket.save()
+
+            return redirect(self.success_url)
+
+        return self.render_to_response(self.get_context_data(form=form))
 
 
 @login_required

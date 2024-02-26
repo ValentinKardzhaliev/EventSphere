@@ -25,6 +25,21 @@ class EventAndTicketsForm(forms.ModelForm):
         }
 
 
+class EventEditForm(forms.ModelForm):
+    location = forms.ModelChoiceField(
+        queryset=City.objects.all(),
+        widget=autocomplete.ModelSelect2(url='location-autocomplete')
+    )
+
+    class Meta:
+        model = Event
+        exclude = ['creator']
+
+        widgets = {
+            'date_and_time': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+        }
+
+
 class TicketPurchaseForm(forms.Form):
     quantity = forms.IntegerField(min_value=1, label='Number of Tickets')
     ticket_type = forms.ChoiceField(choices=Ticket.TICKET_TYPE_CHOICES, label='Ticket Type')
