@@ -41,6 +41,13 @@ class EventAddView(CreateView):
                 quantity_available=vip_quantity,
                 price_per_ticket=vip_price
             )
+        else:
+            Ticket.objects.create(
+                event=self.object,
+                ticket_type='VIP',
+                quantity_available=0,
+                price_per_ticket=0
+            )
 
         return response
 
