@@ -1,5 +1,6 @@
 .user-purchased-tickets-container {
     overflow: hidden;
+    margin: 1em 0;
 }
 
 .user-purchased-tickets-title {

@@ -3,6 +3,7 @@
     line-height: 1.5em;
     display: flex;
     flex-direction: column;
+    margin: 1.5em 0;
 }
 
 .event-image-wrapper {
@@ -20,7 +21,6 @@
 }
 
 .event-image {
-    margin-top: 0.8em;
     max-width: 100%;
     height: auto;
     max-height: 37em;
