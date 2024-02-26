@@ -16,6 +16,7 @@
                 {% csrf_token %}
                 {{ form.as_p }}
 
+                {{ form.media }}
                 <h2 class="ticket-form-header">Regular Ticket</h2>
                 {{ ticket_form.as_p }}
 
