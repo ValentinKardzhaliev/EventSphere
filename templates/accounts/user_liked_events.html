@@ -23,7 +23,7 @@
                     </div>
                     <div class="event-image-and-actions">
                         <a href="{% url 'event_details' like.event.id %}">
-                            <img src="{{ like.event.image.url }}" alt="Event Image">
+                            <img src="{{ like.event.image.url }}" alt="Event Image" class="event-image">
                         </a>
                         <span class="like-link-container">
                             <a href="{% url 'like_event' like.event.pk %}" class="like-link">
