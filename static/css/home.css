@@ -53,14 +53,15 @@
     margin-top: 0.2em;
 }
 
-.centered-heading {
+.event-section-heading {
     text-align: center;
 }
 
 .event-box-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    max-width: 81em;
+    margin: 0 auto;
 }
 
 .event-box {

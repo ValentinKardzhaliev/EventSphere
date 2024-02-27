@@ -47,18 +47,21 @@
             </a>
         </div>
 
-        <h2 class="centered-heading">All Events</h2>
-        <div class="event-box-container">
-            {% for event in events %}
-                <div class="event-box">
-                    <a href="{% url 'event_details' event.id %}" class="event-link">
-                        <img src="{{ event.image.url }}" alt="{{ event.title }}" class="event-image">
-                        <h3 class="event-title">{{ event.title }}</h3>
-                        <p class="event-date-time">{{ event.date_and_time }}</p>
-                        <p class="event-location">{{ event.location }}</p>
-                    </a>
-                </div>
-            {% endfor %}
+
+        <h2 class="event-section-heading">All Events</h2>
+        <div class="event-box-section">
+            <div class="event-box-container">
+                {% for event in events %}
+                    <div class="event-box">
+                        <a href="{% url 'event_details' event.id %}" class="event-link">
+                            <img src="{{ event.image.url }}" alt="{{ event.title }}" class="event-image">
+                            <h3 class="event-title">{{ event.title }}</h3>
+                            <p class="event-date-time">{{ event.date_and_time }}</p>
+                            <p class="event-location">{{ event.location }}</p>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
 {% endblock %}
