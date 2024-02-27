@@ -105,19 +105,27 @@
 }
 
 @media only screen and (max-width: 768px) {
+    .event-box{
+        width: 100%;
+    }
+
+    .event-image {
+        height: 15em;
+    }
+
     .welcome-message {
         font-size: 0.8em;
     }
 
     .category-link {
-        width: 3em;
+        width: 2.8em;
     }
 
     .category-link i {
-        font-size: 2em;
+        font-size: 1.8em;
     }
 
     .category-text {
-        font-size: 0.7em;
+        font-size: 0.6em;
     }
 }
