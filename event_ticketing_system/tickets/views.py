@@ -142,6 +142,8 @@ class UserTicketsView(View):
 
 
 class RefundTicketView(View):
+    #READD TICKET PRICE TO USER BALANCE
+
     template_name = 'tickets/refund_ticket.html'
 
     def get(self, request, *args, **kwargs):

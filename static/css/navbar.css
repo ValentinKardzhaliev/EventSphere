@@ -3,7 +3,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: calc(100% - 20px);
+    width: 100%;
     background-color: white;
     border-bottom: 1px solid #ccc;
     padding: 0.6em;

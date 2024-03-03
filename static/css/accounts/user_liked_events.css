@@ -1,11 +1,9 @@
-body{
-    font-size: 18px;
-}
-
 .liked-events-content {
     width: 80%;
     margin: 0 auto;
     overflow: hidden;
+    font-size: 18px;
+
 }
 
 .liked-events-header {
@@ -80,6 +78,7 @@ body{
 @media only screen and (max-width: 768px) {
     body {
         font-size: 12px;
+        line-height: 2em;
     }
 
     .event-image-and-actions img {

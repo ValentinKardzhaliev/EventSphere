@@ -62,6 +62,7 @@
     flex-wrap: wrap;
     max-width: 81em;
     margin: 0 auto;
+    justify-content: center;
 }
 
 .event-box {
@@ -72,8 +73,9 @@
     border-radius: 5px;
     text-align: center;
     transition: box-shadow 0.3s;
-
+    /*flex: 1;*/
 }
+
 .event-box:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -105,8 +107,15 @@
 }
 
 @media only screen and (max-width: 768px) {
+    /*.event-box-container {*/
+    /*    flex-direction: column;*/
+    /*    overflow: hidden;*/
+    /*}*/
+
+
     .event-box{
         width: 100%;
+        /*flex: 0;*/
     }
 
     .event-image {

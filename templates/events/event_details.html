@@ -6,16 +6,15 @@
 {% endblock %}
 
 {% block content %}
-    <div class="event-details-container">
-        <div class="event-image-wrapper">
-            {% if event.image %}
-                <div class="event-image-container">
-                    <img src="{{ event.image.url }}" alt="Event Image" class="event-image">
-                </div>
-            {% endif %}
-        </div>
+   <div class="event-details-container">
         <div class="event-info-wrapper">
-            <div class="event-info-container">
+            <div class="event-image-container">
+                {% if event.image %}
+                    <img src="{{ event.image.url }}" alt="Event Image" class="event-image">
+                {% endif %}
+            </div>
+            <div class="info-tickets-wrapper">
+                <div class="event-info-container">
                 <div class="event-title-container">
                     <h1 class="event-title">{{ event.title }}</h1>
                 </div>
@@ -77,6 +76,8 @@
                     </form>
                 </div>
             </div>
+            </div>
+
         </div>
     </div>
 {% endblock %}
