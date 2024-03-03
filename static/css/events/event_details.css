@@ -1,6 +1,11 @@
-.event-details-container {
-    background-color: #ffffff; /* White */
-    color: #333333; /* Dark Grey */
+:root {
+    --container-max-width: 1000px;
+}
+
+
+.event-details-page-container {
+    background-color: #ffffff;
+    color: #333333;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     display: flex;
@@ -11,11 +16,11 @@
     width: 100%;
     text-align: center;
     background-image: url('/static/images/event_image_container_background.jpg');
-    background-size: cover; /* Adjust as needed */
+    background-size: cover;
 }
 
 .event-image {
-    width: 60em;
+    width: var(--container-max-width);
     height: 35em;
     margin: 0 auto;
 }
@@ -27,26 +32,29 @@
 }
 
 .event-info-container {
-    width: 50%;
-    margin-top: 1em;
-    margin-left: 2em;
-}
-
-.info-tickets-wrapper {
     display: flex;
     justify-content: space-between;
+    max-width: var(--container-max-width);
+    margin-top: 1em;
+}
+
+.event-information {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 60%;
 }
 
 .event-title-container,
 .event-info-row {
-    background-color: #f2f2f2; /* Light Grey */
+    background-color: #f2f2f2;
     padding: 0.8em;
     border-radius: 4px;
     margin-bottom: 0.5em;
 }
 
 .event-title {
-    color: #333333; /* Dark Grey */
+    color: #333333;
 }
 
 .event-info-heading {
@@ -54,15 +62,13 @@
 }
 
 .event-info-value {
-    color: #666666; /* Grey */
+    color: #666666;
 }
 
 .actions-container {
-    background-color: #f2f2f2; /* Light Grey */
+    background-color: #f2f2f2;
     padding: 0.8em;
     border-radius: 4px;
-    margin-top: 1em;
-    margin-right: 2em;
     max-height: 20em;
 }
 
@@ -89,7 +95,7 @@
 }
 
 .login-message {
-    color: #666666; /* Grey */
+    color: #666666;
 }
 
 .purchase-form {
