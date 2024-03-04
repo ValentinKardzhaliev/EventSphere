@@ -142,8 +142,6 @@ class UserTicketsView(View):
 
 
 class RefundTicketView(View):
-    #READD TICKET PRICE TO USER BALANCE
-
     template_name = 'tickets/refund_ticket.html'
 
     def get(self, request, *args, **kwargs):
@@ -156,11 +154,12 @@ class RefundTicketView(View):
 
         return render(request, self.template_name, context)
 
+    @transaction.atomic
     def post(self, request, *args, **kwargs):
         event_id = kwargs['event_id']
         tickets = get_list_or_404(Ticket, event_id=event_id)
 
-        refundable_purchases = []
+        refunded_tickets = []
 
         for ticket in tickets:
             refundable_purchase = Purchase.objects.filter(
@@ -170,18 +169,20 @@ class RefundTicketView(View):
             ).first()
 
             if refundable_purchase:
-                refundable_purchases.append(refundable_purchase)
+                ticket_price_refund = refundable_purchase.quantity * ticket.price_per_ticket
 
-        refunded_tickets = []
+                with transaction.atomic():
+                    refundable_purchase.delete()
 
-        if refundable_purchases:
-            for refundable_purchase in refundable_purchases:
-                refundable_purchase.delete()
-                ticket = refundable_purchase.ticket
-                ticket.quantity_available += refundable_purchase.quantity
-                ticket.save()
-                refunded_tickets.append(ticket)
+                    ticket.quantity_available += refundable_purchase.quantity
+                    ticket.save()
 
+                    request.user.balance += ticket_price_refund
+                    request.user.save()
+
+                    refunded_tickets.append(ticket)
+
+        if refunded_tickets:
             messages.success(request, f"Refund request successful for tickets.")
         else:
             messages.error(request, f"No refundable purchases found for tickets.")
