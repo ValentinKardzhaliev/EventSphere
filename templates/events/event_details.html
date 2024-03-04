@@ -3,9 +3,25 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/events/event_details.css' %}">
+    <script src="{% static 'scripts/purchase_modal.js' %}"></script>
+
 {% endblock %}
 
 {% block content %}
+    <div class="overlay" id="purchaseConfirmationOverlay"></div>
+
+    <div class="modal" id="purchaseConfirmationModal">
+        <div class="modal-content">
+            <span class="close" onclick="closePurchaseConfirmationModal()">&times;</span>
+            <p id="purchaseConfirmationText"></p>
+            <form method="post" id="purchaseForm">
+                {% csrf_token %}
+                <button type="submit">Confirm Purchase</button>
+            </form>
+        </div>
+    </div>
+
+
     <div class="event-details-page-container">
         <div class="event-info-wrapper">
             <div class="event-image-container">
@@ -68,12 +84,15 @@
                     </div>
                     <div class="purchase-tickets-container">
                         <h3 class="purchase-tickets-heading">Purchase Tickets</h3>
-                        <form method="post" action="{% url 'ticket_purchase' pk=event.pk %}">
+                        <form method="post" action="{% url 'ticket_purchase' pk=event.pk %}" class="purchase-form">
                             {% csrf_token %}
-                            <div class="purchase-form">
+                            <div class="purchase-form-fields">
                                 {{ purchase_form.as_p }}
                             </div>
-                            <button type="submit" class="purchase-button">Buy</button>
+                            <button type="submit" class="purchase-button"
+                                    data-event-id="{{ event.pk }}" data-event-name="{{ event.title }}">
+                                Buy
+                            </button>
                         </form>
                     </div>
                 </div>
