@@ -11,10 +11,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const eventId = this.getAttribute('data-event-id');
             const eventName = this.getAttribute('data-event-name');
+            const quantity = this.getAttribute('data-quantity');
             const actionUrl = `/tickets/${eventId}/refund/`;
             refundForm.setAttribute('action', actionUrl);
 
-            confirmationText.textContent = `Are you sure you want to refund 1 ticket(s) for ${eventName}?`;
+            confirmationText.textContent = `Are you sure you want to refund ${quantity} ticket(s) for ${eventName}?`;
 
             modal.classList.add('active');
             overlay.classList.add('active');
