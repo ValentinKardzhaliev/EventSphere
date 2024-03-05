@@ -3,14 +3,30 @@
 
 {% block title %}Ticket Purchase Success{% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'css/tickets/ticket_purchase_success.css' %}">
+{% endblock %}
+
 {% block content %}
-    <h1>Ticket Purchase Success</h1>
+    <div class="success-container">
+        <div class="success-wrapper">
+            <div class="success-title">
+                <h1>Ticket Purchase Success</h1>
+            </div>
 
-    {% if success_message %}
-        <p>{{ success_message }}</p>
-    {% else %}
-        <p>No success message available.</p>
-    {% endif %}
+            <div class="success-icon">
+                <i class="far fa-circle-check"></i>
+            </div>
 
-
+            {% if success_message %}
+                <div class="success-message">
+                    <p>{{ success_message }}</p>
+                </div>
+            {% else %}
+                <div class="no-message">
+                    <p>No success message available.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
 {% endblock %}
