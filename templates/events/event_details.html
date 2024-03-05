@@ -3,24 +3,9 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/events/event_details.css' %}">
-    <script src="{% static 'scripts/purchase_modal.js' %}"></script>
-
 {% endblock %}
 
 {% block content %}
-    <div class="overlay" id="purchaseConfirmationOverlay"></div>
-
-    <div class="modal" id="purchaseConfirmationModal">
-        <div class="modal-content">
-            <span class="close" onclick="closePurchaseConfirmationModal()">&times;</span>
-            <p id="purchaseConfirmationText"></p>
-            <form method="post" id="purchaseForm">
-                {% csrf_token %}
-                <button type="submit">Confirm Purchase</button>
-            </form>
-        </div>
-    </div>
-
 
     <div class="event-details-page-container">
         <div class="event-info-wrapper">

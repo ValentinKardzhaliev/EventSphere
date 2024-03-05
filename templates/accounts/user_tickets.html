@@ -10,6 +10,8 @@
     <div class="user-purchased-tickets-container">
         <h1 class="user-purchased-tickets-title">User Purchased Tickets</h1>
         <p class="welcome-message">Welcome, {{ user.username }}!</p>
+        <p class="refund-warning">Note: Refunds are only available within 24 hours of purchase.</p>
+
 
         {% if user_tickets_quantity %}
             <ul class="ticket-list">

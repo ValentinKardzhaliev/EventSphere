@@ -133,3 +133,11 @@
 .confirm-refund-button:hover {
     background-color: #45a049;
 }
+
+
+.refund-warning {
+    color: #ff0000; /* Red color for emphasis */
+    font-style: italic;
+    margin-top: 1em;
+    text-align: center;
+}
