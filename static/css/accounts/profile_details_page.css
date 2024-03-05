@@ -1,15 +1,14 @@
-/* profile_details_page.css */
-
 .profile-page {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .profile-title {
+    align-self: flex-start;
     font-size: 2em;
     color: #333;
+    margin-left: 1em
 }
 
 .profile-image-container {
@@ -41,9 +40,11 @@
 }
 
 .profile-links-list {
+    display: flex;
     list-style: none;
     padding: 0;
     margin-top: 20px;
+    justify-content: center;
 }
 
 .profile-link {

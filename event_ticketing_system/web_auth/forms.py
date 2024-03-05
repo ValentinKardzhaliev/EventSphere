@@ -12,8 +12,8 @@ class RegisterUserForm(auth_forms.UserCreationForm):
         fields = ('username', 'email', 'password1', 'password2')
 
         widgets = {
-            'username': forms.TextInput(attrs={'class': 'custom-form-control', 'style': 'width: 150px'}),
-            'email': forms.EmailInput(attrs={'class': 'custom-form-control', 'style': 'width: 150px'}),
+            'username': forms.TextInput(attrs={'class': 'custom-form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'custom-form-control' }),
         }
 
     def __init__(self, *args, **kwargs):
@@ -21,9 +21,9 @@ class RegisterUserForm(auth_forms.UserCreationForm):
 
         # Override widget templates for password fields
         self.fields['password1'].widget = forms.PasswordInput(
-            attrs={'class': 'custom-form-control', 'style': 'width: 150px'})
+            attrs={'class': 'custom-form-control'})
         self.fields['password2'].widget = forms.PasswordInput(
-            attrs={'class': 'custom-form-control', 'style': 'width: 150px'})
+            attrs={'class': 'custom-form-control'})
 
 
 class LoginUserForm(auth_forms.AuthenticationForm):
@@ -41,9 +41,9 @@ class LoginUserForm(auth_forms.AuthenticationForm):
 
         # Override widget templates for username and password fields
         self.fields['username'].widget = forms.TextInput(
-            attrs={'class': 'custom-form-control', 'style': 'width: 150px'})
+            attrs={'class': 'custom-form-control'})
         self.fields['password'].widget = forms.PasswordInput(
-            attrs={'class': 'custom-form-control', 'style': 'width: 150px'})
+            attrs={'class': 'custom-form-control'})
 
 
 class UserProfileEditForm(forms.ModelForm):

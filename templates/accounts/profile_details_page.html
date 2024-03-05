@@ -1,7 +1,7 @@
 {% extends 'base/base.html' %}
 {% load static %}
 
-{% block title %}Profile Details{% endblock %}
+{% block title %}Profile{% endblock %}
 
 {% block stylesheets %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/accounts/profile_details_page.css' %}">
@@ -10,7 +10,7 @@
 {% block content %}
     <div class="profile-page">
 
-        <h1 class="profile-title">Profile Details</h1>
+        <h2 class="profile-title">Profile</h2>
 
         <div class="profile-image-container">
             <img src="{{ user.profile_picture.url }}" alt="Profile Image" class="profile-image">
@@ -24,6 +24,7 @@
 
         <ul class="profile-links-list">
             <li><a href="{% url 'profile_edit' pk=request.user.pk %}" class="profile-link">Edit Profile</a></li>
+            <li><a href="#" class="profile-link">Add Balance</a></li>
         </ul>
     </div>
 
