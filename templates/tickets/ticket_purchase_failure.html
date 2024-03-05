@@ -7,10 +7,19 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Ticket Purchase Failure</h1>
+    <div class="failure-container">
+        <div class="failure-wrapper">
+            <div class="failure-title">
+                <h1>Ticket Purchase Failure</h1>
+            </div>
 
+            <div class="failure-icon">
+                <i class="far fa-circle-xmark"></i>
+            </div>
 
-    <div class="message-container">
-        <h1 class="failure-message">{{ error_message }}</h1>
+            <div class="message-container">
+                <h1 class="failure-message">{{ error_message }}</h1>
+            </div>
+        </div>
     </div>
 {% endblock %}

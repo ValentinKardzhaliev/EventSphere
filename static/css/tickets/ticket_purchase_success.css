@@ -17,13 +17,13 @@
 }
 
 .success-icon i {
-    font-size: 10em; /* Adjust the size as needed */
-    color: #00cc00; /* Green color */
+    font-size: 10em;
+    color: #00cc00;
     margin-bottom: 20px;
 }
 
 .success-message p,
 .no-message p {
-    color: #555; /* Adjust the color as needed */
+    color: #555;
     margin-top: 10px;
 }
