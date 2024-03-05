@@ -49,15 +49,16 @@
 #id_search_text {
     width: 25em;
     max-width: 30em;
+    height: 2.5em;
     border: 2px solid #ccc;
-    border-radius: 1em;
-    padding: 0.3em;
+    border-radius: 3em;
+    padding: 0.4em;
 }
 
 .search-button {
     position: absolute;
     top: 50%;
-    right: 0;
+    right: 1%;
     transform: translateY(-50%);
     background: none;
     border: none;
