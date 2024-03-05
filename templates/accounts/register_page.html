@@ -8,31 +8,33 @@
 {% endblock %}
 
 {% block content %}
-    <body class="login-body">
+    <body class="register-body">
         <div class="page-container">
-            <h1>User Registration</h1>
+            <h1 class="register-heading">Register</h1>
 
-            <div class="form-container">
-                <form method="post" action="{% url 'register_user' %}">
+            <div class="register-form-container">
+                <form method="post" action="{% url 'register_user' %}" class="register-form">
                     {% csrf_token %}
 
-                    <label for="{{ form.username.id_for_label }}">Username:</label><br>
-                    {{ form.username }}<br>
+                    <label for="{{ form.username.id_for_label }}" class="register-label">Username:</label>
+                    {{ form.username }}
 
-                    <label for="{{ form.email.id_for_label }}">Email:</label><br>
-                    {{ form.email }}<br>
+                    <label for="{{ form.email.id_for_label }}" class="register-label">Email:</label>
+                    {{ form.email }}
 
-                    <label for="{{ form.password1.id_for_label }}">Password:</label><br>
-                    {{ form.password1 }}<br>
+                    <label for="{{ form.password1.id_for_label }}" class="register-label">Password:</label>
+                    {{ form.password1 }}
 
-                    <label for="{{ form.password2.id_for_label }}">Confirm Password:</label><br>
-                    {{ form.password2 }}<br>
+                    <label for="{{ form.password2.id_for_label }}" class="register-label">Confirm Password:</label>
+                    {{ form.password2 }}
 
-                    <button type="submit">Register</button>
+                    <button type="submit" class="register-button">Register</button>
                 </form>
             </div>
 
-            <p>Already have an account? <a href="{% url 'login_user' %}">Sign in here</a>.</p>
+            <p class="login-link">Already have an account?
+                <a href="{% url 'login_user' %}" class="login-anchor">Sign in here!</a>
+            </p>
         </div>
     </body>
 {% endblock %}
