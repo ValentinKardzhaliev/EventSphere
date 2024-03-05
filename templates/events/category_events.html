@@ -8,7 +8,9 @@
 {% endblock %}
 
 {% block content %}
-    <h1 class="category-title">{{ selected_category }} Events</h1>
+    <div class="category-title-container">
+        <h1 class="category-title">{{ selected_category }} Events</h1>
+    </div>
 
     {% if category_events %}
         <div class="event-box-container">
