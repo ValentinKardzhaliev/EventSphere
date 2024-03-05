@@ -2,6 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin-top: 2em;
 }
 
 .event-box {
@@ -33,9 +34,6 @@
 
 .category-title-container {
     height: 30em;
-    background-image: url('/static/images/category-events-image.jpg');
-    background-size: cover;
-    background-position: center;
     text-align: center;
     padding: 30px 0;
     position: relative;
@@ -44,15 +42,64 @@
     justify-content: center;
 }
 
+[data-category="music"] {
+    background-image: url('/static/images/music-category-image.webp');
+    background-size: cover;
+    background-position: center;
+}
+
+[data-category="nightlife"] {
+    background-image: url('/static/images/nightlife-category-image.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+[data-category="performing & visual arts"] {
+    background-image: url('/static/images/performing-visual-art-category-image.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+[data-category="holidays"] {
+    background-image: url('/static/images/holidays-category-image.jpg');
+    background-size: 150%;
+    background-position: center;
+}
+
+[data-category="health"] {
+    background-image: url('/static/images/health-category-image.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+[data-category="hobbies"] {
+    background-image: url('/static/images/hobbies-category-image.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+[data-category="business"] {
+    background-image: url('/static/images/business-category-image.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+[data-category="food & drink"] {
+    background-image: url('/static/images/food-&-drink-category-image.jpg');
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+
+
 .category-title {
     color: #fff;
-    font-size: 4em;
     font-weight: bold;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
     display: inline-block;
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 0.4em;
-    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 0.6em;
+    line-height: 1em;
     z-index: 1;
 }
 
