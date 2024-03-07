@@ -54,3 +54,7 @@ class UserProfileEditForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(UserProfileEditForm, self).__init__(*args, **kwargs)
         self.fields['profile_picture'].required = False
+
+
+class RechargeBalanceForm(forms.Form):
+    amount = forms.DecimalField(label='Amount', min_value=0.01)

@@ -6,7 +6,8 @@ from django.utils.decorators import method_decorator
 from django.views import generic as views, View
 from django.contrib.auth import views as auth_views, get_user_model
 
-from event_ticketing_system.web_auth.forms import RegisterUserForm, LoginUserForm, UserProfileEditForm
+from event_ticketing_system.web_auth.forms import RegisterUserForm, LoginUserForm, UserProfileEditForm, \
+    RechargeBalanceForm
 
 UserModel = get_user_model()
 
@@ -66,3 +67,30 @@ class UserProfileEditView(View):
         else:
             messages.error(request, "Invalid form submission. Please check your inputs.")
             return render(request, self.template_name, {'user_profile_form': user_profile_form})
+
+
+@method_decorator(login_required, name='dispatch')
+class RechargeBalanceView(View):
+    template_name = 'accounts/recharge_balance.html'
+    form_class = RechargeBalanceForm
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            recharge_amount = form.cleaned_data['amount']
+            user = request.user
+            user.balance += recharge_amount
+            user.save()
+
+            messages.success(request, f"Successfully recharged {recharge_amount} to your balance.")
+            return redirect(self.get_success_url())
+        else:
+            messages.error(request, "Invalid form submission. Please check the entered amount.")
+            return render(request, self.template_name, {'form': form})
+
+    def get_success_url(self):
+        return reverse_lazy('profile_details', kwargs={'pk': self.request.user.pk})

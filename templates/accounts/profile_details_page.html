@@ -24,7 +24,7 @@
 
         <ul class="profile-links-list">
             <li><a href="{% url 'profile_edit' pk=request.user.pk %}" class="profile-link">Edit Profile</a></li>
-            <li><a href="#" class="profile-link">Add Balance</a></li>
+            <li><a href="{% url 'recharge_balance' pk=request.user.pk %}" class="profile-link">Add Balance</a></li>
         </ul>
     </div>
 
