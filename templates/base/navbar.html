@@ -46,6 +46,9 @@
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="{% static 'scripts/navbar.js' %}"></script>
+<script>
+    var isAuthenticated = {% if user.is_authenticated %}true{% else %}false{% endif %};
+</script>
 
 
 

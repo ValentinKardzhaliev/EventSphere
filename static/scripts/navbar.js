@@ -5,10 +5,11 @@ $(document).ready(function () {
         if ($(window).width() <= 900) {
             $('.navbar-links .profile-options').remove();
 
-            // Copy profile options to bar icon dropdown
-            var profileOptions = $('.profile-dropdown .dropdown-content').html();
-
-            $('.navbar-links').append('<div class="profile-options">' + profileOptions + '</div>');
+            // Copy profile options to bar icon dropdown only if authenticated
+            if (isAuthenticated) {
+                var profileOptions = $('.profile-dropdown .dropdown-content').html();
+                $('.navbar-links').append('<div class="profile-options">' + profileOptions + '</div>');
+            }
         } else {
             $('.navbar-links .profile-options').remove();
         }
