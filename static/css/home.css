@@ -107,15 +107,9 @@
 }
 
 @media only screen and (max-width: 768px) {
-    /*.event-box-container {*/
-    /*    flex-direction: column;*/
-    /*    overflow: hidden;*/
-    /*}*/
-
 
     .event-box{
         width: 100%;
-        /*flex: 0;*/
     }
 
     .event-image {
@@ -136,5 +130,13 @@
 
     .category-text {
         font-size: 0.6em;
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+    .category-text {
+        font-size: 0.4em;
+        margin: 0 0.2em;
     }
 }
