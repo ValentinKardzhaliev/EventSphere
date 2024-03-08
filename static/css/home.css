@@ -136,7 +136,6 @@
 
 @media screen and (max-width: 480px) {
     .category-text {
-        font-size: 0.4em;
         margin: 0 0.2em;
     }
 }
