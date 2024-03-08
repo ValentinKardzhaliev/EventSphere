@@ -1,5 +1,6 @@
 .register-body {
-    max-width: 100%;
+    width: 100%;
+    height: 100%;
     margin: 0;
     padding: 0 0;
     background-image: url("../../images/event-ideas-for-party-eventbookings.jpg");
@@ -71,4 +72,34 @@
 .login-anchor:hover {
     text-decoration: underline;
     color: #882121;
+}
+
+
+@media screen and (max-width: 768px) {
+    .page-container {
+        max-width: 30%;
+        margin: 20% auto;
+        font-size: 14px;
+    }
+
+    .register-form input {
+        height: 1.5em;
+    }
+
+    .register-button {
+        font-size: 12px;
+        padding: 8px 15px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .page-container {
+        max-width: 40%;
+        font-size: 12px;
+    }
+
+    .register-button {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
 }

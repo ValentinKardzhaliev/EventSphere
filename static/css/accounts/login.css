@@ -73,3 +73,35 @@
     text-decoration: underline;
     color: #882121;
 }
+
+
+/* For screens 768px and smaller */
+@media screen and (max-width: 768px) {
+    .page-container {
+        max-width: 30%;
+        margin: 30% auto;
+        font-size: 14px;
+    }
+
+    .login-form input {
+        height: 1.5em;
+    }
+
+    .login-button {
+        font-size: 12px;
+        padding: 8px 15px;
+    }
+
+}
+
+@media screen and (max-width: 480px) {
+    .page-container {
+        font-size: 12px;
+    }
+
+    .login-button {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+}
+
