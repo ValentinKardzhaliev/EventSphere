@@ -19,6 +19,16 @@
         <i class="fa-solid fa-bars" id="menu-icon"></i>
     </div>
 
+    {% block hide_bars_icon %}
+        {% if request.path == '/accounts/login/' or request.path == '/accounts/register/' %}
+            <style>
+                .bars-icon-container {
+                    display: none;
+                }
+            </style>
+        {% endif %}
+    {% endblock %}
+
     <div class="navbar-links">
         {% if user.is_authenticated %}
             <a class="navbar-link" id="likes" href="{% url 'liked_events' %}">Likes</a>
