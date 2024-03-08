@@ -120,9 +120,6 @@
         font-size: 0.8em;
     }
 
-    .category-link {
-        width: 2.8em;
-    }
 
     .category-link i {
         font-size: 1.8em;
@@ -135,7 +132,7 @@
 
 
 @media screen and (max-width: 480px) {
-    .category-text {
-        margin: 0 0.2em;
+    .category-link {
+        margin-right: 0.2em;
     }
 }
