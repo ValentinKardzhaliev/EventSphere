@@ -1,11 +1,18 @@
 {% extends 'base/base.html' %}
+{% load static %}
+
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/accounts/recharge_balance.css' %}">
+{% endblock %}
 
 {% block content %}
-    <h2>Recharge Balance</h2>
-    <form method="post" action="{% url 'recharge_balance' pk=request.user.pk %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Recharge</button>
-
-    </form>
+    <div class="center-wrapper">
+        <h2>Recharge Balance</h2>
+        <form class="recharge-form" method="post" action="{% url 'recharge_balance' pk=request.user.pk %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="recharge-button">Recharge</button>
+        </form>
+    </div>
 {% endblock %}
