@@ -82,3 +82,13 @@ p label[for="image-clear_id"] {
 .image-paragraph {
     overflow: hidden;
 }
+
+.submit-edit-button {
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
