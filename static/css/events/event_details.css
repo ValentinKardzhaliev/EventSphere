@@ -118,12 +118,27 @@
 }
 
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1200px) {
     .event-image {
         height: 35em;
     }
 }
 
+@media screen and (max-width: 1200px) {
+
+    :root {
+        --container-max-width: 500px;
+    }
+
+
+    .event-info-container {
+        flex-direction: column;
+    }
+
+    .event-information {
+        width: 100%;
+    }
+}
 
 @media screen and (max-width: 768px) {
 
@@ -135,8 +150,10 @@
         font-size: 0.8em;
     }
 
+
     .event-info-container {
         flex-direction: column;
+        align-self: center;
     }
 
     .event-information {
@@ -166,6 +183,4 @@
         padding: 0.5em;
         margin-bottom: 0.3em;
     }
-}
-
 }
