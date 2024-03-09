@@ -21,7 +21,6 @@
 
 .event-image {
     width: var(--container-max-width);
-    height: 35em;
     margin: 0 auto;
 }
 
@@ -55,7 +54,7 @@
 
 .event-title {
     color: #333333;
-    line-height: 1.2em;
+    line-height: 1em;
 }
 
 .event-info-heading {
@@ -116,4 +115,57 @@
 
 .purchase-form-fields button:hover {
     background-color: #555555;
+}
+
+
+@media screen and (min-width: 768px) {
+    .event-image {
+        height: 35em;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+
+    :root {
+        --container-max-width: 250px;
+    }
+
+    body {
+        font-size: 0.8em;
+    }
+
+    .event-info-container {
+        flex-direction: column;
+    }
+
+    .event-information {
+        width: 100%;
+    }
+
+
+    .event-details-page-container,
+    .actions-container {
+        padding: 0.5em;
+    }
+
+    .like-link,
+    .login-message-container,
+    .purchase-button {
+        padding: 0.5em;
+    }
+
+    .event-title,
+    .event-info-heading,
+    .event-info-value {
+        font-size: 1em;
+    }
+
+    .event-title-container,
+    .event-info-row {
+        padding: 0.5em;
+        margin-bottom: 0.3em;
+    }
+}
+
 }
