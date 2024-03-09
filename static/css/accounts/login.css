@@ -78,7 +78,7 @@
 /* For screens 768px and smaller */
 @media screen and (max-width: 768px) {
     .page-container {
-        max-width: 30%;
+        max-width: 50%;
         margin: 30% auto;
         font-size: 14px;
     }

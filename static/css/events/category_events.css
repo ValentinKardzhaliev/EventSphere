@@ -33,7 +33,7 @@
 }
 
 .category-title-container {
-    height: 30em;
+    height: 10em;
     text-align: center;
     padding: 30px 0;
     position: relative;
@@ -86,10 +86,9 @@
 
 [data-category="food & drink"] {
     background-image: url('/static/images/food-&-drink-category-image.jpg');
-    background-size: 100% 100%;
+    background-size: cover;
     background-position: center;
 }
-
 
 
 .category-title {
@@ -112,9 +111,41 @@
 }
 
 .no-events-message {
-    font-size: 2em;
     color: #555;
     text-align: center;
     margin-top: 1em;
 }
 
+@media screen and (min-width: 768px) {
+    .category-title-container {
+        height: 30em;
+    }
+
+    .no-events-message {
+        height: 30em;
+    }
+
+    [data-category="food & drink"] {
+        background-image: url('/static/images/food-&-drink-category-image.jpg');
+        background-size: 100% 100%;
+        background-position: center;
+    }
+
+    .category-title {
+        font-size: 26px;
+    }
+
+}
+
+
+@media only screen and (max-width: 768px) {
+
+    .event-box{
+        width: 100%;
+    }
+
+    .event-image {
+        height: 15em;
+    }
+
+}
