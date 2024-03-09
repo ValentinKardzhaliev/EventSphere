@@ -4,7 +4,7 @@
 {% block title %}Edit Event{% endblock %}
 
 {% block stylesheets %}
-{#    <link rel="stylesheet" type="text/css" href="{% static 'css/events/event_edit.css' %}">#}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/events/event_edit.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -12,18 +12,87 @@
         <div class="edit-event-container">
             <h1 class="edit-event-header">Edit Event</h1>
 
-            <form method="post" enctype="multipart/form-data">
+            <form method="post" enctype="multipart/form-data" class="edit-event-form">
                 {% csrf_token %}
-                {{ form.as_p }}
+
+                <div class="edit-form-section">
+                    <p>
+                        <label for="{{ form.title.id_for_label }}">Title:</label>
+                        {{ form.title }}
+                    </p>
+
+                    <p>
+                        <label for="{{ form.description.id_for_label }}">Description:</label>
+                        {{ form.description }}
+                    </p>
+
+                    <p>
+                        <label for="{{ form.location.id_for_label }}">Location:</label>
+                        {{ form.location }}
+                    </p>
+
+                    <p>
+                        <label for="{{ form.date_and_time.id_for_label }}">Date and time:</label>
+                        {{ form.date_and_time }}
+                    </p>
+
+                    <p>
+                        <label for="{{ form.venue.id_for_label }}">Venue:</label>
+                        {{ form.venue }}
+                    </p>
+
+                    <p>
+                        <label for="{{ form.category.id_for_label }}">Category:</label>
+                        {{ form.category }}
+                    </p>
+
+                    <p>
+                        <label for="{{ form.contact_information.id_for_label }}">Contact information:</label>
+                        {{ form.contact_information }}
+                    </p>
+
+                    <p>
+                        <label for="{{ form.organizer.id_for_label }}">Organizer:</label>
+                        {{ form.organizer }}
+                    </p>
+
+                    <p class="image-paragraph">
+                        <label for="{{ form.image.id_for_label }}">Image:</label>
+                        {{ form.image }}
+                    </p>
+                </div>
 
                 {{ form.media }}
-                <h2 class="ticket-form-header">Regular Ticket</h2>
-                {{ ticket_form.as_p }}
 
-                <h2 class="ticket-form-header">VIP Ticket</h2>
-                {{ vip_ticket_form.as_p }}
+                <div class="edit-ticket-section">
+                    <h2 class="ticket-form-header">Regular Ticket</h2>
+                    <p>
+                        <label for="{{ form.regular_quantity_available.id_for_label }}">Quantity available:</label>
+                        {{ ticket_form.quantity_available }}
+                    </p>
 
-                <button type="submit">Save Changes</button>
+                    <p>
+                        <label for="{{ form.regular_price_per_ticket.id_for_label }}">Price per ticket:</label>
+                        {{ ticket_form.price_per_ticket }}
+                    </p>
+                </div>
+
+                <div class="edit-ticket-section">
+                    <h2 class="ticket-form-header">VIP Ticket</h2>
+                    <p>
+                        <label for="{{ form.vip_quantity_available.id_for_label }}">VIP Tickets Quantity:</label>
+                        {{ vip_ticket_form.quantity_available }}
+                    </p>
+
+                    <p>
+                        <label for="{{ form.vip_price_per_ticket.id_for_label }}">VIP Tickets Price:</label>
+                        {{ vip_ticket_form.price_per_ticket }}
+                    </p>
+                </div>
+
+                <div class="edit-button-section">
+                    <button type="submit">Save Changes</button>
+                </div>
             </form>
         </div>
     </div>
