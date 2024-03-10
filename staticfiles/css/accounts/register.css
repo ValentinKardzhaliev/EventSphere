@@ -1,0 +1,116 @@
+.register-body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0 0;
+    background-image: url("../../images/event-ideas-for-party-eventbookings.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    overflow: hidden;
+}
+
+.page-container {
+    max-width: 30%;
+    margin: 5% auto;
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.register-heading {
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.register-form {
+    margin: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.register-label {
+    width: 100%;
+}
+
+.register-form input {
+    width: 100%;
+    margin: 1em;
+    height: 2em;
+}
+
+.register-button {
+    margin-top: 1em;
+    background-color: #f05537;
+    color: #fff;
+    cursor: pointer;
+    padding: 12px 20px;
+    font-size: 16px;
+    width: 100%;
+    border: none;
+}
+
+.register-button:hover {
+    background-color: #882121;
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 16px;
+    padding: 16px;
+}
+
+.login-anchor {
+    color: #f05537;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-anchor:hover {
+    text-decoration: underline;
+    color: #882121;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    margin: 0;
+    display: block;
+}
+
+
+.error {
+    border: 1px solid red;
+}
+
+@media screen and (max-width: 768px) {
+    .page-container {
+        max-width: 40%;
+        margin: 20% auto;
+        font-size: 14px;
+    }
+
+    .register-form input {
+        height: 1.5em;
+    }
+
+    .register-button {
+        font-size: 12px;
+        padding: 8px 15px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .page-container {
+        max-width: 60%;
+        font-size: 12px;
+    }
+
+    .register-button {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+}
