@@ -48,6 +48,10 @@ class LoginUserForm(auth_forms.AuthenticationForm):
         self.fields['password'].widget = forms.PasswordInput(
             attrs={'class': 'custom-form-control'})
 
+        for field_name, field in self.fields.items():
+            if self[field_name].errors:
+                field.widget.attrs['class'] = f"{field.widget.attrs.get('class', '')} error"
+
 
 class UserProfileEditForm(forms.ModelForm):
     class Meta:

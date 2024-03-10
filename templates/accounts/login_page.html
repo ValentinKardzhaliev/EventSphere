@@ -9,26 +9,29 @@
 
 {% block content %}
     <body class="login-body">
-        <div class="page-container">
-            <h1 class="login-heading">Login</h1>
+    <div class="page-container">
+        <h1 class="login-heading">Login</h1>
 
-            <div class="form-container">
-                <form method="post" action="{% url 'login_user' %}" class="login-form">
-                    {% csrf_token %}
+        <div class="form-container">
+            <form method="post" action="{% url 'login_user' %}" class="login-form">
+                {% csrf_token %}
 
-                    <label for="{{ form.username.id_for_label }}" class="form-label">Username:</label>
-                    {{ form.username }}
+                {% for error in form.non_field_errors %}
+                    <p class="error-message">{{ error }}</p>
+                {% endfor %}
 
-                    <label for="{{ form.password.id_for_label }}" class="form-label">Password:</label>
-                    {{ form.password }}
+                <label for="{{ form.username.id_for_label }}" class="form-label">Username:</label>
+                {{ form.username }}
+                <label for="{{ form.password.id_for_label }}" class="form-label">Password:</label>
+                {{ form.password }}
 
-                    <button type="submit" class="login-button">Login</button>
-                </form>
-            </div>
-
-            <p class="signup-link">Don't have an account?
-                <a href="{% url 'register_user' %}" class="signup-anchor">Sign up now!</a>
-            </p>
+                <button type="submit" class="login-button">Login</button>
+            </form>
         </div>
+
+        <p class="signup-link">Don't have an account?
+            <a href="{% url 'register_user' %}" class="signup-anchor">Sign up now!</a>
+        </p>
+    </div>
     </body>
 {% endblock %}

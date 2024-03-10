@@ -11,7 +11,7 @@
 }
 
 .page-container {
-    max-width: 20%;
+    max-width: 30%;
     margin: 10% auto;
     background-color: white;
     padding: 15px;
@@ -74,11 +74,22 @@
     color: #882121;
 }
 
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    display: block;
+}
 
-/* For screens 768px and smaller */
+.error {
+    border: 1px solid red;
+}
+
+
 @media screen and (max-width: 768px) {
     .page-container {
-        max-width: 50%;
+        max-width: 60%;
         margin: 30% auto;
         font-size: 14px;
     }
@@ -103,5 +114,14 @@
         font-size: 12px;
         padding: 6px 12px;
     }
+}
+
+@media screen and (min-height: 1100px) {
+    .page-container {
+        max-width: 40%;
+        margin: 30% auto;
+    }
+}
+
 }
 
