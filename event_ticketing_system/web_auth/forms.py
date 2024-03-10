@@ -4,8 +4,6 @@ from django import forms
 UserModel = get_user_model()
 
 
-# forms.py
-
 class RegisterUserForm(auth_forms.UserCreationForm):
     class Meta:
         model = UserModel
@@ -13,7 +11,7 @@ class RegisterUserForm(auth_forms.UserCreationForm):
 
         widgets = {
             'username': forms.TextInput(attrs={'class': 'custom-form-control'}),
-            'email': forms.EmailInput(attrs={'class': 'custom-form-control' }),
+            'email': forms.EmailInput(attrs={'class': 'custom-form-control'}),
         }
 
     def __init__(self, *args, **kwargs):
@@ -24,6 +22,11 @@ class RegisterUserForm(auth_forms.UserCreationForm):
             attrs={'class': 'custom-form-control'})
         self.fields['password2'].widget = forms.PasswordInput(
             attrs={'class': 'custom-form-control'})
+
+        # Add 'error' class to fields with errors
+        for field_name, field in self.fields.items():
+            if self[field_name].errors:
+                field.widget.attrs['class'] = f"{field.widget.attrs.get('class', '')} error"
 
 
 class LoginUserForm(auth_forms.AuthenticationForm):
