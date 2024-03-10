@@ -9,32 +9,44 @@
 
 {% block content %}
     <body class="register-body">
-        <div class="page-container">
-            <h1 class="register-heading">Register</h1>
+    <div class="page-container">
+        <h1 class="register-heading">Register</h1>
 
-            <div class="register-form-container">
-                <form method="post" action="{% url 'register_user' %}" class="register-form">
-                    {% csrf_token %}
+        <div class="register-form-container">
+            <form method="post" action="{% url 'register_user' %}" class="register-form">
+                {% csrf_token %}
 
-                    <label for="{{ form.username.id_for_label }}" class="register-label">Username:</label>
-                    {{ form.username }}
+                <label for="{{ form.username.id_for_label }}" class="register-label">Username:</label>
+                {{ form.username }}
+                {% for error in form.username.errors %}
+                    <p class="error-message">{{ error }}</p>
+                {% endfor %}
 
-                    <label for="{{ form.email.id_for_label }}" class="register-label">Email:</label>
-                    {{ form.email }}
+                <label for="{{ form.email.id_for_label }}" class="register-label">Email:</label>
+                {{ form.email }}
+                {% for error in form.email.errors %}
+                    <p class="error-message">{{ error }}</p>
+                {% endfor %}
 
-                    <label for="{{ form.password1.id_for_label }}" class="register-label">Password:</label>
-                    {{ form.password1 }}
+                <label for="{{ form.password1.id_for_label }}" class="register-label">Password:</label>
+                {{ form.password1 }}
+                {% for error in form.password1.errors %}
+                    <p class="error-message">{{ error }}</p>
+                {% endfor %}
 
-                    <label for="{{ form.password2.id_for_label }}" class="register-label">Confirm Password:</label>
-                    {{ form.password2 }}
+                <label for="{{ form.password2.id_for_label }}" class="register-label">Confirm Password:</label>
+                {{ form.password2 }}
+                {% for error in form.password2.errors %}
+                    <p class="error-message">{{ error }}</p>
+                {% endfor %}
 
-                    <button type="submit" class="register-button">Register</button>
-                </form>
-            </div>
-
-            <p class="login-link">Already have an account?
-                <a href="{% url 'login_user' %}" class="login-anchor">Sign in here!</a>
-            </p>
+                <button type="submit" class="register-button">Register</button>
+            </form>
         </div>
+
+        <p class="login-link">Already have an account?
+            <a href="{% url 'login_user' %}" class="login-anchor">Sign in here!</a>
+        </p>
+    </div>
     </body>
 {% endblock %}

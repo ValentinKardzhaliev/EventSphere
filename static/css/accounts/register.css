@@ -12,8 +12,8 @@
 }
 
 .page-container {
-    max-width: 20%;
-    margin: 7% auto;
+    max-width: 30%;
+    margin: 5% auto;
     background-color: white;
     padding: 15px;
     border-radius: 8px;
@@ -74,10 +74,22 @@
     color: #882121;
 }
 
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+    display: block;
+}
+
+.register-form input:invalid,
+.register-form select:invalid,
+.register-form textarea:invalid {
+    border: 1px solid red;
+}
 
 @media screen and (max-width: 768px) {
     .page-container {
-        max-width: 30%;
+        max-width: 40%;
         margin: 20% auto;
         font-size: 14px;
     }
@@ -94,7 +106,7 @@
 
 @media screen and (max-width: 480px) {
     .page-container {
-        max-width: 50%;
+        max-width: 60%;
         font-size: 12px;
     }
 
