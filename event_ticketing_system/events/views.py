@@ -1,6 +1,7 @@
 from dal import autocomplete
 from cities_light.models import City
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
 from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
@@ -79,6 +80,11 @@ class EventEditView(UpdateView):
     form_class = EventEditForm
     template_name = 'events/event_edit.html'
     success_url = reverse_lazy('user_created_events')
+
+    def dispatch(self, request, *args, **kwargs):
+        if self.get_object().creator != self.request.user:
+            raise PermissionDenied("You don't have permission to edit this event.")
+        return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
