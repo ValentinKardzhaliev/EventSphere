@@ -24,3 +24,14 @@
     color: #555;
     margin-top: 10px;
 }
+
+.recharge-button {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 8px 15px;
+    background-color: #3498db;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}

@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
@@ -12,7 +13,12 @@ from event_ticketing_system.web_auth.forms import RegisterUserForm, LoginUserFor
 UserModel = get_user_model()
 
 
-class RegisterUserView(views.CreateView):
+class NotLoggedInMixin(UserPassesTestMixin):
+    def test_func(self):
+        return not self.request.user.is_authenticated
+
+
+class RegisterUserView(NotLoggedInMixin, views.CreateView):
     template_name = 'accounts/register_page.html'
     form_class = RegisterUserForm
 
@@ -20,7 +26,7 @@ class RegisterUserView(views.CreateView):
         return reverse_lazy('index')
 
 
-class LoginUserView(auth_views.LoginView):
+class LoginUserView(NotLoggedInMixin, auth_views.LoginView):
     template_name = 'accounts/login_page.html'
     form_class = LoginUserForm
 

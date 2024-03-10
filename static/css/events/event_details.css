@@ -78,7 +78,6 @@
 }
 
 .like-link,
-.login-message-container,
 .purchase-button {
     background-color: #333333;
     color: #ffffff;
@@ -94,9 +93,6 @@
     background-color: #555555;
 }
 
-.login-message {
-    color: #666666;
-}
 
 .purchase-form-fields {
     margin-top: 10px;

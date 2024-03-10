@@ -19,7 +19,13 @@
 
             <div class="message-container">
                 <h1 class="failure-message">{{ error_message }}</h1>
+
+                {% if error_message == "Insufficient balance to purchase tickets." %}
+                    <a href="{% url 'recharge_balance' pk=request.user.pk %}" class="recharge-link">
+                        <button type="button" class="recharge-button">Recharge Balance</button>
+                    </a>                {% endif %}
             </div>
+
         </div>
     </div>
 {% endblock %}
