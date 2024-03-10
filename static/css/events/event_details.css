@@ -33,7 +33,7 @@
 .event-info-container {
     display: flex;
     justify-content: space-between;
-    max-width: var(--container-max-width);
+    width: var(--container-max-width);
     margin-top: 1em;
 }
 
