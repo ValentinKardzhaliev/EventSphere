@@ -1,0 +1,29 @@
+
+.success-container {
+    width: 100%;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.success-wrapper {
+    margin-top: auto;
+    text-align: center;
+}
+
+.success-title h1 {
+    color: #333;
+}
+
+.success-icon i {
+    font-size: 10em;
+    color: #00cc00;
+    margin-bottom: 20px;
+}
+
+.success-message p,
+.no-message p {
+    color: #555;
+    margin-top: 10px;
+}

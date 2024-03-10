@@ -1,0 +1,99 @@
+.user-created-events-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-created-events-container {
+    max-width: 70em;
+    width: 100%;
+    padding: 1.2em;
+    box-sizing: border-box;
+}
+
+.user-info-wrapper {
+    display: inline-block;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Inherit text color */
+    cursor: pointer;
+}
+
+.user-avatar {
+    width: 2.5em;
+    height: 2.5em;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.username {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.user-created-event-item {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.user-created-event-item:hover {
+    transform: scale(1.02);
+}
+
+.event-item-header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+}
+
+.event-title {
+    margin: 0;
+    color: #fff;
+    text-decoration: none;
+}
+
+.event-title:hover {
+    color: #ddd;
+}
+
+.event-item-details {
+    padding: 15px;
+}
+
+.event-info-heading {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.event-info-value {
+    color: #333;
+}
+
+.user-created-events-list {
+    list-style: none;
+    padding: 0;
+}
+
+.no-events-message {
+    font-style: italic;
+    color: #555;
+}
+
+.user-created-event-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.edit-icon {
+    float: right;
+    transform: translateY(-50%);
+    color: #555;
+    font-size: 1.5em;
+}
