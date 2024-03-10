@@ -62,9 +62,7 @@
                                     <i class="fa-regular fa-heart"></i>{% endif %}
                             </a>
                         {% else %}
-                            <div class="login-message-container">
-                                <p class="login-message">Login to like this event.</p>
-                            </div>
+                            <a href="{% url 'login_user' %}" class="like-link"><i class="fa-regular fa-heart"></i></a>
                         {% endif %}
                     </div>
                     <div class="purchase-tickets-container">
