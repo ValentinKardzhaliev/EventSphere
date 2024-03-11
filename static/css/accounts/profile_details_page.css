@@ -63,3 +63,34 @@
 .profile-link:hover {
     background-color: #2980b9;
 }
+
+
+@media only screen and (max-width: 768px) {
+    .profile-image {
+        width: 150px;
+        height: 150px;
+    }
+
+    .profile-details-list {
+        margin-top: 10px;
+    }
+
+    .profile-link {
+        padding: 8px 10px;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .profile-image {
+        width: 100px;
+        height: 100px;
+    }
+
+    .profile-detail-item strong {
+        margin-right: 5px;
+    }
+
+    .profile-link {
+        padding: 6px 8px;
+    }
+}
