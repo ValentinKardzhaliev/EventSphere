@@ -1,19 +1,27 @@
 {% extends 'base/base.html' %}
+{% load static %}
+
 {% block title %}Refund Confirmation{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'css/tickets/refund_ticket.css' %}">
+{% endblock %}
 
 {% block content %}
     <div class="refund-confirmation">
-        <h1>Refund Confirmation</h1>
+        <h1 class="refund-heading">Refund Confirmation</h1>
 
-        <p>Your refund request has been processed successfully.</p>
+        <p class="refund-message">Your refund request has been processed successfully.</p>
 
-        <h2>Refunded Tickets:</h2>
-        <ul>
+        <h2 class="refunded-tickets-heading">Refunded Tickets:</h2>
+        <ul class="refunded-tickets-list">
             {% for refunded_ticket in refunded_tickets %}
-                <li>{{ refunded_ticket.get_ticket_type_display }} - {{ refunded_ticket.event.title }}</li>
+                <li class="refunded-ticket-item">
+                    {{ refunded_ticket.get_ticket_type_display }} - {{ refunded_ticket.event.title }}
+                </li>
             {% endfor %}
         </ul>
 
-        <p>Thank you for using our service!</p>
+        <p class="thank-you-message">Thank you for using our service!</p>
     </div>
 {% endblock %}
