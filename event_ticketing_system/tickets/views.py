@@ -7,8 +7,8 @@ from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.views import View
 
-from event_ticketing_system.events.forms import TicketPurchaseForm
 from event_ticketing_system.events.models import Event, UserModel
+from event_ticketing_system.tickets.forms import TicketPurchaseForm
 from event_ticketing_system.tickets.models import Ticket, Purchase
 
 
@@ -24,22 +24,26 @@ class TicketPurchaseView(View):
             quantity = purchase_form.cleaned_data['quantity']
             ticket_type = purchase_form.cleaned_data['ticket_type']
             ticket = Ticket.objects.get(event=event, ticket_type=ticket_type)
-            price_per_ticket = ticket.price_per_ticket
 
-            if request.user.balance >= quantity * price_per_ticket:
-                success, purchase = TicketPurchaseView.purchase_ticket(request.user, event, quantity, ticket_type)
+            if ticket.quantity_available > 0:
+                price_per_ticket = ticket.price_per_ticket
 
-                if success:
-                    messages.success(request,
-                                     f"Successfully purchased {quantity} {ticket.get_ticket_type_display()} ticket(s) for {event.title}.")
-                    return redirect(reverse('ticket_purchase_success', kwargs={'pk': event.pk}))
+                if request.user.balance >= quantity * price_per_ticket:
+                    success, purchase = TicketPurchaseView.purchase_ticket(request.user, event, quantity, ticket_type)
+
+                    if success:
+                        messages.success(request,
+                                         f"Successfully purchased {quantity} {ticket.get_ticket_type_display()} ticket(s) for {event.title}.")
+                        return redirect(reverse('ticket_purchase_success', kwargs={'pk': event.pk}))
+                    else:
+                        messages.error(request, "Failed to complete the purchase.")
+                        return redirect('ticket_purchase_failure')
                 else:
-                    messages.error(request, "Failed to complete the purchase.")
+                    messages.error(request, "Insufficient balance to purchase tickets.")
                     return redirect('ticket_purchase_failure')
             else:
-                messages.error(request, "Insufficient balance to purchase tickets.")
+                messages.error(request, "No tickets available for the selected type.")
                 return redirect('ticket_purchase_failure')
-
         else:
             messages.error(request, "Invalid purchase form submission.")
             return redirect('ticket_purchase_failure')

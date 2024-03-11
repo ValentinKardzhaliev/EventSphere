@@ -9,9 +9,9 @@ from django.utils.decorators import method_decorator
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from .models import Event
-from .forms import TicketPurchaseForm, EventAndTicketsForm, EventEditForm
+from .forms import EventAndTicketsForm, EventEditForm
 from ..common.models import Like
-from ..tickets.forms import RegularTicketForm, VIPTicketForm
+from ..tickets.forms import RegularTicketForm, VIPTicketForm, TicketPurchaseForm
 from ..tickets.models import Ticket
 
 

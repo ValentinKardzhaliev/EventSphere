@@ -1,7 +1,6 @@
 from django import forms
 from django.forms.widgets import DateTimeInput
 from .models import Event
-from ..tickets.models import Ticket
 from cities_light.models import City
 from dal import autocomplete
 
@@ -39,7 +38,3 @@ class EventEditForm(forms.ModelForm):
             'date_and_time': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
         }
 
-
-class TicketPurchaseForm(forms.Form):
-    quantity = forms.IntegerField(min_value=1, label='Number of Tickets')
-    ticket_type = forms.ChoiceField(choices=Ticket.TICKET_TYPE_CHOICES, label='Ticket Type')
