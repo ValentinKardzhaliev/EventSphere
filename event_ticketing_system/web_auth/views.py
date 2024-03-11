@@ -56,6 +56,7 @@ class UserDashboardView(views.DetailView):
     context_object_name = 'user'
 
 
+@method_decorator(login_required, name='dispatch')
 class UserProfileEditView(View):
     template_name = 'accounts/profile_edit.html'
 

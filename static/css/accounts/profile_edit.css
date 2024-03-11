@@ -1,6 +1,90 @@
-.profile-image {
-    max-width: 200px; /* Set the maximum width you want */
-    max-height: 200px; /* Set the maximum height you want */
-    width: auto;
-    height: auto;
+.edit-page-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.edit-profile-container {
+    width: 30%;
+    border: 1px solid #ccc; /* Border color */
+    padding: 20px; /* Add some padding for better visual appeal */
+    border-radius: 5px; /* Optional: Add border-radius for rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add box shadow for depth effect */
+}
+
+.edit-profile-heading {
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.edit-image-container {
+    overflow: hidden;
+}
+
+.submit-edit-btn-container {
+    margin-top: 20px;
+}
+
+.submit-edit-btn {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    width: 100%;
+}
+
+.back-to-profile-btn {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #007BFF;
+    transition: color 0.3s ease-in-out;
+}
+
+.back-to-profile-btn:hover {
+    color: #0056b3;
+}
+
+@media screen and (max-width: 768px) {
+    .edit-profile-container {
+        width: 60%;
+        font-size: 14px;
+    }
+
+
+}
+
+@media screen and (max-width: 480px) {
+    .edit-profile-container {
+        font-size: 12px;
+    }
+
+}
+
+@media screen and (min-height: 1100px) {
+    .edit-profile-container {
+        max-width: 40%;
+    }
 }

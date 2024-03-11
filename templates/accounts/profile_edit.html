@@ -3,14 +3,41 @@
 
 {% block title %}Edit Profile{% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/accounts/profile_edit.css' %}">
+{% endblock %}
+
 {% block content %}
-    <h1>Edit Profile</h1>
+    <div class="edit-page-container">
 
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ user_profile_form.as_p }}
-        <button type="submit">Save Changes</button>
-    </form>
+        <div class="edit-profile-container">
+            <h1 class="edit-profile-heading">Edit Profile</h1>
 
-    <a href="{% url 'profile_details' pk=request.user.pk %}">Back to Profile Details</a>
+            <form method="post" enctype="multipart/form-data" class="edit-profile-form">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    {{ user_profile_form.username.label_tag }}
+                    {{ user_profile_form.username }}
+                </div>
+
+                <div class="form-group">
+                    {{ user_profile_form.email.label_tag }}
+                    {{ user_profile_form.email }}
+                </div>
+
+                <div class="form-group edit-image-container">
+                    {{ user_profile_form.profile_picture.label_tag }}
+                    {{ user_profile_form.profile_picture }}
+                </div>
+
+                <div class="submit-edit-btn-container">
+                    <button type="submit" class="submit-edit-btn">Save Changes</button>
+                </div>
+            </form>
+
+            <a href="{% url 'profile_details' pk=request.user.pk %}" class="back-to-profile-btn">Back to Profile
+                Details</a>
+        </div>
+    </div>
 {% endblock %}
