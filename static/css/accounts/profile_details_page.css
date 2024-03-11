@@ -2,6 +2,7 @@
     text-align: center;
     display: flex;
     flex-direction: column;
+    margin-top: 2em;
 }
 
 .profile-title {
@@ -20,6 +21,7 @@
     height: 250px;
     border-radius: 50%;
     object-fit: cover;
+    object-position: top;
     border: 3px solid #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
