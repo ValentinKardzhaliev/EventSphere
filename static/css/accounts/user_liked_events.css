@@ -23,7 +23,7 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-.event-image{
+.event-image {
     width: 10em;
     height: 6em;
 }
@@ -39,10 +39,16 @@
     margin: 0;
     color: #333;
     text-decoration: none;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.event-info-container {
+    margin-top: auto;
 }
 
 .event-info {
-    margin: 0;
+    margin-top: 0.5em;
 }
 
 .event-image-and-actions {
@@ -57,6 +63,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
 
 .like-link {
@@ -80,6 +87,16 @@
         font-size: 12px;
         line-height: 2em;
     }
+
+    .event-title {
+        font-size: 18px;
+    }
+
+    .event-card {
+        height: 16em;
+    }
+
+
 
     .event-image-and-actions img {
         max-width: 5em;

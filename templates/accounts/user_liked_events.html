@@ -16,10 +16,14 @@
                 <div class="event-card">
                     <div class="event-details">
                         <a href="{% url 'event_details' like.event.id %}" class="event-title">
-                            <h2>{{ like.event.title }}</h2>
+                            <p>{{ like.event.title }}</p>
                         </a>
-                        <p class="event-info">{{ like.event.date_and_time }}</p>
-                        <p class="event-info">{{ like.event.location }}</p>
+
+                        <div class="event-info-container">
+                            <p class="event-info">{{ like.event.date_and_time }}</p>
+                            <p class="event-info">{{ like.event.location }}</p>
+                        </div>
+
                     </div>
                     <div class="event-image-and-actions">
                         <a href="{% url 'event_details' like.event.id %}">
