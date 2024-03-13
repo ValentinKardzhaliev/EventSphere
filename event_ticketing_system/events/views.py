@@ -64,10 +64,13 @@ class EventDetailsView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['purchase_form'] = TicketPurchaseForm()
+
+        event = self.get_object()
+
+        purchase_form = TicketPurchaseForm(event=event)
+        context['purchase_form'] = purchase_form
 
         if self.request.user.is_authenticated:
-            event = self.get_object()
             user_likes_event = Like.objects.filter(user=self.request.user, event=event).exists()
             context['user_likes_event'] = user_likes_event
 
