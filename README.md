@@ -40,7 +40,6 @@ The website is deployed and accessible at [valentinkardzhaliev.pythonanywhere.co
 ## Future Plans
 
 - Implement Stripe payment options for ticket purchases.
-- Send email notifications upon user registration.
 
 ## Access Control
 
